@@ -1,0 +1,5 @@
+{
+    "http-path": "gameCounts",
+    "hypixel-path": "https://api.hypixel.net/gameCounts",
+    "query-arguments": []
+  }

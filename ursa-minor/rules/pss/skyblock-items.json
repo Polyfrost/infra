@@ -1,0 +1,5 @@
+{
+	"http-path": "resources/skyblock/items",
+	"hypixel-path": "https://api.hypixel.net/resources/skyblock/items",
+	"query-arguments": []
+}

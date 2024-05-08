@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  grafana:
+    image: grafana/grafana-oss:10.2.1
+    container_name: grafana
+    restart: unless-stopped
+    user: '0'
+    volumes:
+     - ./data:/var/lib/grafana
+    environment:
+      GF_SERVER_ROOT_URL: http://dash.polyfrost.org/
+        
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:v1.7.0
+    container_name: node_exporter
+    command:
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--path.procfs=/host/proc'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+      - '--collector.systemd'
+      - '--collector.processes'
+      - '--web.listen-address=0.0.0.0:9101'
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+
+  prometheus:
+    image: quay.io/prometheus/prometheus:v2.49.1
+    container_name: prometheus
+    user: root
+    volumes:
+      - ./prometheus:/prometheus
+      - ./prometheus-config:/etc/prometheus
+
+networks:
+  default:
+    name: external
+    external: true
