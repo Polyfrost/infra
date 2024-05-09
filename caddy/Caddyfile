@@ -40,6 +40,7 @@ polyfrost.cc, *.polyfrost.cc, polyfrost.org, *.polyfrost.org {
 	handle @index {
 		# Redirections for the index domains
 		redir /discord https://discord.gg/N4qW7TW3dv 302
+		redir /discord/ https://discord.gg/N4qW7TW3dv 302
 		redir /oneconfig https://polyfrost.org/projects/oneconfig 302
 		redir /oneconfig/ https://polyfrost.org/projects/oneconfig 302
 
