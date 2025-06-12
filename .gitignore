@@ -1,1 +1,4 @@
-**/.env
+result
+.direnv
+nixos/hosts/*/age.txt
+.gcroots

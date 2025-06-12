@@ -1,0 +1,11 @@
+# Polyfrost infrastructure
+
+This repository contains the code for all of the Polyfrost infrastructure (primarily our VPS, hosting maven and the such).
+
+## Project setup
+
+Our VPS is managed using NixOS. The entrypoints for NixOS configurations are located at `nixos/hosts/CONFIGURATION/default.nix`. In addition to base NixOS, we also use `sops-nix` for secrets provisioning, `nixos-anywhere` and `disko` for VPS setup, and `nixos-facter` for hardware configuration.
+
+All NixOS configurations are exported via Nix Flake with outputs for nixos-rebuild and colmena.
+
+This project also contains a nix-direnv configuration which provides the binaries for packages and utilities needed to work on this repository. In addition, treefmt-nix is setup for code formatting, so just use `nix fmt` to format all code.

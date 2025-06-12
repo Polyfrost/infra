@@ -1,7 +1,0 @@
-{
-	"http-path": "skyblock/profile",
-	"hypixel-path": "https://api.hypixel.net/skyblock/profile",
-	"query-arguments": [
-		"profile"
-	]
-}
