@@ -1,7 +1,0 @@
-{
-	"http-path": "skyblock/profiles",
-	"hypixel-path": "https://api.hypixel.net/skyblock/profiles",
-	"query-arguments": [
-		"uuid"
-	]
-}

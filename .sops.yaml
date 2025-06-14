@@ -1,0 +1,13 @@
+keys:
+    # Encryption keys
+  - &admin_ty A6299C20250223DCDEBA5E2C933B9437A97A56B8
+    # Decryption keys
+  - &host_vps age1v3rwucwe2luzsp2uv834gt9tktf95qcvw78fsg6t2k2fq07z8eas83rz5l
+creation_rules:
+    # VPS configuration
+  - path_regex: nixos/hosts/vps/sops\.yaml$
+    key_groups:
+      - pgp:
+          - *admin_ty
+        age:
+          - *host_vps
