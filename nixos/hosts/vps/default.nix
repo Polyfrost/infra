@@ -20,6 +20,9 @@
         inputs.home-manager.nixosModules.home-manager
         # TODO add ty home-manager configuration as input and such
 
+        # Include configuration for testing via QEMU
+        ./virtualization.nix
+
         ## Main configuration entrypoint
         ./config
     ];

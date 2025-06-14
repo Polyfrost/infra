@@ -1,3 +1,6 @@
+plausible:
+    smtp_password: ENC[AES256_GCM,data:ocG2E9kCVmmgDlonRt4A3IOdrrFTMcAeW39+UOhAyMQ=,iv:l9LFJajJqIoxTc8Y+cYqCj7FYi5hQ8WipfQZ+s7DZ7U=,tag:aeuHENGRVMvTkmxld2aeUg==,type:str]
+    secret_key_base: ENC[AES256_GCM,data:fe+5KJSQ9txePtPa261AbabbSZsXoX19w39h2vev9eGdW20jZ1X9b+7+XP++veS5jvk1NSKqUMoR3vjSao8Uvg==,iv:gvfeLrw5dsafjDNlUX2iCklCxcM2tJTxucKaDcWqNEA=,tag:NTjY7KQYNQ/G5bBVIQrnBg==,type:str]
 users:
     ty:
         password_hash: ENC[AES256_GCM,data:fHmdB9wOhNVDLefcAK1ouLrbv/x7yeAPXaneOhpHSMoAQnQfJ+cK2LRlaecH/SKDnwCBbwuT0N+HUwVdGYz7rNMsUIlgO2nGsw==,iv:tnxALqVl5BcTED8BZCTVIC1r+nG/SXuMMBb37y3x6uw=,tag:X4FSPutvIcU9LBz+OTL75A==,type:str]
@@ -16,8 +19,8 @@ sops:
             OEx4TG10MGFDY1Jpbmk4UWdHbDdPU1EK9JkKe5p0cw6pszL+14bbi0dQIZPjXW6q
             lTXnVaVuivm0LQkG4iQuqpP4r/hxoLi9CXodWitXTeZjxc51uGWFXg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-06-12T23:43:04Z"
-    mac: ENC[AES256_GCM,data:WAbZ4/rZqFg9AzTm112Mn1MaZa+uarzp3A8KGLH1jwxBqDUwq9kNAEdw9ZqK7IgUiG/ZTEQVrWhoQDq5mb5eurU0ZXsUC05Ik+wK9cT8ssqPWd0DriML40rXixX5BGsWJAd1fptpewLD2sGSO5X/RQGIKf+HeFYycVxx7KwpATE=,iv:KGxdUWDI9P3Hx5zCKIrumrI7N49lhL03+ARtUO6nH9g=,tag:SZaSyuUugouLXtwenBzUVw==,type:str]
+    lastmodified: "2025-06-13T22:24:51Z"
+    mac: ENC[AES256_GCM,data:wkv5O80YhQBD/nIkl9cMzrhpLzRPoUx5XrWiLtlbftOcg0EaKeT9UZhSngkolcnyVVvpaxx7jWXBTXsm/CVAY3vDx+tmVWTTf5GlcPdStrhWpBb8b1ZuqEOiEG+9DRAxnNQFY8tJLWzRcJ/n9k/eG7sNgOBO2TV4yvdcRrsQ/4U=,iv:zISPY1qKYiNKYmtO7YsgHck815VmbZaPiXGB31YOxDU=,tag:5nbtZWUHLwvaPXONjnlzrQ==,type:str]
     pgp:
         - created_at: "2025-06-12T23:43:01Z"
           enc: |-

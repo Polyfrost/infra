@@ -80,7 +80,10 @@
                     {
                         system = "x86_64-linux";
                         pkgs = mkPkgs system;
-                        specialArgs = { inherit inputs system self; };
+                        specialArgs = {
+                            inherit inputs system self;
+                            customUtils = import ./utils;
+                        };
 
                         modules = [ ./nixos/hosts/vps ];
                     }
@@ -90,7 +93,10 @@
             colmenaHive = colmena.lib.makeHive {
                 meta = {
                     nixpkgs = mkPkgs "x86_64-linux";
-                    specialArgs = { inherit inputs self; };
+                    specialArgs = {
+                        inherit inputs self;
+                        customUtils = import ./utils;
+                    };
 
                     nodeNixpkgs = {
                         vps = mkPkgs "x86_64-linux";
@@ -130,6 +136,7 @@
                             just
                             age
                             sops
+                            nixos-rebuild-ng
                         ]);
                 };
 

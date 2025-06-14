@@ -1,5 +1,7 @@
 {
     imports = [
+        ./services
+
         ./bootloader.nix
         ./environment.nix
         ./networking.nix

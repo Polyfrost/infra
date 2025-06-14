@@ -8,12 +8,15 @@ alias b := build-vps
 alias bv := build-vps
 alias d := deploy-vps
 alias dv := deploy-vps
+alias t := test-vps
+alias tv := test-vps
+alias sv := secrets-vps
 alias f := format
 
 # Builds the VPS NixOS configuration
 [group("NixOS")]
-build-vps:
-    {{ colmena }} apply --on vps --keep-result build
+build-vps *args="":
+    {{ colmena }} apply --on vps --keep-result{{ if args != "" { " " + args } else { "" } }} build
 
 # Uses nixos-anywhere to deploy the VPS NixOS configuration
 [group("NixOS")]
@@ -43,6 +46,16 @@ deploy-vps ssh-host:
         --generate-hardware-config nixos-facter ./nixos/hosts/vps/facter.json \
         --extra-files "$TMP_DIR"/nixos-anywhere-extras \
         --target-host "{{ ssh-host }}"
+
+# Runs a QEMU virtualized version of the nixos configuration
+[group("NixOS")]
+test-vps:
+    {{nix}} run -L '.#nixosConfigurations.vps.config.system.build.vmWithSecrets'
+
+# Opens an editor for the NixOS sops secrets
+[group("NixOS")]
+secrets-vps $EDITOR="zeditor --wait":
+    sops nixos/hosts/vps/sops.yaml
 
 # Formats the entire project using treefmt-nix
 [group("Project")]

@@ -7,6 +7,9 @@
         age.generateKey = false;
 
         secrets = {
+            "plausible/smtp_password" = { };
+            "plausible/secret_key_base" = { };
+
             "tailscale/preauth_key" = { };
 
             "users/ty/password_hash" = {
