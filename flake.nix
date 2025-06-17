@@ -56,6 +56,14 @@
             url = "github:nix-community/nixos-images";
             # Nixpkgs inputs deliberately not ignored to avoid rebuilds and use the cache instead
         };
+        # External services run on our infra
+        ursa-minor = {
+            url = "github:NotEnoughUpdates/ursa-minor";
+            inputs = {
+                nixpkgs.follows = "nixpkgs";
+                flake-utils.follows = "flake-utils";
+            };
+        };
     };
 
     outputs =
@@ -118,6 +126,8 @@
                     imports = [ ./nixos/hosts/vps ];
                 };
             };
+
+            nixosModules.default = import ./nixos/modules;
         }
         // (flake-utils.lib.eachDefaultSystem (
             system:

@@ -1,15 +1,15 @@
-let
-    ips = import ./ips.nix;
-in
+{ customUtils, config, ... }:
 {
+    custom.containerIps = import ./ips.nix { utils = customUtils; };
+
     systemd.network = {
         networks."50-bridge" = {
             matchConfig.Name = "br0";
             networkConfig = {
                 DHCP = "no";
-                DNS = ips.gateway;
-                Gateway = ips.gateway;
-                Address = "${ips.host}/24";
+                DNS = config.custom.containerIps.gateway;
+                Gateway = config.custom.containerIps.gateway;
+                Address = "${config.custom.containerIps.host}/24";
             };
             linkConfig.RequiredForOnline = "no";
         };
@@ -29,7 +29,7 @@ in
     };
 
     services.tailscale.extraUpFlags = [
-        "--advertise-routes=${ips.cidr}"
+        "--advertise-routes=${config.custom.containerIps.cidr}"
         "--snat-subnet-routes=true" # Fix bridge subnet routing
     ];
 }

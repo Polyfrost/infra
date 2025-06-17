@@ -54,7 +54,11 @@
         useRoutingFeatures = "both";
         openFirewall = true;
 
-        authKeyFile = config.sops.secrets."tailscale/preauth_key".path;
+        authKeyFile = config.sops.secrets."tailscale/oauth_key".path;
+        authKeyParameters = {
+            ephemeral = false;
+            preauthorized = true;
+        };
         extraUpFlags = [
             "--reset"
             "--ssh"

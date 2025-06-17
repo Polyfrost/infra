@@ -1,9 +1,9 @@
-args@{ pkgs, customUtils, ... }:
+{ config, ... }:
 {
-    containers.postgres = customUtils.mkContainer {
-        name = "postgres";
+    custom.containers.postgres = {
         entrypoint = ./container.nix;
-        ips = import ../ips.nix;
-        inherit args;
+        persistentDirs = {
+            postgres = config.containers.postgres.config.services.postgresql.dataDir;
+        };
     };
 }

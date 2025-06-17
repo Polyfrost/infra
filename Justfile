@@ -50,7 +50,7 @@ deploy-vps ssh-host:
 # Runs a QEMU virtualized version of the nixos configuration
 [group("NixOS")]
 test-vps:
-    {{nix}} run -L '.#nixosConfigurations.vps.config.system.build.vmWithSecrets'
+    {{ nix }} run -L '.#nixosConfigurations.vps.config.system.build.vmWithSecrets'
 
 # Opens an editor for the NixOS sops secrets
 [group("NixOS")]

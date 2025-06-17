@@ -1,4 +1,4 @@
-{ ips, ... }:
+{ lib, ips, ... }:
 {
     services.plausible = {
         enable = true;
@@ -6,6 +6,8 @@
             baseUrl = "https://analytics.polyfrost.org";
             disableRegistration = "invite_only";
             secretKeybaseFile = "plausible.secret_key_base";
+            listenAddress = "0.0.0.0";
+            port = 8080;
         };
         mail = {
             email = "plausible@polyfrost.org";
@@ -20,7 +22,6 @@
         };
         database = {
             postgres = {
-                socket = ips.postgres;
                 setup = false;
                 dbname = "plausible";
             };
@@ -29,4 +30,7 @@
             };
         };
     };
+
+    systemd.services.plausible.environment.DATABASE_URL =
+        lib.mkForce "postgresql://plausible@${ips.containers.postgres}:5432/plausible";
 }

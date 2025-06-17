@@ -34,15 +34,13 @@
                     # Trust TCP connections from containers to a database & user
                     # with their name, without password authentication
                     #
-                    # Postgres will use the container's ident server to check
-                    # usernames, protecting against an unpriveledged non-service
-                    # user in the container connecting to the database
+                    # TODO: limit connections more carefully in the case of an unpriveledged user takeover inside containers?
                     type = "host";
                     database = "sameuser";
                     user = name;
                     address = "${value}/32";
-                    method = "ident";
-                }) ips
+                    method = "trust";
+                }) ips.containers
             )
         );
     };
