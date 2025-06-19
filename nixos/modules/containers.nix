@@ -45,7 +45,24 @@
                                 These can be accessed at `/run/host/credentials`, or passed by name to systemd services.
                             '';
                             default = [ ];
-                            type = lib.types.listOf lib.types.str;
+                            type = lib.types.listOf (
+                                lib.types.either lib.types.str (
+                                    lib.types.submodule {
+                                        options = {
+                                            sops = lib.mkOption {
+                                                description = "The name of the SOPS credential to pass into the container";
+                                                default = null;
+                                                type = lib.types.str;
+                                            };
+                                            systemd = lib.mkOption {
+                                                description = "The name of the systemd credential to provide inside the container";
+                                                default = null;
+                                                type = lib.types.str;
+                                            };
+                                        };
+                                    }
+                                )
+                            );
                         };
 
                         dependencies = lib.mkOption {
@@ -127,7 +144,9 @@
 
             extraFlags = builtins.map (
                 secret:
-                "--load-credential=${lib.replaceString "/" "." secret}:${config.sops.secrets.${secret}.path}"
+                "--load-credential=${
+                    if builtins.typeOf secret == "string" then lib.replaceString "/" "." secret else secret.systemd
+                }:${config.sops.secrets.${if builtins.typeOf secret == "string" then secret else secret.sops}.path}"
             ) cfg.secrets;
         }) config.custom.containers;
     };

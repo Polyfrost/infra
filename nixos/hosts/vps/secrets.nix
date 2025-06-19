@@ -7,6 +7,11 @@
         age.generateKey = false;
 
         secrets = {
+            "ursa/secret" = { };
+            "ursa/tokens/dsm" = { };
+            "ursa/tokens/pss" = { };
+            "ursa/tokens/hytils" = { };
+
             "plausible/smtp_password" = { };
             "plausible/secret_key_base" = { };
 

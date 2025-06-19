@@ -1,1 +1,6 @@
-{ imports = [ ./containers.nix ]; }
+{
+    imports = [
+        ./containers.nix
+        ./ursa-minor.nix
+    ];
+}
