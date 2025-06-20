@@ -31,4 +31,6 @@ tasks listed.
   - [ ] Add a nix flake to each
 - [ ] Caddy
 - [ ] Prometheus & Grafana
+  - [ ] Plausible dashboard
+  - [ ] Node exporter + https://grafana.com/grafana/dashboards/1860
   - [ ] Scraping ursa minor (probably requires modifying ursa-minor)
