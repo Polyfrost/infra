@@ -5,6 +5,9 @@ nixos-anywhere := require("nixos-anywhere")
 colmena := require("colmena")
 treefmt := require("treefmt")
 
+_default:
+    @just --list
+
 alias b := build-vps
 alias bv := build-vps
 alias r := rebuild-vps

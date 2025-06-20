@@ -15,3 +15,20 @@ All NixOS configurations are exported via Nix Flake with outputs for nixos-rebui
 This project also contains a nix-direnv configuration which provides the binaries for packages and
 utilities needed to work on this repository. In addition, treefmt-nix is setup for code formatting,
 so just use `nix fmt` to format all code.
+
+A `Justfile` is also provided, which can simplify a lot of common tasks, run `just` to have all the
+tasks listed.
+
+## TODO List
+
+- [x] Basic NixOS setup
+- [x] Nspawn container tooling
+- [x] Postgres
+- [x] Plausible
+- [x] Reposilite
+- [x] Ursa minor
+- [ ] v0 backend & v1 backend
+  - [ ] Add a nix flake to each
+- [ ] Caddy
+- [ ] Prometheus & Grafana
+  - [ ] Scraping ursa minor (probably requires modifying ursa-minor)

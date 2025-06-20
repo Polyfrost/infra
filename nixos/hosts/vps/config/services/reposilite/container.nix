@@ -1,4 +1,3 @@
-{ ips, ... }:
 {
     services.reposilite = {
         enable = true;
