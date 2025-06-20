@@ -1,12 +1,10 @@
-{ config, ... }:
+{ ... }:
 {
     custom.containers.reposilite = {
         entrypoint = ./container.nix;
 
         persistentDirs = {
-            reposilite = config.containers.reposilite.workingDirectory;
+            reposilite = "/var/lib/reposilite";
         };
-
-        dependencies = [ "container@postgres.service" ];
     };
 }

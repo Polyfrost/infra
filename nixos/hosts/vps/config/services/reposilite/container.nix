@@ -3,8 +3,9 @@
     services.reposilite = {
         enable = true;
         database = {
-            type = "postgres";
-            host = ips.postgres;
+            # Unfortunately the NixOS module does not allow for an external postgres database
+            # without authentication, so for now just use sqlite
+            type = "sqlite";
         };
         settings = {
             hostname = "0.0.0.0";

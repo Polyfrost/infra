@@ -3,6 +3,9 @@
     lib,
     config,
     customUtils,
+    self,
+    system,
+    inputs,
     ...
 }:
 {
@@ -72,6 +75,12 @@
                             default = [ ];
                             type = lib.types.listOf lib.types.str;
                         };
+
+                        specialArgs = lib.mkOption {
+                            description = "An attribute set of extra module arguments to pass inside the container";
+                            default = { };
+                            type = lib.types.attrs;
+                        };
                     };
                 }
             );
@@ -130,8 +139,13 @@
 
             specialArgs = {
                 ips = config.custom.containerIps;
-                inherit customUtils;
-            };
+                inherit
+                    customUtils
+                    self
+                    inputs
+                    system
+                    ;
+            } // cfg.specialArgs;
 
             bindMounts = lib.mapAttrs' (
                 mountName: value:
@@ -144,9 +158,23 @@
 
             extraFlags = builtins.map (
                 secret:
-                "--load-credential=${
-                    if builtins.typeOf secret == "string" then lib.replaceString "/" "." secret else secret.systemd
-                }:${config.sops.secrets.${if builtins.typeOf secret == "string" then secret else secret.sops}.path}"
+                let
+                    secretAttrs =
+                        if builtins.typeOf secret == "string" then
+                            {
+                                systemd = lib.replaceString "/" "." secret;
+                                sops = secret;
+                            }
+                        else
+                            secret;
+                    isTemplate = builtins.hasAttr secretAttrs.sops config.sops.templates;
+                    sopsPath =
+                        if isTemplate then
+                            config.sops.templates.${secretAttrs.sops}.path
+                        else
+                            config.sops.secrets.${secretAttrs.sops}.path;
+                in
+                "--load-credential=${secretAttrs.systemd}:${sopsPath}"
             ) cfg.secrets;
         }) config.custom.containers;
     };

@@ -57,11 +57,15 @@
         users.users.root.password = "password";
 
         # Provide some utilities for testing
-        environment.systemPackages = with pkgs; [ nmap ];
+        environment.systemPackages = with pkgs; [
+            btop
+            nmap
+        ];
 
-        # Configure image memory & storage allocation
+        # Configure VM specs
         disko.devices.disk.main.imageSize = "8G";
         disko.memSize = 4096;
+        virtualisation.cores = 4;
 
         # Configure hostname so it is apparent on the tailnet this is a testing instance,
         # and set the tailscale node as ephemeral for convienience with testing
@@ -84,5 +88,8 @@
         # When testing, downgrade container UID isolation as it doesn't work
         # when the nix store is mounted as a 9p filesystem
         containers = builtins.mapAttrs (_: _: { privateUsers = lib.mkForce "identity"; }) config.containers;
+
+        # Add CPU TSC invariant support to the VM, as it is required by a crate ursa-minor depends on
+        virtualisation.qemu.options = [ "-cpu max,invtsc" ];
     };
 }

@@ -3,9 +3,12 @@ set unstable := true
 nix := require("nix")
 nixos-anywhere := require("nixos-anywhere")
 colmena := require("colmena")
+treefmt := require("treefmt")
 
 alias b := build-vps
 alias bv := build-vps
+alias r := rebuild-vps
+alias rv := rebuild-vps
 alias d := deploy-vps
 alias dv := deploy-vps
 alias t := test-vps
@@ -17,6 +20,17 @@ alias f := format
 [group("NixOS")]
 build-vps *args="":
     {{ colmena }} apply --on vps --keep-result{{ if args != "" { " " + args } else { "" } }} build
+
+# Applies the VPS NixOS configuration
+[group("NixOS")]
+rebuild-vps *args="":
+    {{ colmena }} apply --on vps --keep-result{{ if args != "" { " " + args } else { "" } }} switch
+
+# Applies the VPS (QEMU) NixOS configuration
+[group("NixOS")]
+rebuild-qemu *args="":
+    ssh-keygen -R polyfrost-vps-qemu-test
+    {{ colmena }} apply --on vps-qemu --keep-result{{ if args != "" { " " + args } else { "" } }} switch
 
 # Uses nixos-anywhere to deploy the VPS NixOS configuration
 [group("NixOS")]
@@ -59,5 +73,5 @@ secrets-vps $EDITOR="zeditor --wait":
 
 # Formats the entire project using treefmt-nix
 [group("Project")]
-format:
-    {{ nix }} fmt
+format *args="":
+    {{ treefmt }}{{ if args != "" { " " + args } else { "" } }}

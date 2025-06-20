@@ -58,9 +58,11 @@
         };
         # External services run on our infra
         ursa-minor = {
-            url = "github:NotEnoughUpdates/ursa-minor";
+            # url = "github:NotEnoughUpdates/ursa-minor";
+            url = "github:Polyfrost/ursa-minor";
             inputs = {
-                nixpkgs.follows = "nixpkgs";
+                # Nixpkgs override breaks as the rust-overlay input then is desynced and
+                # it tries to execute scripts that don't exist during build
                 flake-utils.follows = "flake-utils";
             };
         };
@@ -74,6 +76,7 @@
             flake-utils,
             nixos-anywhere,
             treefmt-nix,
+            disko,
             ...
         }:
         let
@@ -90,7 +93,7 @@
                         pkgs = mkPkgs system;
                         specialArgs = {
                             inherit inputs system self;
-                            customUtils = import ./utils;
+                            customUtils = import ./utils { inherit (nixpkgs) lib; };
                         };
 
                         modules = [ ./nixos/hosts/vps ];
@@ -103,7 +106,7 @@
                     nixpkgs = mkPkgs "x86_64-linux";
                     specialArgs = {
                         inherit inputs self;
-                        customUtils = import ./utils;
+                        customUtils = import ./utils { inherit (nixpkgs) lib; };
                     };
 
                     nodeNixpkgs = {
@@ -134,6 +137,7 @@
             let
                 pkgs = mkPkgs system;
                 treefmt = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+                treefmt-wrapper = treefmt.config.build.wrapper;
             in
             {
                 devShells.default = pkgs.mkShellNoCC {
@@ -141,16 +145,16 @@
                         [
                             nixos-anywhere.packages.${system}.default
                             colmena.packages.${system}.colmena
+                            treefmt-wrapper
                         ]
                         ++ (with pkgs; [
                             just
                             age
                             sops
-                            nixos-rebuild-ng
                         ]);
                 };
 
-                formatter = treefmt.config.build.wrapper;
+                formatter = treefmt-wrapper;
                 checks.formatting = treefmt.config.build.check self;
 
                 # Re-export a kexec image locked on the flake's version of nixos-images

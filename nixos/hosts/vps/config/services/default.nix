@@ -2,7 +2,9 @@
     imports = [
         ./networking.nix
 
-        ./postgres
         ./plausible
+        ./postgres
+        ./reposilite
+        ./ursa
     ];
 }

@@ -5,6 +5,7 @@
         nixfmt = {
             enable = true;
             strict = true;
+            width = 100;
         };
         just.enable = true;
         mdformat = {

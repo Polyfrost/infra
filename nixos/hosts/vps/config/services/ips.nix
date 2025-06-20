@@ -9,8 +9,10 @@ let
         "reposilite"
         "backend-legacy"
         "backend"
-        "ursa"
         "plausible"
+        "ursa-minor-hytils"
+        "ursa-minor-dsm"
+        "ursa-minor-pss"
     ];
 
     parsed = utils.ip.parseCIDR cidr;
