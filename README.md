@@ -28,7 +28,7 @@ tasks listed.
 - [x] Reposilite
 - [x] Ursa minor
 - [ ] v0 backend & v1 backend
-  - [ ] Add a nix flake to each
+  - [x] Add a nix flake to each
 - [ ] Caddy
 - [ ] Prometheus & Grafana
   - [ ] Plausible dashboard

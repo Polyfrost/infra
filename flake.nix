@@ -57,9 +57,22 @@
             # Nixpkgs inputs deliberately not ignored to avoid rebuilds and use the cache instead
         };
         # External services run on our infra
+        backend-legacy = {
+            url = "github:Polyfrost/backend/main";
+            inputs = {
+                nixpkgs.follows = "nixpkgs";
+                flake-utils.follows = "flake-utils";
+            };
+        };
+        backend-v1 = {
+            url = "github:Polyfrost/backend/v1";
+            inputs = {
+                nixpkgs.follows = "nixpkgs";
+                flake-utils.follows = "flake-utils";
+            };
+        };
         ursa-minor = {
-            # url = "github:NotEnoughUpdates/ursa-minor";
-            url = "github:Polyfrost/ursa-minor";
+            url = "github:NotEnoughUpdates/ursa-minor";
             inputs = {
                 # Nixpkgs override breaks as the rust-overlay input then is desynced and
                 # it tries to execute scripts that don't exist during build

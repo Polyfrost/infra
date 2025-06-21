@@ -1,5 +1,57 @@
 {
   "nodes": {
+    "backend-legacy": {
+      "inputs": {
+        "crane": "crane",
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1750479876,
+        "narHash": "sha256-kAolAuDg0g9GguBuu99epR63Nfn5UGtHENsoXXLRixg=",
+        "owner": "Polyfrost",
+        "repo": "backend",
+        "rev": "d641cd7168784f445b3ee7632ce1b8c26dd7d68d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Polyfrost",
+        "ref": "main",
+        "repo": "backend",
+        "type": "github"
+      }
+    },
+    "backend-v1": {
+      "inputs": {
+        "crane": "crane_2",
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay_2"
+      },
+      "locked": {
+        "lastModified": 1750479729,
+        "narHash": "sha256-916/u/Lc97Rydv9nNAGMNRVsDz9EXUsj1zJh07lylhs=",
+        "owner": "Polyfrost",
+        "repo": "backend",
+        "rev": "13d03edf227fba836a9b34d5b9cb81dd635f2754",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Polyfrost",
+        "ref": "v1",
+        "repo": "backend",
+        "type": "github"
+      }
+    },
     "blueprint": {
       "inputs": {
         "nixpkgs": [
@@ -46,6 +98,36 @@
       "original": {
         "owner": "zhaofengli",
         "repo": "colmena",
+        "type": "github"
+      }
+    },
+    "crane": {
+      "locked": {
+        "lastModified": 1750266157,
+        "narHash": "sha256-tL42YoNg9y30u7zAqtoGDNdTyXTi8EALDeCB13FtbQA=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "e37c943371b73ed87faf33f7583860f81f1d5a48",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
+    "crane_2": {
+      "locked": {
+        "lastModified": 1750266157,
+        "narHash": "sha256-tL42YoNg9y30u7zAqtoGDNdTyXTi8EALDeCB13FtbQA=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "e37c943371b73ed87faf33f7583860f81f1d5a48",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
         "type": "github"
       }
     },
@@ -624,6 +706,8 @@
     },
     "root": {
       "inputs": {
+        "backend-legacy": "backend-legacy",
+        "backend-v1": "backend-v1",
         "colmena": "colmena",
         "disko": "disko",
         "flake-utils": "flake-utils_2",
@@ -641,6 +725,48 @@
       }
     },
     "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "backend-legacy",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1750473400,
+        "narHash": "sha256-wiW2j63MyGQyyijRF25hf7Ab7vx4G8pCiGjUe3OGV4c=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "3d7d4c4e284f26d6dc4840491c66884912be0062",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_2": {
+      "inputs": {
+        "nixpkgs": [
+          "backend-v1",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1750387093,
+        "narHash": "sha256-MgL1+yNVcSD6OlzSmKt5GS4RmAQnNCjckjgPC1hmMPg=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "517e9871d182346b53bb7f23fed00810c14db396",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_3": {
       "inputs": {
         "nixpkgs": "nixpkgs_3"
       },
@@ -807,18 +933,18 @@
           "flake-utils"
         ],
         "nixpkgs": "nixpkgs_2",
-        "rust-overlay": "rust-overlay"
+        "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1750400979,
+        "lastModified": 1750423333,
         "narHash": "sha256-vUGo6wMnjovY/H69XiIL4YsmzeyjXEFVxPQzKYmF2JA=",
-        "owner": "Polyfrost",
+        "owner": "NotEnoughUpdates",
         "repo": "ursa-minor",
-        "rev": "beb26c3572dc600a255645d7a797eabffb9e72a9",
+        "rev": "ba57c4573a837b30b6a0315309e5881aac67cb47",
         "type": "github"
       },
       "original": {
-        "owner": "Polyfrost",
+        "owner": "NotEnoughUpdates",
         "repo": "ursa-minor",
         "type": "github"
       }
