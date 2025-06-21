@@ -30,6 +30,7 @@ tasks listed.
 - [ ] v0 backend & v1 backend
   - [x] Add a nix flake to each
 - [ ] Caddy
+- [ ] Polyfrost main website (https://polyfrost.org)
 - [ ] Prometheus & Grafana
   - [ ] Plausible dashboard
   - [ ] Node exporter + https://grafana.com/grafana/dashboards/1860
