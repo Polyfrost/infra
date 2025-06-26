@@ -1,0 +1,94 @@
+# Global options
+{
+	acme_ca {$ACME_DIRECTORY}
+	acme_dns cloudflare {file./run/credentials/caddy.service/cloudflare_api_key}
+	email ty@myriation.xyz
+
+	storage file_system {
+		root /var/lib/caddy
+	}
+
+	servers {
+		trusted_proxies cloudflare {
+			interval 12h
+			timeout 15s
+		}
+	}
+}
+
+https://polyfrost.org {
+	# Enforce always using HTTPS
+	header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+	# Give an HTTP cat on any errors
+	handle_errors {
+		header Content-Type text/html
+		respond "<!DOCTYPE html><html><head><title>Error :(</title></head><body><img src=\"https://http.cat/{http.error.status_code}\" alt=\"cat\"></body></html>" {http.error.status_code}
+	}
+
+	respond "Hello there"
+
+	# TODO
+	# file_server {
+	# 	root /srv/www/website
+	# }
+}
+
+# Handle all routes handled by this server
+https://*.polyfrost.org {
+	# Enforce always using HTTPS
+	header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+	# Give an HTTP cat on any errors
+	handle_errors {
+		header Content-Type text/html
+		respond "<!DOCTYPE html><html><head><title>Error :(</title></head><body><img src=\"https://http.cat/{http.error.status_code}\" alt=\"cat\"></body></html>" {http.error.status_code}
+	}
+
+	# Configure all service matchers
+	@api host api.polyfrost.org
+
+	@grafana host grafana.polyfrost.org
+	@reposilite host repo.polyfrost.org
+	# @plausible host analytics.polyfrost.org
+
+	# Distribute different API paths to the appropriate handler
+	handle @api {
+		@backend-legacy path /oneconfig/*
+
+		# Handle ursa requests based on mod user agent
+		handle_path /ursa/* {
+			@hytils header User-Agent Hytils-Reborn/*
+			@dsm header User-Agent Dsm/*
+			@pss header User-Agent Partly-Sane-Skies/*
+
+			reverse_proxy @hytils ursa-minor-hytils.containers:8080
+			reverse_proxy @dsm ursa-minor-dsm.containers:8080
+			reverse_proxy @pss ursa-minor-pss.containers:8080
+		}
+
+		# Proxy legacy backend requests to the old backend
+		reverse_proxy @backend-legacy backend.containers:8080
+
+		# Proxy everything else to the new backend
+		reverse_proxy h2c://backend.containers:8081
+	}
+
+	# Handle all other containers
+	handle @grafana {
+		reverse_proxy monitoring.containers:8080
+	}
+
+	handle @reposilite {
+		reverse_proxy reposilite.containers:8080
+	}
+
+	# handle @plausible {
+	# 	reverse_proxy plausible.containers:8080
+	# }
+
+	# Handle all unmatched requests as a 404
+	handle {
+		error "Not Found" 404
+	}
+}

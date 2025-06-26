@@ -7,6 +7,8 @@
         age.generateKey = false;
 
         secrets = {
+            "caddy/cloudflare_api_key" = { };
+
             "ursa/secret" = { };
             # Individual ursa/tokens/${name} secrets are in ./config/services/ursa/default.nix
 

@@ -1,3 +1,5 @@
+caddy:
+    cloudflare_api_key: ENC[AES256_GCM,data:Ks6IlYYC8Cn6pcG2mBnXmnQHjJCRleAAriSWn4Xf4+KCkiviqL9kfQ==,iv:GwD15Cauts8WLny5CMQzGNWCaSrxXSJ86IcparT571U=,tag:xJ1QD/F4S+7q1YDLhrerHQ==,type:str]
 ursa:
     secret: ENC[AES256_GCM,data:/1ASNKFwfiAZ8dVBSCHV0P1j8cLpolXHJD3GpeoMIkjpZWtX1oTnHuH1RGrmfdkOEnsUhHaq3va/2UZaTTPlJjp1MnQrXWc7hdVk6top5o/4CrtI+zkQkQD5AdP1TLlnwsV3GIKidBqy7oYgQsmX9fsOf5GhOP71zM2IjAvPoiE=,iv:ot+HwbveMUdHnfK4Cts97/kPFT4BUOOXIUrYTB747Ew=,tag:1bozkI+FSPkL6S44TrHUug==,type:str]
     tokens:
@@ -23,8 +25,8 @@ sops:
             OEx4TG10MGFDY1Jpbmk4UWdHbDdPU1EK9JkKe5p0cw6pszL+14bbi0dQIZPjXW6q
             lTXnVaVuivm0LQkG4iQuqpP4r/hxoLi9CXodWitXTeZjxc51uGWFXg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-06-19T01:09:43Z"
-    mac: ENC[AES256_GCM,data:gpwcB4lpfXuxVrBTbkm2Q0EAhqAaI2d9Yc4idutgVjo2rZ3PNStl2zFjjl4BEiFoF3HSk4/qsWPthAkfjhxktVNwe0Xkg3MHsW7xXZI7PjtZj5vGax7/LAab/lK72BIho9RPTrKkf7voj7oPFPM0f2vKpdw7kSx2GIY90jXdrss=,iv:qaNBU0tg7gIvjp0T1GV5MoaZpG1rWOgtCFPtWGgk3mU=,tag:Le9E8kar6lAwBMU4Z4Woiw==,type:str]
+    lastmodified: "2025-06-21T23:17:41Z"
+    mac: ENC[AES256_GCM,data:mzYR4zX+E77A4ZITMDXNeCtiMFiFqzvGzoxuUufx5h5QbOuIGBK/aPPY6DKvHSvv3zUFjFw7TThEmmuTJb6JtvaIZkGSZZcvl7xy6GdksnQSe/YCjnEZrW712FR54wSnI19yN3v/fAgh5lEFuMuzF9bXkxVnPQyzPA3w7EdGZE0=,iv:H0rYk84KDIwfISQDNxrXe2jjOZiqg5JDmwBjyAk+uAI=,tag:MK2NdwMqwt+SGY11M0wKFw==,type:str]
     pgp:
         - created_at: "2025-06-12T23:43:01Z"
           enc: |-

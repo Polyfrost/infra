@@ -2,7 +2,10 @@
     imports = [
         ./networking.nix
 
-        ./plausible
+        ./backend
+        ./caddy
+        ./monitoring
+        # ./plausible Unsure if actually necessary w/ grafana stack
         ./postgres
         ./reposilite
         ./ursa

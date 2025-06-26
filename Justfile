@@ -10,6 +10,7 @@ _default:
 
 alias b := build-vps
 alias bv := build-vps
+alias bvq := build-vps-qemu
 alias r := rebuild-vps
 alias rv := rebuild-vps
 alias d := deploy-vps
@@ -23,6 +24,11 @@ alias f := format
 [group("NixOS")]
 build-vps *args="":
     {{ colmena }} apply --on vps --keep-result{{ if args != "" { " " + args } else { "" } }} build
+
+# Builds the VPS NixOS configuration (QEMU test version)
+[group("NixOS")]
+build-vps-qemu *args="":
+    {{ nix }} build --out-link .gcroots/vps-vm -L{{ if args != "" { " " + args } else { "" } }} '.#nixosConfigurations.vps.config.system.build.vmWithSecrets'
 
 # Applies the VPS NixOS configuration
 [group("NixOS")]

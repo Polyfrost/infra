@@ -20,7 +20,7 @@
         };
         nftables = {
             enable = true;
-            flushRuleset = true;
+            flushRuleset = false; # Flushing removes essential rules by tailscale & systemd-nspawns
         };
 
         # networking is managed by systemd-networkd, disable everything else
@@ -28,6 +28,8 @@
         wireless.enable = false;
         useDHCP = false;
     };
+
+    custom.externalInterfaces = [ "tailscale0" ]; # Allow port forwarding over tailscale
 
     systemd.network = {
         enable = true;

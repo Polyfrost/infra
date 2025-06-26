@@ -1,4 +1,3 @@
-{ ... }:
 {
     custom.containers.reposilite = {
         entrypoint = ./container.nix;

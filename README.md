@@ -27,11 +27,10 @@ tasks listed.
 - [x] Plausible
 - [x] Reposilite
 - [x] Ursa minor
-- [ ] v0 backend & v1 backend
+- [x] v0 backend & v1 backend
   - [x] Add a nix flake to each
-- [ ] Caddy
+- [x] Caddy
 - [ ] Polyfrost main website (https://polyfrost.org)
-- [ ] Prometheus & Grafana
-  - [ ] Plausible dashboard
-  - [ ] Node exporter + https://grafana.com/grafana/dashboards/1860
-  - [ ] Scraping ursa minor (probably requires modifying ursa-minor)
+- [ ] Monitoring
+  - [x] Node exporter + https://grafana.com/grafana/dashboards/1860
+- [ ] Resolve all TODOs if necessary

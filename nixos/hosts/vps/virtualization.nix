@@ -52,6 +52,9 @@
     };
 
     virtualisation.vmVariantWithDisko = {
+        # Disable qemu graphics so it just uses the same terminal it was started from
+        virtualisation.graphics = false;
+
         # Set known root password for login if there is a problem with other config
         services.getty.autologinUser = "root";
         users.users.root.password = "password";
@@ -60,6 +63,8 @@
         environment.systemPackages = with pkgs; [
             btop
             nmap
+            zellij
+            bat
         ];
 
         # Configure VM specs
@@ -72,8 +77,14 @@
         networking.hostName = lib.mkForce "polyfrost-vps-QEMU-TEST";
         services.tailscale.authKeyParameters.ephemeral = lib.mkForce true;
 
-        # Correct the hardcoded network interface to be the QEMU one
-        networking.nat.externalInterface = lib.mkForce "eth0";
+        # Add the proper network interface for QEMU to externalInterfaces
+        custom.externalInterfaces = [ "eth0" ];
+
+        # Be a bit more verbose on the firewall logging
+        networking.firewall = {
+            logRefusedConnections = true;
+            logRefusedPackets = true;
+        };
 
         # Mount the host's secrets into the VM and configure sops to find the key
         sops.age.keyFile = lib.mkForce "/mnt/host-secrets/age.txt";
@@ -87,7 +98,17 @@
 
         # When testing, downgrade container UID isolation as it doesn't work
         # when the nix store is mounted as a 9p filesystem
-        containers = builtins.mapAttrs (_: _: { privateUsers = lib.mkForce "identity"; }) config.containers;
+        containers = lib.mkMerge [
+            (builtins.mapAttrs (_: _: { privateUsers = lib.mkForce "identity"; }) config.containers)
+            {
+                # Override the reverse proxy ACME url to avoid ratelimits (TODO: see about just doing self-signed?)
+                caddy.config.systemd.services.caddy.environment.ACME_DIRECTORY =
+                    lib.mkForce "https://acme-staging-v02.api.letsencrypt.org/directory";
+
+                # Disable domain validation in testing, so you don't have to do DNS hacks
+                monitoring.config.services.grafana.settings.server.enforce_domain = lib.mkForce false;
+            }
+        ];
 
         # Add CPU TSC invariant support to the VM, as it is required by a crate ursa-minor depends on
         virtualisation.qemu.options = [ "-cpu max,invtsc" ];
