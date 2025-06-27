@@ -13,11 +13,6 @@
             prometheus
         ];
 
-        extraArgs = [
-            "-Dreposilite.prometheus.user=prometheus"
-            "-Dreposilite.prometheus.password=prometheus"
-        ];
-
         settings = {
             hostname = "0.0.0.0";
             port = 8080;
@@ -26,5 +21,10 @@
             defaultFrontend = true;
             compressionStrategy = "gzip";
         };
+    };
+
+    systemd.services.reposilite.environment = {
+        REPOSILITE_PROMETHEUS_USER = "prometheus";
+        REPOSILITE_PROMETHEUS_PASSWORD = "prometheus";
     };
 }

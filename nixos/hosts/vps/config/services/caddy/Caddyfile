@@ -58,6 +58,11 @@ https://*.polyfrost.org {
 
 		# Handle ursa requests based on mod user agent
 		handle_path /ursa/* {
+			# Block external metrics requests
+			handle /_meta/metrics {
+				respond "Unauthorized" 401
+			}
+
 			@hytils header User-Agent Hytils-Reborn/*
 			@dsm header User-Agent Dsm/*
 			@pss header User-Agent Partly-Sane-Skies/*

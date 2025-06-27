@@ -103,6 +103,8 @@
                     PrivateTmp = true;
                     User = "ursa-minor";
                     Group = "ursa-minor";
+
+                    TimeoutStopSec = 5; # Ursa currently doesn't handle SIGTERM properly, so don't wait around for it to stop
                 };
             };
         };

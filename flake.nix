@@ -72,7 +72,8 @@
             };
         };
         ursa-minor = {
-            url = "github:NotEnoughUpdates/ursa-minor";
+            # url = "github:NotEnoughUpdates/ursa-minor";
+            url = "github:Polyfrost/ursa-minor"; # Fork w/ prometheus metrics support
             inputs = {
                 # Nixpkgs override breaks as the rust-overlay input then is desynced and
                 # it tries to execute scripts that don't exist during build
