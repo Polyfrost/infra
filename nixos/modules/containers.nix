@@ -1,3 +1,5 @@
+# TODO clean up the options
+# TODO Add a globalConfig option instead of placing all common container code inside this module
 {
     pkgs,
     lib,
@@ -178,6 +180,20 @@
                     "flakes"
                 ];
 
+                # Configure journald to forward logs to victorialogs (provided the contianer exists & has victorialogs enabled)
+                services.journald.upload =
+                    lib.mkIf
+                        (
+                            config.custom.containerIps.containers ? monitoring
+                            && config.containers.monitoring.config.services.victorialogs.enable
+                        )
+                        {
+                            enable = true;
+                            settings = {
+                                Upload.URL = "http://${config.custom.containerIps.containers.monitoring}:8082/insert/journald";
+                            };
+                        };
+
                 networking.firewall.enable = false;
                 networking.useHostResolvConf = false;
                 services.resolved.enable = true;
@@ -213,13 +229,17 @@
                 }
             ) cfg.persistentDirs;
 
-            forwardPorts = let
-                mkForwards = protocol: builtins.map (port: {
-                    containerPort = port;
-                    hostPort = port;
-                    inherit protocol;
-                }) cfg.forwardedPorts.${protocol};
-            in (mkForwards "tcp") ++ (mkForwards "udp");
+            forwardPorts =
+                let
+                    mkForwards =
+                        protocol:
+                        builtins.map (port: {
+                            containerPort = port;
+                            hostPort = port;
+                            inherit protocol;
+                        }) cfg.forwardedPorts.${protocol};
+                in
+                (mkForwards "tcp") ++ (mkForwards "udp");
 
             extraFlags = builtins.map (
                 secret:

@@ -14,9 +14,33 @@
 			timeout 15s
 		}
 	}
+
+	log {
+		output stderr
+		format json
+		level INFO
+	}
+}
+
+(access-logs) {
+	log {
+		output stderr
+		level INFO
+		format filter {
+			wrap json
+			fields {
+				# Hash senstive information
+				request>client_ip hash
+				request>remote_ip hash
+				request>headers>X-Forwarded-For hash
+			}
+		}
+	}
 }
 
 https://polyfrost.org {
+	import access-logs
+
 	# Enforce always using HTTPS
 	header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
@@ -36,6 +60,8 @@ https://polyfrost.org {
 
 # Handle all routes handled by this server
 https://*.polyfrost.org {
+	import access-logs
+
 	# Enforce always using HTTPS
 	header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 

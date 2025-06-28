@@ -9,9 +9,7 @@
             type = "sqlite";
         };
 
-        plugins = with pkgs.reposilitePlugins; [
-            prometheus
-        ];
+        plugins = with pkgs.reposilitePlugins; [ prometheus ];
 
         settings = {
             hostname = "0.0.0.0";

@@ -34,8 +34,10 @@ tasks listed.
 - [ ] Monitoring
   - [x] Node exporter + https://grafana.com/grafana/dashboards/1860
   - [ ] Better dashboard/metrics for ursa-minor
-  - [ ] postgres_exporter + https://github.com/prometheus-community/postgres_exporter/blob/master/postgres_mixin/dashboards/postgres-overview.json
+  - [ ] postgres_exporter +
+    https://github.com/prometheus-community/postgres_exporter/blob/master/postgres_mixin/dashboards/postgres-overview.json
   - [ ] VictoriaLogs
-    - [ ] [Journald](https://search.nixos.org/options?channel=25.05&show=services.journald.upload.settings&from=0&size=50&sort=relevance&type=packages&query=journal-upload)
+    - [ ]
+      [Journald](https://search.nixos.org/options?channel=25.05&show=services.journald.upload.settings&from=0&size=50&sort=relevance&type=packages&query=journal-upload)
     - [ ] Caddy request logs
 - [ ] Resolve all TODOs if necessary

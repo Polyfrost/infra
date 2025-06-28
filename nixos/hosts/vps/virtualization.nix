@@ -75,7 +75,13 @@
         # Configure hostname so it is apparent on the tailnet this is a testing instance,
         # and set the tailscale node as ephemeral for convienience with testing
         networking.hostName = lib.mkForce "polyfrost-vps-QEMU-TEST";
-        services.tailscale.authKeyParameters.ephemeral = lib.mkForce true;
+        services.tailscale = {
+            authKeyParameters.ephemeral = lib.mkForce true;
+            extraDaemonFlags = [
+                "--state=mem:" # Store state in memory, so ephemeral nodes get removed faster
+                "--statedir=/var/lib/tailscale" # Necessary for tailscale ssh to work
+            ];
+        };
 
         # Add the proper network interface for QEMU to externalInterfaces
         custom.externalInterfaces = [ "eth0" ];
@@ -107,6 +113,13 @@
 
                 # Disable domain validation in testing, so you don't have to do DNS hacks
                 monitoring.config.services.grafana.settings.server.enforce_domain = lib.mkForce false;
+
+                # Make the backends use the production maven server instead of the local one, as the local one
+                # isn't populated with artifacts and thus can't be tested on easily
+                backend.config.systemd.services = {
+                    backend-legacy.environment.INTERNAL_MAVEN_URL = lib.mkForce "https://repo.polyfrost.org";
+                    backend-v1.environment.BACKEND_INTERNAL_MAVEN_URL = lib.mkForce "https://repo.polyfrost.org";
+                };
             }
         ];
 

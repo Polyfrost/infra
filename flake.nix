@@ -90,7 +90,6 @@
             flake-utils,
             nixos-anywhere,
             treefmt-nix,
-            disko,
             ...
         }:
         let

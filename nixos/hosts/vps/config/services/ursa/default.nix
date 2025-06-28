@@ -27,8 +27,6 @@
                         }
                     ];
 
-                    dependencies = [ "container@postgres.service" ];
-
                     specialArgs = {
                         ursaVariant = name;
                     };
