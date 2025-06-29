@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+    pkgs,
+    lib,
+    ips,
+    ...
+}:
 {
     services.grafana = {
         enable = true;
@@ -15,6 +20,13 @@
                 enforce_domain = true;
                 enable_gzip = false;
                 domain = "grafana.polyfrost.org";
+            };
+
+            database = {
+                type = "postgres";
+                host = ips.containers.postgres;
+                user = "grafana";
+                name = "grafana";
             };
 
             analytics.reporting_enabled = false;

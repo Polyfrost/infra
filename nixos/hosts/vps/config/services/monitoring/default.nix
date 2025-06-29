@@ -9,6 +9,8 @@
             "monitoring/victorialogs" = "/var/lib/private/victorialogs";
         };
 
+        dependencies = [ "container@postgres.service" ];
+
         secrets = [ ];
     };
 

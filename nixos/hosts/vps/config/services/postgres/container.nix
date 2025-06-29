@@ -4,43 +4,46 @@
     customUtils,
     ...
 }:
-{
+let
+    databases = {
+        "grafana" = ips.containers.monitoring;
+    };
+    mkAuthEntry = { name, value }: {
+        # Trust TCP connections from containers to a database & user
+        # with their name, without password authentication
+        #
+        # TODO: limit connections more carefully in the case of an unpriveledged user takeover inside containers?
+        type = "host";
+        database = "sameuser";
+        user = name;
+        address = "${value}/32";
+        method = "trust";
+    };
+in {
     services.postgresql = {
         enable = true;
         enableJIT = true;
         enableTCPIP = true;
 
-        ensureDatabases = [ "plausible" ];
+        ensureDatabases = builtins.attrNames databases;
 
-        ensureUsers = [
-            {
-                name = "plausible";
-                ensureDBOwnership = true;
-            }
-        ];
+        ensureUsers = builtins.map (name: {
+            inherit name;
+            ensureDBOwnership = true;
+        }) (builtins.attrNames databases);
 
         authentication = lib.mkForce (
             customUtils.mkPostgresAuthentication (
                 [
                     {
-                        # Use peer authentication for local connections
+                        # Use peer authentication for local connections by the DB superuser
                         type = "local";
                         database = "all";
-                        user = "all";
+                        user = "postgres";
                         method = "peer";
                     }
                 ]
-                ++ lib.mapAttrsToList (name: value: {
-                    # Trust TCP connections from containers to a database & user
-                    # with their name, without password authentication
-                    #
-                    # TODO: limit connections more carefully in the case of an unpriveledged user takeover inside containers?
-                    type = "host";
-                    database = "sameuser";
-                    user = name;
-                    address = "${value}/32";
-                    method = "trust";
-                }) ips.containers
+                ++ (builtins.map mkAuthEntry (lib.attrsToList databases))
             )
         );
     };

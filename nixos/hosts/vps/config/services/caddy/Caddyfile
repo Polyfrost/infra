@@ -24,7 +24,7 @@
 
 (access-logs) {
 	log {
-		output stderr
+		output victorialogs {$VICTORIALOGS_URL}
 		level INFO
 		format filter {
 			wrap json
