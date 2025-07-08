@@ -12,8 +12,7 @@
             "ursa/secret" = { };
             # Individual ursa/tokens/${name} secrets are in ./config/services/ursa/default.nix
 
-            "plausible/smtp_password" = { };
-            "plausible/secret_key_base" = { };
+            "website/github_pat" = { };
 
             "tailscale/oauth_key" = { };
 

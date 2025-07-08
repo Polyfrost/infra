@@ -7,19 +7,23 @@
 let
     databases = {
         "grafana" = ips.containers.monitoring;
+        "reposilite" = ips.containers.reposilite;
     };
-    mkAuthEntry = { name, value }: {
-        # Trust TCP connections from containers to a database & user
-        # with their name, without password authentication
-        #
-        # TODO: limit connections more carefully in the case of an unpriveledged user takeover inside containers?
-        type = "host";
-        database = "sameuser";
-        user = name;
-        address = "${value}/32";
-        method = "trust";
-    };
-in {
+    mkAuthEntry =
+        { name, value }:
+        {
+            # Trust TCP connections from containers to a database & user
+            # with their name, without password authentication
+            #
+            # TODO: limit connections more carefully in the case of an unpriveledged user takeover inside containers?
+            type = "host";
+            database = "sameuser";
+            user = name;
+            address = "${value}/32";
+            method = "trust";
+        };
+in
+{
     services.postgresql = {
         enable = true;
         enableJIT = true;

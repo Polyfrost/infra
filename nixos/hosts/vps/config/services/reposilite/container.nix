@@ -1,12 +1,16 @@
-{ pkgs, ... }:
+{ pkgs, ips, ... }:
 {
     services.reposilite = {
         enable = true;
 
         database = {
-            # Unfortunately the NixOS module does not allow for an external postgres database
-            # without authentication, so for now just use sqlite
-            type = "sqlite";
+            type = "postgresql";
+            host = ips.containers.postgres;
+            user = "reposilite";
+            # This is necessary so reposilite doesn't complain about
+            # the missing password, though if postgres doesn't require
+            # a password then it still works
+            passwordFile = pkgs.writeText "reposilite-db-password" "PLACEHOLDER";
         };
 
         plugins = with pkgs.reposilitePlugins; [ prometheus ];
@@ -24,5 +28,9 @@
     systemd.services.reposilite.environment = {
         REPOSILITE_PROMETHEUS_USER = "prometheus";
         REPOSILITE_PROMETHEUS_PASSWORD = "prometheus";
+
+        _JAVA_OPTIONS = ''
+            -Dreposilite.local.database="postgresql ${ips.containers.postgres}:5432 reposilite reposilite '''"
+        '';
     };
 }

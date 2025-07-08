@@ -80,6 +80,13 @@
                 flake-utils.follows = "flake-utils";
             };
         };
+        website = {
+            url = "github:Polyfrost/Nexus/website/release";
+            inputs = {
+                nixpkgs.follows = "nixpkgs";
+                flake-utils.follows = "flake-utils";
+            };
+        };
     };
 
     outputs =

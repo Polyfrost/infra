@@ -38,7 +38,7 @@
 	}
 }
 
-https://polyfrost.org {
+(prelude) {
 	import access-logs
 
 	# Enforce always using HTTPS
@@ -49,46 +49,24 @@ https://polyfrost.org {
 		header Content-Type text/html
 		respond "<!DOCTYPE html><html><head><title>Error :(</title></head><body><img src=\"https://http.cat/{http.error.status_code}\" alt=\"cat\"></body></html>" {http.error.status_code}
 	}
-
-	respond "Hello there"
-
-	# TODO
-	# file_server {
-	# 	root /srv/www/website
-	# }
 }
 
-# Handle all routes handled by this server
-https://*.polyfrost.org {
-	import access-logs
+(api-handler) {
+	@api host "{args[0]}"
 
-	# Enforce always using HTTPS
-	header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-
-	# Give an HTTP cat on any errors
-	handle_errors {
-		header Content-Type text/html
-		respond "<!DOCTYPE html><html><head><title>Error :(</title></head><body><img src=\"https://http.cat/{http.error.status_code}\" alt=\"cat\"></body></html>" {http.error.status_code}
-	}
-
-	# Configure all service matchers
-	@api host api.polyfrost.org
-
-	@grafana host grafana.polyfrost.org
-	@reposilite host repo.polyfrost.org
-	# @plausible host analytics.polyfrost.org
-
-	# Distribute different API paths to the appropriate handler
+	# Many API services are run on the same domain, so handle them individually
 	handle @api {
+		header +X-Robots-Tag noindex
+
 		@backend-legacy path /oneconfig/*
 
-		# Handle ursa requests based on mod user agent
 		handle_path /ursa/* {
-			# Block external metrics requests
+			# Block external metrics requests for a little extra security
 			handle /_meta/metrics {
 				respond "Unauthorized" 401
 			}
 
+			# Handle ursa requests based on mod user agent
 			@hytils header User-Agent Hytils-Reborn/*
 			@dsm header User-Agent Dsm/*
 			@pss header User-Agent Partly-Sane-Skies/*
@@ -96,6 +74,9 @@ https://*.polyfrost.org {
 			reverse_proxy @hytils ursa-minor-hytils.containers:8080
 			reverse_proxy @dsm ursa-minor-dsm.containers:8080
 			reverse_proxy @pss ursa-minor-pss.containers:8080
+
+			# Give a generic 404 to requests that don't looks like allowed mods
+			respond "Not Found" 404
 		}
 
 		# Proxy legacy backend requests to the old backend
@@ -104,6 +85,42 @@ https://*.polyfrost.org {
 		# Proxy everything else to the new backend
 		reverse_proxy h2c://backend.containers:8081
 	}
+}
+
+# Handle the old polyfrost.cc domain
+
+https://polyfrost.cc {
+	import prelude
+
+	redir https://polyfrost.org{uri} permanent
+}
+
+https://*.polyfrost.cc {
+	import prelude
+
+	# Respond to API requests directly to prevent issues with clients
+	# not following redirects
+	import api-handler api.polyfrost.cc
+
+	# Redirect everything else to the .org equivalent
+	redir "https://{http.request.host.labels.2}.polyfrost.org{http.request.uri}" permanent
+}
+
+# Handle the canonical polyfrost.org domain
+
+https://polyfrost.org {
+	import prelude
+
+	reverse_proxy website.containers:8080
+}
+
+https://*.polyfrost.org {
+	import prelude
+
+	import api-handler api.polyfrost.org
+
+	@grafana host grafana.polyfrost.org
+	@reposilite host repo.polyfrost.org
 
 	# Handle all other containers
 	handle @grafana {
@@ -113,10 +130,6 @@ https://*.polyfrost.org {
 	handle @reposilite {
 		reverse_proxy reposilite.containers:8080
 	}
-
-	# handle @plausible {
-	# 	reverse_proxy plausible.containers:8080
-	# }
 
 	# Handle all unmatched requests as a 404
 	handle {

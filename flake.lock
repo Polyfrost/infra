@@ -721,7 +721,8 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "sops-nix": "sops-nix",
         "treefmt-nix": "treefmt-nix_3",
-        "ursa-minor": "ursa-minor"
+        "ursa-minor": "ursa-minor",
+        "website": "website"
       }
     },
     "rust-overlay": {
@@ -946,6 +947,30 @@
       "original": {
         "owner": "Polyfrost",
         "repo": "ursa-minor",
+        "type": "github"
+      }
+    },
+    "website": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1752006840,
+        "narHash": "sha256-l0Wh8nMPdffOsHK5hpLFZcM+uyYJG5WVEoPlYHZgbSQ=",
+        "owner": "Polyfrost",
+        "repo": "Nexus",
+        "rev": "c8d37c710398125c919d8e476ce4ff74743a5be7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Polyfrost",
+        "ref": "website/release",
+        "repo": "Nexus",
         "type": "github"
       }
     }

@@ -18,25 +18,3 @@ so just use `nix fmt` to format all code.
 
 A `Justfile` is also provided, which can simplify a lot of common tasks, run `just` to have all the
 tasks listed.
-
-## TODO List
-
-- [x] Basic NixOS setup
-- [x] Nspawn container tooling
-- [x] Postgres
-- [x] Plausible
-- [x] Reposilite
-- [x] Ursa minor
-- [x] v0 backend & v1 backend
-  - [x] Add a nix flake to each
-- [x] Caddy
-- [ ] Polyfrost main website (https://polyfrost.org)
-- [ ] Monitoring
-  - [x] Node exporter + https://grafana.com/grafana/dashboards/1860
-  - [ ] Better dashboard/metrics for ursa-minor
-  - [ ] postgres_exporter + dashboard
-  - [ ] VictoriaLogs
-    - [ ]
-      [Journald](https://search.nixos.org/options?channel=25.05&show=services.journald.upload.settings&from=0&size=50&sort=relevance&type=packages&query=journal-upload)
-    - [ ] Caddy request logs
-- [ ] Resolve all TODOs if necessary

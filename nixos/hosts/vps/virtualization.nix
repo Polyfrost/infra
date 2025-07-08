@@ -60,12 +60,41 @@
         users.users.root.password = "password";
 
         # Provide some utilities for testing
-        environment.systemPackages = with pkgs; [
-            btop
-            nmap
-            zellij
-            bat
-        ];
+        environment = {
+            systemPackages = with pkgs; [
+                btop
+                nmap
+                zellij
+                bat
+                xh
+            ];
+            shellAliases = {
+                q = "systemctl poweroff";
+                # Wrapper around xh to disable TLS validation and override polyfrost.{org,cc} DNS
+                # to go straight to the local caddy
+                ht =
+                    let
+                        caddyIp = config.custom.containerIps.containers.caddy;
+                        subdomains = [
+                            "api"
+                            "grafana"
+                            "repo"
+                        ];
+                        resolveArgs =
+                            (lib.flatten (
+                                builtins.map (subdomain: [
+                                    "--resolve '${subdomain}.polyfrost.org:${caddyIp}'"
+                                    "--resolve '${subdomain}.polyfrost.cc:${caddyIp}'"
+                                ]) subdomains
+                            ))
+                            ++ [
+                                "--resolve 'polyfrost.org:${caddyIp}'"
+                                "--resolve 'polyfrost.cc:${caddyIp}'"
+                            ];
+                    in
+                    "xhs --verify no ${builtins.concatStringsSep " " resolveArgs}";
+            };
+        };
 
         # Configure VM specs
         disko.devices.disk.main.imageSize = "8G";
