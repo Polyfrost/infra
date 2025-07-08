@@ -15,6 +15,8 @@
 
         serviceConfig = {
             ExecStart = lib.getExe inputs.website.packages.${system}.website;
+
+            EnvironmentFile = [ "/run/host/credentials/website.secrets.env" ];
         };
     };
 }
