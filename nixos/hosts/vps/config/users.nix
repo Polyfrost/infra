@@ -16,6 +16,10 @@
 
             hashedPasswordFile = config.sops.secrets."users/ty/password_hash".path;
         };
+        ruin = {
+            isNormalUser = true;
+            useDefaultShell = true;
+        };
     };
 
     # Enable polkit user authentication

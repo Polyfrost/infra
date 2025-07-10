@@ -5,6 +5,7 @@
         ./backend
         ./caddy
         ./monitoring
+        ./polyhelper
         ./postgres
         ./reposilite
         ./ursa

@@ -1,4 +1,5 @@
 result
 .direnv
 nixos/hosts/*/age.txt
+nixos/hosts/vps/config/services/polyhelper/.env
 .gcroots
