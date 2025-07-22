@@ -656,6 +656,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-ipv6-lib": {
+      "locked": {
+        "lastModified": 1722112448,
+        "narHash": "sha256-Ugp/K1wA7N0u0xE27YP/fvFaZqK9dYKSjJ/OoTdQ7rc=",
+        "owner": "woojiq",
+        "repo": "nixpkgs",
+        "rev": "ac56c456ebe4901c561d3ebf1c98fbd970aea753",
+        "type": "github"
+      },
+      "original": {
+        "owner": "woojiq",
+        "ref": "lib-network-ipv6-first-and-last-addresses",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1750838302,
@@ -718,6 +734,7 @@
         "nixos-facter-modules": "nixos-facter-modules",
         "nixos-images": "nixos-images_2",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-ipv6-lib": "nixpkgs-ipv6-lib",
         "nixpkgs-stable": "nixpkgs-stable",
         "sops-nix": "sops-nix",
         "treefmt-nix": "treefmt-nix_3",
@@ -960,17 +977,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1752006840,
-        "narHash": "sha256-l0Wh8nMPdffOsHK5hpLFZcM+uyYJG5WVEoPlYHZgbSQ=",
+        "lastModified": 1753136890,
+        "narHash": "sha256-tek8/InPgaTyOI9N29Ce0axvW8JQS/3caelAWFJ3wIY=",
         "owner": "Polyfrost",
-        "repo": "Nexus",
-        "rev": "c8d37c710398125c919d8e476ce4ff74743a5be7",
+        "repo": "website",
+        "rev": "07ab3d62cacb6f6a0dc18ff401df60b81f7018cf",
         "type": "github"
       },
       "original": {
         "owner": "Polyfrost",
-        "ref": "website/release",
-        "repo": "Nexus",
+        "ref": "release",
+        "repo": "website",
         "type": "github"
       }
     }

@@ -5,6 +5,8 @@
         # Nixpkgs
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
         nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+        # Nixpkgs forks (usually unmerged PRs)
+        nixpkgs-ipv6-lib.url = "github:woojiq/nixpkgs/lib-network-ipv6-first-and-last-addresses";
         # Flake utils
         flake-utils.url = "github:numtide/flake-utils";
         # Treefmt
@@ -81,7 +83,7 @@
             };
         };
         website = {
-            url = "github:Polyfrost/Nexus/website/release";
+            url = "github:Polyfrost/website/release";
             inputs = {
                 nixpkgs.follows = "nixpkgs";
                 flake-utils.follows = "flake-utils";
@@ -101,6 +103,10 @@
         }:
         let
             mkPkgs = system: import nixpkgs { inherit system; };
+            utils = import ./utils {
+                inherit nixpkgs;
+                inherit (nixpkgs) lib;
+            };
         in
         {
             nixosConfigurations = {
@@ -113,7 +119,7 @@
                         pkgs = mkPkgs system;
                         specialArgs = {
                             inherit inputs system self;
-                            customUtils = import ./utils { inherit (nixpkgs) lib; };
+                            customUtils = utils;
                         };
 
                         modules = [ ./nixos/hosts/vps ];
@@ -126,7 +132,7 @@
                     nixpkgs = mkPkgs "x86_64-linux";
                     specialArgs = {
                         inherit inputs self;
-                        customUtils = import ./utils { inherit (nixpkgs) lib; };
+                        customUtils = utils;
                     };
 
                     nodeNixpkgs = {

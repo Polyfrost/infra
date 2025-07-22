@@ -5,7 +5,7 @@
 
         database = {
             type = "postgresql";
-            host = ips.containers.postgres;
+            host = "[${ips.v6.containers.postgres}]";
             user = "reposilite";
             # This is necessary so reposilite doesn't complain about
             # the missing password, though if postgres doesn't require
@@ -29,8 +29,9 @@
         REPOSILITE_PROMETHEUS_USER = "prometheus";
         REPOSILITE_PROMETHEUS_PASSWORD = "prometheus";
 
-        _JAVA_OPTIONS = ''
-            -Dreposilite.local.database="postgresql ${ips.containers.postgres}:5432 reposilite reposilite '''"
-        '';
+        # TODO is this necessary?
+        # _JAVA_OPTIONS = ''
+        #     -Dreposilite.local.database="postgresql ${ips.containers.postgres}:5432 reposilite reposilite '''"
+        # '';
     };
 }

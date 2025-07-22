@@ -15,20 +15,28 @@
     };
 
     # Run node exporter on the host for metrics
-    services.prometheus.exporters.node = {
-        enable = true;
-        enabledCollectors = [
-            "systemd"
-            "processes"
-        ];
-        listenAddress = config.custom.containerIps.host;
-    };
+    services.prometheus.exporters.node =
+        let
+            cfg = config.services.prometheus.exporters.node;
+        in
+        {
+            enable = true;
+            enabledCollectors = [
+                "systemd"
+                "processes"
+            ];
+            # Listen on both ipv4 and ipv6
+            listenAddress = config.custom.containerIps.v4.host;
+            extraFlags = [
+                "--web.listen-address [${config.custom.containerIps.v6.host}]:${builtins.toString cfg.port}"
+            ];
+        };
 
     # Configure journald to forward logs to victorialogs
     services.journald.upload = {
         enable = true;
         settings = {
-            Upload.URL = "http://${config.custom.containerIps.containers.monitoring}:8082/insert/journald";
+            Upload.URL = "http://[${config.custom.containerIps.v6.containers.monitoring}]:8082/insert/journald";
         };
     };
 }

@@ -13,7 +13,7 @@
             environment = {
                 PORT = "8080";
                 PUBLIC_MAVEN_URL = "https://repo.polyfrost.org";
-                INTERNAL_MAVEN_URL = "http://${ips.containers.reposilite}:8080";
+                INTERNAL_MAVEN_URL = "http://[${ips.v6.containers.reposilite}]:8080";
             };
 
             serviceConfig.ExecStart = [ "${lib.getExe inputs.backend-legacy.packages.${system}.default}" ];
@@ -25,7 +25,7 @@
                 BACKEND_LISTEN_HOST = "0.0.0.0";
                 BACKEND_LISTEN_PORT = "8081";
                 BACKEND_PUBLIC_MAVEN_URL = "https://repo.polyfrost.org";
-                BACKEND_INTERNAL_MAVEN_URL = "http://${ips.containers.reposilite}:8080";
+                BACKEND_INTERNAL_MAVEN_URL = "http://[${ips.v6.containers.reposilite}]:8080";
             };
 
             serviceConfig.ExecStart = [ "${lib.getExe inputs.backend-v1.packages.${system}.default}" ];

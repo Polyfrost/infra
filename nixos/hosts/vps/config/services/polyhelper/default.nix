@@ -20,27 +20,30 @@
         });
     '';
 
-    systemd.tmpfiles.settings."10-polyhelper" = let
-        perms = {
-            user = "ruin";
-            group = "users";
-            mode = "0755";
-        };
-    in {
-        "/srv/polyhelper"."d" = perms;
-        "/srv/polyhelper/start"."f" = perms // {
-            # Initalize with a placeholder script
-            argument = ''
-                #!/usr/bin/env bash
+    systemd.tmpfiles.settings."10-polyhelper" =
+        let
+            perms = {
+                user = "ruin";
+                group = "users";
+                mode = "0755";
+            };
+        in
+        {
+            "/srv/polyhelper"."d" = perms;
+            "/srv/polyhelper/start"."f" = perms // {
+                # Initalize with a placeholder script
+                argument = ''
+                    #!/usr/bin/env bash
+                    # An example script can be found at ${./start.example.sh}
 
-                echo "Placeholder script"
-                sleep infinity
-            '';
+                    echo "Placeholder script"
+                    sleep infinity
+                '';
+            };
+            "/srv/polyhelper/.env"."f" = perms // {
+                mode = "0700"; # Ensure correct perms on the secrets file
+            };
         };
-        "/srv/polyhelper/.env"."f" = perms // {
-            mode = "0700"; # Ensure correct perms on the secrets file
-        };
-    };
 
     systemd.services.polyhelper = {
         description = "PolyHelper discord bot";

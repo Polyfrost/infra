@@ -17,7 +17,7 @@
         };
 
         settings = {
-            address = "0.0.0.0";
+            address = "::";
             port = 8080;
             rules =
                 let

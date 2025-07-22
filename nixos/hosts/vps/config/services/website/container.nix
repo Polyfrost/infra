@@ -9,7 +9,7 @@
         wantedBy = [ "multi-user.target" ];
 
         environment = {
-            HOST = "0.0.0.0";
+            HOST = "::";
             PORT = "8080";
         };
 

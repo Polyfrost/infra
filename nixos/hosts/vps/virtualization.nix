@@ -11,6 +11,14 @@
         text = ''
             set -x
 
+            # Add some extra networking config to fix IPv6
+            # By default QEMU uses a site-local IPv6 prefix,
+            # which causes the kernel to prefer ULAs such as
+            # the bridge network, causing routing problems
+            # as the kernel sees the site-local address as
+            # non-global while the ULA is global
+            export QEMU_NET_OPTS="ipv4=on,ipv6=on,ipv6-net=fd98:e2b9:6ea3::/64,''${QEMU_NET_OPTS:-}"
+
             # Create a temporary directory to store intermediates
             TMP="$(mktemp -d)"
             trap 'rm -rf "$TMP"' EXIT
@@ -74,7 +82,7 @@
                 # to go straight to the local caddy
                 ht =
                     let
-                        caddyIp = config.custom.containerIps.containers.caddy;
+                        caddyIp = config.custom.containerIps.v6.containers.caddy;
                         subdomains = [
                             "api"
                             "grafana"
@@ -83,13 +91,13 @@
                         resolveArgs =
                             (lib.flatten (
                                 builtins.map (subdomain: [
-                                    "--resolve '${subdomain}.polyfrost.org:${caddyIp}'"
-                                    "--resolve '${subdomain}.polyfrost.cc:${caddyIp}'"
+                                    "--resolve '${subdomain}.polyfrost.org:[${caddyIp}]'"
+                                    "--resolve '${subdomain}.polyfrost.cc:[${caddyIp}]'"
                                 ]) subdomains
                             ))
                             ++ [
-                                "--resolve 'polyfrost.org:${caddyIp}'"
-                                "--resolve 'polyfrost.cc:${caddyIp}'"
+                                "--resolve 'polyfrost.org:[${caddyIp}]'"
+                                "--resolve 'polyfrost.cc:[${caddyIp}]'"
                             ];
                     in
                     "xhs --verify no ${builtins.concatStringsSep " " resolveArgs}";

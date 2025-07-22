@@ -6,8 +6,8 @@
 }:
 let
     databases = {
-        "grafana" = ips.containers.monitoring;
-        "reposilite" = ips.containers.reposilite;
+        "grafana" = ips.v6.containers.monitoring;
+        "reposilite" = ips.v6.containers.reposilite;
     };
     mkAuthEntry =
         { name, value }:
@@ -19,7 +19,7 @@ let
             type = "host";
             database = "sameuser";
             user = name;
-            address = "${value}/32";
+            address = "${value}/128";
             method = "trust";
         };
 in

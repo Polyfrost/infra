@@ -15,7 +15,7 @@
 
         settings = {
             server = {
-                http_addr = "0.0.0.0";
+                http_addr = "::";
                 http_port = 8080;
                 enforce_domain = true;
                 enable_gzip = false;
@@ -24,7 +24,7 @@
 
             database = {
                 type = "postgres";
-                host = ips.containers.postgres;
+                host = "[${ips.v6.containers.postgres}]";
                 user = "grafana";
                 name = "grafana";
             };
@@ -51,13 +51,13 @@
                     name = "VictoriaMetrics";
                     type = "victoriametrics-metrics-datasource";
                     access = "proxy";
-                    url = "http://localhost:8081";
+                    url = "http://[::1]:8081";
                 }
                 {
                     name = "VictoriaLogs";
                     type = "victoriametrics-logs-datasource";
                     access = "proxy";
-                    url = "http://localhost:8082";
+                    url = "http://[::1]:8082";
                 }
             ];
         };

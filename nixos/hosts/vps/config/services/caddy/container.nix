@@ -5,9 +5,13 @@
     ...
 }:
 {
-    networking.hosts = lib.mapAttrs' (
-        name: value: lib.attrsets.nameValuePair value [ "${name}.containers" ]
-    ) ips.containers;
+    networking.hosts =
+        let
+            mkHosts =
+                containerIps:
+                lib.mapAttrs' (name: value: lib.attrsets.nameValuePair value [ "${name}.containers" ]) containerIps;
+        in
+        (mkHosts ips.v4.containers) // (mkHosts ips.v6.containers);
 
     services.caddy = {
         enable = true;
@@ -30,7 +34,7 @@
         environment = {
             # Provided dynamically to caddy to allow for overrides when testing
             ACME_DIRECTORY = "https://acme-v02.api.letsencrypt.org/directory";
-            VICTORIALOGS_URL = "http://${ips.containers.monitoring}:8082";
+            VICTORIALOGS_URL = "http://[${ips.v6.containers.monitoring}]:8082";
         };
     };
 }

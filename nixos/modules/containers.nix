@@ -183,14 +183,11 @@
                 # Configure journald to forward logs to victorialogs (provided the contianer exists & has victorialogs enabled)
                 services.journald.upload =
                     lib.mkIf
-                        (
-                            config.custom.containerIps.containers ? monitoring
-                            && config.containers.monitoring.config.services.victorialogs.enable
-                        )
+                        (config.containers ? monitoring && config.containers.monitoring.config.services.victorialogs.enable)
                         {
                             enable = true;
                             settings = {
-                                Upload.URL = "http://${config.custom.containerIps.containers.monitoring}:8082/insert/journald";
+                                Upload.URL = "http://[${config.custom.containerIps.v6.containers.monitoring}]:8082/insert/journald";
                             };
                         };
 
@@ -207,8 +204,10 @@
             privateNetwork = true;
             privateUsers = "pick";
             hostBridge = "br0";
-            localAddress = "${config.custom.containerIps.containers.${name}}/24";
-            hostAddress = config.custom.containerIps.host;
+            localAddress = "${config.custom.containerIps.v4.containers.${name}}/24";
+            localAddress6 = "${config.custom.containerIps.v6.containers.${name}}/64";
+            hostAddress = config.custom.containerIps.v4.host;
+            hostAddress6 = config.custom.containerIps.v6.host;
 
             specialArgs = {
                 ips = config.custom.containerIps;
