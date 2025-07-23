@@ -12,6 +12,7 @@ let
         "ursa-minor-pss"
         "monitoring"
         "website"
+        "vector"
     ];
 
     # Configuration

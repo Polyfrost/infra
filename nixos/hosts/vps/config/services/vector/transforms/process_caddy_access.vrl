@@ -1,0 +1,21 @@
+# Attempt to resolve the IP address as a GeoIP city record
+geoip_record, err = get_enrichment_table_record(
+    "geolite2_city",
+    { "ip": .request.client_ip }
+)
+
+if err == null {
+    .vector.geoip = geoip_record
+}
+
+# Obscure sensitive fields
+.request.client_ip = redact(.request.client_ip, filters: [r'.+'], redactor: "sha2")
+.request.remote_ip = redact(.request.remote_ip, filters: [r'.+'], redactor: "sha2")
+# TODO the following doesn't appease the all mightly compiler, prob use .value, _ = or smth
+if .request.headers."X-Forwarded-For" != null {
+    .request.headers."X-Forwarded-For" = redact(
+        .request.headers."X-Forwarded-For",
+        filters: [r'.+'],
+        redactor: "sha2"
+    )
+}

@@ -20,7 +20,7 @@
                 # Support
                 "github.com/caddy-dns/cloudflare@v0.2.2-0.20250506153119-35fb8474f57d"
                 "github.com/WeidiDeng/caddy-cloudflare-ip@v0.0.0-20231130002422-f53b62aa13cb"
-                "codeberg.org/tyy/caddy-plugin-victorialogs@v0.0.0-20250629024131-ba0abd470ea5"
+                "codeberg.org/tyy/caddy-plugin-victorialogs@v0.0.0-20250629024131-ba0abd470ea5" # TODO remove
             ];
             hash = "sha256-+t7o96ntMK5DwT3Gm/pN6gg/pwKRRA0ty0GkNeB/luE=";
         };
@@ -34,7 +34,7 @@
         environment = {
             # Provided dynamically to caddy to allow for overrides when testing
             ACME_DIRECTORY = "https://acme-v02.api.letsencrypt.org/directory";
-            VICTORIALOGS_URL = "http://[${ips.v6.containers.monitoring}]:8082";
+            VECTOR_URL = "tcp/[${ips.v6.containers.vector}]:9000";
         };
     };
 }

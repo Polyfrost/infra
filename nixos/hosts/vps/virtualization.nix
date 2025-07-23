@@ -51,6 +51,7 @@
             fi
 
             cp "$FLAKE_ROOT"/nixos/hosts/vps/age.txt "$VM_SECRETS_DIR"/age.txt
+            cp -r "$FLAKE_ROOT"/nixos/hosts/vps/config/services/vector/geoip "$VM_SECRETS_DIR"/geoip
 
             NIX_EFI_VARS="$TMP/nix-efi-vars.fd"
             export NIX_EFI_VARS
@@ -128,6 +129,17 @@
 
         # Mount the host's secrets into the VM and configure sops to find the key
         sops.age.keyFile = lib.mkForce "/mnt/host-secrets/age.txt";
+        systemd.tmpfiles.settings."10-vm-host-secrets" = let
+            permissions = {
+                user = "root";
+                group = "root";
+            };
+        in {
+            "/mnt/host-secrets"."z" = permissions // { mode = "0700"; };
+            "/mnt/host-secrets/age.txt"."z" = permissions // { mode = "0600"; };
+            "/mnt/host-secrets/geoip"."z" = permissions // { mode = "0755"; };
+            "/mnt/host-secrets/geoip/*.mmdb"."z" = permissions // { mode = "0644"; };
+        };
         virtualisation.sharedDirectories = {
             secrets = {
                 source = "$VM_SECRETS_DIR"; # Passed from a wrapper script
@@ -147,6 +159,24 @@
 
                 # Disable domain validation in testing, so you don't have to do DNS hacks
                 monitoring.config.services.grafana.settings.server.enforce_domain = lib.mkForce false;
+
+                # Override geoip database to use the local one rather than download every time
+                # This is to avoid ratelimits when repeatedly restarting the VM for testing
+                vector = {
+                    bindMounts."/mnt/geoip" = {
+                        hostPath = "/mnt/host-secrets/geoip";
+                        isReadOnly = true;
+                    };
+                    config = {
+                        services.geoipupdate.enable = lib.mkForce false;
+                        systemd.services.geoipupdate.enable = false;
+                        systemd.tmpfiles.settings."10-local-geoip" = {
+                            "/var/lib/geoip"."C" = {
+                                argument = "/mnt/geoip";
+                            };
+                        };
+                    };
+                };
 
                 # Make the backends use the production maven server instead of the local one, as the local one
                 # isn't populated with artifacts and thus can't be tested on easily

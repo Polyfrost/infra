@@ -24,17 +24,11 @@
 
 (access-logs) {
 	log {
-		output victorialogs {$VICTORIALOGS_URL}
-		level INFO
-		format filter {
-			wrap json
-			fields {
-				# Hash senstive information
-				request>client_ip hash
-				request>remote_ip hash
-				request>headers>X-Forwarded-For hash
-			}
+		output net {$VECTOR_URL} {
+			soft_start
 		}
+		level INFO
+		format json # Filtering is handled by vector
 	}
 }
 

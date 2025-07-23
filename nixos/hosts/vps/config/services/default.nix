@@ -9,6 +9,7 @@
         ./postgres
         ./reposilite
         ./ursa
+        ./vector
         ./website
     ];
 }

@@ -177,6 +177,8 @@
                             just
                             age
                             sops
+                            geoipupdate
+                            yq
                         ]);
                 };
 

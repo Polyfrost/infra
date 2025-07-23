@@ -4,6 +4,8 @@ nix := require("nix")
 nixos-anywhere := require("nixos-anywhere")
 colmena := require("colmena")
 treefmt := require("treefmt")
+geoipupdate := require("geoipupdate")
+yq := require("yq")
 
 _default:
     @just --list
@@ -84,3 +86,33 @@ secrets-vps $EDITOR="zeditor --wait":
 [group("Project")]
 format *args="":
     {{ treefmt }}{{ if args != "" { " " + args } else { "" } }}
+
+# Downloads the MaxMind geoip database(s) locally
+[group("project")]
+download-geoip:
+    #!/usr/bin/env bash
+    alias yq="{{yq}}"
+    alias geoipupdate="{{geoipupdate}}"
+    DB_DIR="nixos/hosts/vps/config/services/vector/geoip"
+
+    # Clear the database directory
+    rm -rf "$DB_DIR"
+    mkdir "$DB_DIR"
+
+    # Get the license key and account ID
+    SECRETS="$(sops decrypt nixos/hosts/vps/sops.yaml)"
+    MAXMIND_LICENSE_KEY="$(yq -r .vector.maxmind_license_key <<< "$SECRETS")"
+    MAXMIND_ACCOUNT_ID="$(yq -r .vector.maxmind_account_id <<< "$SECRETS")"
+
+    # Make a temporary config file
+    CONFIG_FILE="$(mktemp --suffix .GeoIP.conf)"
+    trap 'rm -f "$CONFIG_FILE"' EXIT
+    echo "LicenseKey $MAXMIND_LICENSE_KEY" >> "$CONFIG_FILE"
+    echo "AccountID $MAXMIND_ACCOUNT_ID" >> "$CONFIG_FILE"
+    echo "EditionIDs GeoLite2-ASN GeoLite2-City GeoLite2-Country" >> "$CONFIG_FILE"
+
+    # Run the downloader
+    geoipupdate \
+        --config-file "$CONFIG_FILE" \
+        --database-directory "$DB_DIR"
+    echo "Successfully downloaded databases into $DB_DIR"

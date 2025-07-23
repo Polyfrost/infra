@@ -2,4 +2,6 @@ result
 .direnv
 nixos/hosts/*/age.txt
 nixos/hosts/vps/config/services/polyhelper/.env
+nixos/hosts/vps/config/services/vector/geoip
+nixos/hosts/vps/config/services/vector/input.json
 .gcroots
