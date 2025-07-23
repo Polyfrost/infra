@@ -32,7 +32,7 @@
                     "-euc"
                     ''
                         for file in "$@"; do
-                        ${lib.getExe pkgs.caddy} fmt -w $file
+                            ${lib.getExe pkgs.caddy} fmt -w $file
                         done
                     ''
                     "--"
