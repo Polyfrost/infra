@@ -16,18 +16,9 @@
             matchConfig.Name = "br0";
 
             addresses = [
-                {
-                    Address = "${config.custom.containerIps.v4.host}/24";
-                    Scope = "host";
-                }
+                { Address = "${config.custom.containerIps.v4.host}/24"; }
                 { Address = "${config.custom.containerIps.v6.host}/64"; }
             ];
-
-            extraConfig = ''
-                [IPv6AddressLabel]
-                Label=1000
-                Prefix=${config.custom.containerIps.v6.cidr}
-            '';
 
             networkConfig = {
                 DHCP = "no";

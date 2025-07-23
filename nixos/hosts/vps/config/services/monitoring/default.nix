@@ -32,6 +32,15 @@
             ];
         };
 
+    # The service starts too early (before br0 bindable), so add some dependencies
+    systemd.services.prometheus-node-exporter = {
+        bindsTo = [ "sys-devices-virtual-net-br0.device" ];
+        after = [
+            "sys-devices-virtual-net-br0.device"
+            "network-online.target"
+        ];
+    };
+
     # Configure journald to forward logs to victorialogs
     services.journald.upload = {
         enable = true;
