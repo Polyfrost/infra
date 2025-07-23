@@ -1,3 +1,4 @@
+{ pkgs, lib, ... }:
 {
     projectRootFile = "flake.nix";
 
@@ -18,8 +19,29 @@
         };
     };
 
-    settings.formatter.nixfmt.options = [
-        "--indent"
-        "4"
-    ];
+    settings = {
+        global.excludes = [ ".jj" ];
+        formatter = {
+            nixfmt.options = [
+                "--indent"
+                "4"
+            ];
+            caddy = {
+                command = "${lib.getExe pkgs.bash}";
+                options = [
+                    "-euc"
+                    ''
+                        for file in "$@"; do
+                        ${lib.getExe pkgs.caddy} fmt -w $file
+                        done
+                    ''
+                    "--"
+                ];
+                includes = [
+                    "*/[Cc]addyfile"
+                    "*.[C]addyfile"
+                ];
+            };
+        };
+    };
 }
