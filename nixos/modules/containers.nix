@@ -19,12 +19,6 @@
             type = lib.types.attrs;
         };
 
-        custom.externalInterfaces = lib.mkOption {
-            description = "A list of interfaces that should be classified as external for container port forwarding purposes";
-            default = [ ];
-            type = lib.types.listOf lib.types.str;
-        };
-
         custom.containers = lib.mkOption {
             description = "An attrset including containers to create";
             default = { };
@@ -125,48 +119,6 @@
         systemd.services = lib.mapAttrs' (
             name: { dependencies, ... }: lib.nameValuePair "container@${name}" { after = dependencies; }
         ) config.custom.containers;
-
-        custom.externalInterfaces = [ "lo" ]; # Passthrough localhost to container ports
-
-        # TODO fix this and remove the normal systemd forwarding
-        # networking.nftables.tables =
-        #     let
-        #         externalInterfacesSet = "{ ${builtins.concatStringsSep ", " config.custom.externalInterfaces} }";
-        #         dnatMap =
-        #             proto:
-        #             builtins.foldl'
-        #                 (
-        #                     acc:
-        #                     { name, value }:
-        #                     acc
-        #                     // (lib.genAttrs (builtins.map builtins.toString value.forwardedPorts.${proto}) (
-        #                         port: config.custom.containerIps.containers.${name}
-        #                     ))
-
-        #                 )
-        #                 {
-
-        #                 }
-        #                 (lib.attrsToList config.custom.containers);
-        #         dnatMapNftables =
-        #             proto: "{ ${lib.concatMapAttrsStringSep ", " (port: addr: "${port} : ${addr}") (dnatMap proto)} }";
-        #     in
-        #     {
-        #         custom-containers-nat = {
-        #             # TODO add IPv6 support to my bridge network and the containers
-        #             # because you can't IPv6 DNAT -> IPv4 urls, only IPv4 is supported
-        #             # currently
-        #             family = "ip";
-        #             content = ''
-        #                 chain prerouting {
-        #                     type nat hook prerouting priority dstnat;
-
-        #                     iifname ${externalInterfacesSet} counter dnat to tcp dport map ${dnatMapNftables "tcp"}
-        #                     iifname ${externalInterfacesSet} counter dnat to udp dport map ${dnatMapNftables "udp"}
-        #                 }
-        #             '';
-        #         };
-        #     };
 
         containers = builtins.mapAttrs (name: cfg: {
             config = {

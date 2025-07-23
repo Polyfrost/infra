@@ -2,6 +2,7 @@
     customUtils,
     config,
     inputs,
+    lib,
     ...
 }:
 {
@@ -9,7 +10,6 @@
         utils = customUtils;
         inherit inputs;
     };
-    custom.externalInterfaces = [ "enp1s0" ];
 
     systemd.network = {
         networks."50-bridge" = {
@@ -51,6 +51,12 @@
                 ip saddr ${ips.v4.containers.monitoring} tcp dport 9100 accept comment "Allow monitoring to access node exporter"
                 ip6 saddr ${ips.v6.containers.monitoring} tcp dport 9100 accept comment "Allow monitoring to access node exporter"
             '';
+
+        # Add IPv6 entries for the container aliases, NixOS/nixpkgs#427380
+        hosts = lib.mapAttrs' (container: ip: {
+            name = ip;
+            value = [ "${container}.containers" ];
+        }) config.custom.containerIps.v6.containers;
     };
 
     services.tailscale.extraUpFlags = [

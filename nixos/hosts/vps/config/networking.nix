@@ -29,8 +29,6 @@
         useDHCP = false;
     };
 
-    custom.externalInterfaces = [ "tailscale0" ]; # Allow port forwarding over tailscale
-
     systemd.network = {
         enable = true;
 

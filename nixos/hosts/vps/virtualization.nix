@@ -120,9 +120,6 @@
             ];
         };
 
-        # Add the proper network interface for QEMU to externalInterfaces
-        custom.externalInterfaces = [ "eth0" ];
-
         # Be a bit more verbose on the firewall logging
         networking.firewall = {
             logRefusedConnections = true;
