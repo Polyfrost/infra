@@ -103,7 +103,9 @@ https://*.polyfrost.cc {
 	import api-handler api.polyfrost.cc
 
 	# Redirect everything else to the .org equivalent
-	redir "https://{http.request.host.labels.2}.polyfrost.org{http.request.uri}" permanent
+	handle {
+		redir "https://{http.request.host.labels.2}.polyfrost.org{http.request.uri}" permanent
+	}
 }
 
 # Handle the canonical polyfrost.org domain
