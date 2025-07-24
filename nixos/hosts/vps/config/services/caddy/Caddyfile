@@ -22,18 +22,22 @@
 	}
 }
 
+# Pipe all access logs over the bridge to vector for processing
 (access-logs) {
-	log {
+	log "{args[0]}" {
 		output net {$VECTOR_URL} {
 			soft_start
 		}
 		level INFO
-		format json # Filtering is handled by vector
+		format json {
+			time_format unix_milli_float
+			duration_format millis
+		}
 	}
 }
 
 (prelude) {
-	import access-logs
+	import access-logs "{args[0]}"
 
 	# Enforce always using HTTPS
 	header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
@@ -55,6 +59,8 @@
 		@backend-legacy path /oneconfig/*
 
 		handle_path /ursa/* {
+			log_append polyfrost_handler ursa-minor
+
 			# Block external metrics requests for a little extra security
 			handle /_meta/metrics {
 				respond "Unauthorized" 401
@@ -74,23 +80,31 @@
 		}
 
 		# Proxy legacy backend requests to the old backend
-		reverse_proxy @backend-legacy backend.containers:8080
+		handle @backend-legacy {
+			log_append polyfrost_handler legacy-backend
+
+			reverse_proxy backend.containers:8080
+		}
 
 		# Proxy everything else to the new backend
-		reverse_proxy h2c://backend.containers:8081
+		handle {
+			log_append polyfrost_handler backend
+
+			reverse_proxy h2c://backend.containers:8081
+		}
 	}
 }
 
 # Handle the old polyfrost.cc domain
 
 https://polyfrost.cc {
-	import prelude
+	import prelude index-cc
 
 	redir https://polyfrost.org{uri} permanent
 }
 
 https://*.polyfrost.cc {
-	import prelude
+	import prelude wildcard-cc
 
 	# Respond to API requests directly to prevent issues with clients
 	# not following redirects
@@ -105,13 +119,13 @@ https://*.polyfrost.cc {
 # Handle the canonical polyfrost.org domain
 
 https://polyfrost.org {
-	import prelude
+	import prelude index
 
 	reverse_proxy website.containers:8080
 }
 
 https://*.polyfrost.org {
-	import prelude
+	import prelude wildcard
 
 	import api-handler api.polyfrost.org
 

@@ -15,7 +15,6 @@
             "website/github_pat" = { };
 
             "vector/maxmind_license_key" = { };
-            "vector/maxmind_account_id" = { };
 
             "tailscale/oauth_key" = { };
 

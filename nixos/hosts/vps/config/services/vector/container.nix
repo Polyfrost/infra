@@ -1,5 +1,13 @@
-{ ips, ... }:
 {
+    ips,
+    hostConfig,
+    lib,
+    ...
+}:
+{
+    # Tests can be run via <flake>.checks.<system>.vector
+    imports = [ ./tests ];
+
     # Automatically download and update GeoIP databases
     systemd.services.geoipupdate.serviceConfig.LoadCredential = [
         "maxmind_license_key:vector.maxmind_license_key"
@@ -8,9 +16,27 @@
     services.geoipupdate = {
         enable = true;
         settings = {
-            AccountID = { _secret = "/run/credentials/geoipupdate.service/maxmind_account_id"; };
-            LicenseKey = { _secret = "/run/credentials/geoipupdate.service/maxmind_license_key"; };
-            EditionIDs = [ "GeoLite2-ASN" "GeoLite2-City" "GeoLite2-Country" ];
+            # The module doesn't support use of secrets in AccountID,
+            # so use this hacky workaround
+            #
+            # The account ID is in a secret because it is used by a script
+            # in the Justfile
+            AccountID =
+                let
+                    matched = builtins.match ''.+maxmind_account_id_unencrypted:[[:space:]]*"([[:digit:]]+)".+'' (
+                        builtins.readFile hostConfig.sops.defaultSopsFile
+                    );
+                    id = lib.toIntBase10 (builtins.elemAt matched 0);
+                in
+                id;
+            LicenseKey = {
+                _secret = "/run/credentials/geoipupdate.service/maxmind_license_key";
+            };
+            EditionIDs = [
+                "GeoLite2-ASN"
+                "GeoLite2-City"
+                "GeoLite2-Country"
+            ];
             DatabaseDirectory = "/var/lib/geoip";
         };
     };
@@ -25,15 +51,15 @@
 
     services.vector = {
         enable = true;
-
         journaldAccess = false; # VictoriaLogs manages journald
 
         settings = {
             schema.log_namespace = true;
+
             enrichment_tables = {
                 geolite2_city = {
                     path = "/var/lib/geoip/GeoLite2-City.mmdb";
-                    type = "mmdb";
+                    type = "geoip";
                 };
             };
 
@@ -53,6 +79,7 @@
             };
 
             transforms = {
+                # Process all caddy access logs
                 process_caddy_access = {
                     type = "remap";
                     inputs = [ "intake_caddy_net" ];
@@ -62,13 +89,6 @@
             };
 
             sinks = {
-                # TODO this is for testing, make sure to remove/replace!
-                # emit_console = {
-                #     inputs = [ "process_caddy_access" ];
-                #     type = "console";
-                #     encoding.codec = "json";
-                # };
-
                 victorialogs = {
                     inputs = [ "process_caddy_access" ];
                     type = "http";

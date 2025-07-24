@@ -42,7 +42,10 @@
     services.journald.upload = {
         enable = true;
         settings = {
-            Upload.URL = "http://[${config.custom.containerIps.v6.containers.monitoring}]:8082/insert/journald";
+            Upload = {
+                URL = "http://[${config.custom.containerIps.v6.containers.monitoring}]:8082/insert/journald";
+                NetworkTimeoutSec = "1min";
+            };
         };
     };
 }

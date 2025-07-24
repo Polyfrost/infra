@@ -1,21 +1,43 @@
 # Attempt to resolve the IP address as a GeoIP city record
-geoip_record, err = get_enrichment_table_record(
+# Read https://vector.dev/docs/reference/vrl/functions/#get_enrichment_table_record for the
+# returned data on success
+._vector.geoip = get_enrichment_table_record(
     "geolite2_city",
     { "ip": .request.client_ip }
-)
+) ?? null
 
-if err == null {
-    .vector.geoip = geoip_record
-}
+# Parse the user agent of the request
+._vector.user_agent = parse_user_agent(
+    .request.headers."User-Agent"[0],
+    mode: "enriched"
+) ?? null
 
-# Obscure sensitive fields
-.request.client_ip = redact(.request.client_ip, filters: [r'.+'], redactor: "sha2")
-.request.remote_ip = redact(.request.remote_ip, filters: [r'.+'], redactor: "sha2")
-# TODO the following doesn't appease the all mightly compiler, prob use .value, _ = or smth
-if .request.headers."X-Forwarded-For" != null {
-    .request.headers."X-Forwarded-For" = redact(
-        .request.headers."X-Forwarded-For",
-        filters: [r'.+'],
-        redactor: "sha2"
-    )
+# Obscure sensitive fields with truncated hashes
+redact_paths = [
+    # Redact all possible locations of source IP
+    [ "request", "client_ip" ],
+    [ "request", "remote_ip" ],
+    [ "request", "headers", "X-Forwarded-For" ],
+    [ "request", "headers", "CF-Connecting-IP" ],
+    [ "request", "headers", "CF-Connecting-IPv6" ],
+    [ "request", "headers", "True-Client-IP" ],
+    # Other potentially identifying information
+    [ "request", "headers", "CF-Ray" ],
+]
+for_each(redact_paths) -> |_, redact_path| {
+    # Check if the path exists and needs to be redacted first
+    value, err = string(get!(., redact_path))
+    if err == null {
+        # Take the first 6 bytes of the sha3 base64 hash and base64 encode them
+        # Collision probability: 0.1% with 1 million hashes
+        truncated_hash = encode_base64(
+            slice!(
+                decode_base16!(sha3(value)),
+                start: 0,
+                end: 6
+            )
+        )
+
+        . = set!(., redact_path, truncated_hash)
+    }
 }

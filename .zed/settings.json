@@ -3,5 +3,8 @@
         "Caddyfile": {
             "hard_tabs": true
         }
+    },
+    "file_types": {
+        "JSON": [ "jsonl" ]
     }
 }

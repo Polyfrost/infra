@@ -10,7 +10,7 @@ website:
     #ENC[AES256_GCM,data:UeEce/CcY+688zsCFeK1IEW5gZHeXdFONJfFN6LGQUcFMZ3jaoCvQBKNXGvaKq9JjnOYSbV09YhkbTuJshReoExC4rwBXLppdcRcFrLCy3qqiiC9nw==,iv:aEVLUGMcser7vq2raUgDAAkxWuprr7d+5aq2iwBkh7Q=,tag:x5Ea3RwLPyKT9E9Dk1QBJw==,type:comment]
     github_pat: ENC[AES256_GCM,data:NTFKHzNo7bZCwQmSKB0ajzCKE4S3un18GW+TwVEoktuOwh+ZWXhGnfI7veJO3DQMm2lP1Gk0pqRxVMYpCO70+KS9dRXMud70DxB775AMNngQAu2RabN9TWm0BYk1,iv:RHBOAbyi9BBmNZeqdO3j/1PsTOghjoOdhyf9YL0FWgQ=,tag:gqCgUonSKlMFNc5RoEJnaA==,type:str]
 vector:
-    maxmind_account_id: ENC[AES256_GCM,data:od5lt6nv,iv:LC3JRrIUYyMRfryqdaMRRyAqj55RIB/RNCoMus7cYrE=,tag:csRW31Q+SUQq/qYOheCVxQ==,type:str]
+    maxmind_account_id_unencrypted: "968892"
     maxmind_license_key: ENC[AES256_GCM,data:LisheqBynHnRyc7Tf+xzCsVGf5w+oEK2Cojhq5bx2rU1kzc4o9dfRg==,iv:wFM1uS8xsy+S8w9L9UAtCv+cdd0Tp5SvDySAmWYQmX4=,tag:IaYXMcqDdse5k8WWry+cCQ==,type:str]
 users:
     ty:
@@ -28,8 +28,8 @@ sops:
             OEx4TG10MGFDY1Jpbmk4UWdHbDdPU1EK9JkKe5p0cw6pszL+14bbi0dQIZPjXW6q
             lTXnVaVuivm0LQkG4iQuqpP4r/hxoLi9CXodWitXTeZjxc51uGWFXg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-07-23T04:57:41Z"
-    mac: ENC[AES256_GCM,data:d7UQ+8OKtAPAwZP5V+L0nZlYKcCwxQ/3mlWkqigVApPBR3ulB0oGBx/iIibBNHZna01jqJK/sAXBmN6v2j6saZEpN7wWbcMwx6ZlN/q5DQnXkGkfiC0KMxvT01Nu+k2AgvaIZNhx6bJcaBOSQmSrA7qs7YCpbQj/6+2edr0DJXM=,iv:h8hlDXKN3C6O01VAsuQnefpb2dLRROHt/FQ4vgJAcZo=,tag:/7yxAy8doXAxfy46ZZvnww==,type:str]
+    lastmodified: "2025-07-24T07:27:05Z"
+    mac: ENC[AES256_GCM,data:CeYfyaBJic7guy0xkR4RG4U3f9xciLrG8YILiiccOo9dp+SSfaXQCdSjYyrAu6/uEOLY/CNG1irWEugqVZ3PTAgY7nzyawgB2b4q1ptILBWndOo9HpT09/itj/r+lrzl2xCmKl29sTPURBYWJkQkUKc5v6Fw163m+iZWZfX4M3A=,iv:WKkjcH1WoBKVtKiyhkc8+vJIJLALUkOuT2r50fLYjKk=,tag:j1Pi9XJ9L+0S7TPm8AioCw==,type:str]
     pgp:
         - created_at: "2025-06-12T23:43:01Z"
           enc: |-

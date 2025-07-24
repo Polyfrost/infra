@@ -129,17 +129,27 @@
 
         # Mount the host's secrets into the VM and configure sops to find the key
         sops.age.keyFile = lib.mkForce "/mnt/host-secrets/age.txt";
-        systemd.tmpfiles.settings."10-vm-host-secrets" = let
-            permissions = {
-                user = "root";
-                group = "root";
+        systemd.tmpfiles.settings."10-vm-host-secrets" =
+            let
+                permissions = {
+                    user = "root";
+                    group = "root";
+                };
+            in
+            {
+                "/mnt/host-secrets"."z" = permissions // {
+                    mode = "0700";
+                };
+                "/mnt/host-secrets/age.txt"."z" = permissions // {
+                    mode = "0600";
+                };
+                "/mnt/host-secrets/geoip"."z" = permissions // {
+                    mode = "0755";
+                };
+                "/mnt/host-secrets/geoip/*.mmdb"."z" = permissions // {
+                    mode = "0644";
+                };
             };
-        in {
-            "/mnt/host-secrets"."z" = permissions // { mode = "0700"; };
-            "/mnt/host-secrets/age.txt"."z" = permissions // { mode = "0600"; };
-            "/mnt/host-secrets/geoip"."z" = permissions // { mode = "0755"; };
-            "/mnt/host-secrets/geoip/*.mmdb"."z" = permissions // { mode = "0644"; };
-        };
         virtualisation.sharedDirectories = {
             secrets = {
                 source = "$VM_SECRETS_DIR"; # Passed from a wrapper script

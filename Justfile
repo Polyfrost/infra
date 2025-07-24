@@ -91,8 +91,8 @@ format *args="":
 [group("project")]
 download-geoip:
     #!/usr/bin/env bash
-    alias yq="{{yq}}"
-    alias geoipupdate="{{geoipupdate}}"
+    alias yq="{{ yq }}"
+    alias geoipupdate="{{ geoipupdate }}"
     DB_DIR="nixos/hosts/vps/config/services/vector/geoip"
 
     # Clear the database directory
@@ -102,7 +102,7 @@ download-geoip:
     # Get the license key and account ID
     SECRETS="$(sops decrypt nixos/hosts/vps/sops.yaml)"
     MAXMIND_LICENSE_KEY="$(yq -r .vector.maxmind_license_key <<< "$SECRETS")"
-    MAXMIND_ACCOUNT_ID="$(yq -r .vector.maxmind_account_id <<< "$SECRETS")"
+    MAXMIND_ACCOUNT_ID="$(yq -r .vector.maxmind_account_id_unencrypted <<< "$SECRETS")"
 
     # Make a temporary config file
     CONFIG_FILE="$(mktemp --suffix .GeoIP.conf)"

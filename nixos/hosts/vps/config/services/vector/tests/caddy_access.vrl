@@ -1,0 +1,26 @@
+# Constants
+PRIVATE_IP_HASH = encode_base64(slice!(decode_base16!(sha3("172.25.0.1")), start: 0, end: 6))
+USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64; rv:142.0) Gecko/20100101 Firefox/142.0"
+
+# Ensure the processing actually happened
+assert!(exists(._vector), "extra _vector field should be added")
+
+# Validate redacted paths
+client_ip = string!(.request.client_ip)
+assert!(
+    !is_ipv4(client_ip) && !is_ipv6(client_ip),
+    ".request.client_ip field should be redacted"
+)
+
+# Validate user agent processing
+assert_eq!(
+    ._vector.user_agent,
+    parse_user_agent(USER_AGENT, mode: "enriched")
+)
+
+# Validate geoip processing
+if .request.client_ip == PRIVATE_IP_HASH {
+    assert_eq!(._vector.geoip, null, "geoip data should be null on private IP lookup")
+} else {
+    assert_eq!(._vector.geoip.city_name, "Denver", "geoip data should be correct on real IP lookup")
+}

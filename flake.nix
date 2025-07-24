@@ -103,9 +103,10 @@
         }:
         let
             mkPkgs = system: import nixpkgs { inherit system; };
+            inherit (nixpkgs) lib;
             utils = import ./utils {
                 inherit nixpkgs;
-                inherit (nixpkgs) lib;
+                inherit lib;
             };
         in
         {
@@ -183,7 +184,27 @@
                 };
 
                 formatter = treefmt-wrapper;
-                checks.formatting = treefmt.config.build.check self;
+                checks = {
+                    formatting = treefmt.config.build.check self;
+                    vector =
+                        let
+                            vector = lib.getExe pkgs.vector;
+                            format = pkgs.formats.json { };
+                            vpsCfg = self.nixosConfigurations.vps.config;
+                            containerCfg = vpsCfg.containers.vector.config;
+                            cfg = format.generate "vector.json" (
+                                lib.recursiveUpdate containerCfg.services.vector.settings {
+                                    enrichment_tables.geolite2_city = {
+                                        path = "./nixos/hosts/vps/config/services/vector/geoip/GeoLite2-City.mmdb";
+                                        type = "geoip";
+                                    };
+                                }
+                            );
+                        in
+                        pkgs.writeShellScriptBin "run-vector-tests" ''
+                            ${vector} test ${cfg}
+                        '';
+                };
 
                 # Re-export a kexec image locked on the flake's version of nixos-images
                 packages.kexec-image =
