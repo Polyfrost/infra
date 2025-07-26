@@ -169,7 +169,8 @@
                     inputs
                     system
                     ;
-            } // cfg.specialArgs;
+            }
+            // cfg.specialArgs;
 
             bindMounts = lib.mapAttrs' (
                 mountName: value:

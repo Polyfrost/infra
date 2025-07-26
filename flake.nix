@@ -163,19 +163,18 @@
             in
             {
                 devShells.default = pkgs.mkShellNoCC {
-                    packages =
-                        [
-                            nixos-anywhere.packages.${system}.default
-                            colmena.packages.${system}.colmena
-                            treefmt-wrapper
-                        ]
-                        ++ (with pkgs; [
-                            just
-                            age
-                            sops
-                            geoipupdate
-                            yq
-                        ]);
+                    packages = [
+                        nixos-anywhere.packages.${system}.default
+                        colmena.packages.${system}.colmena
+                        treefmt-wrapper
+                    ]
+                    ++ (with pkgs; [
+                        just
+                        age
+                        sops
+                        geoipupdate
+                        yq
+                    ]);
                 };
 
                 formatter = treefmt-wrapper;
