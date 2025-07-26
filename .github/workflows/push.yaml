@@ -1,0 +1,32 @@
+name: Build with nix
+
+on: [push, pull_request, workflow_dispatch]
+permissions:
+    actions: write
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Install Nix
+              uses: nixbuild/nix-quick-install-action@v31
+              with:
+                  nix_conf: |
+                      keep-env-derivations = true
+                      keep-outputs = true
+
+            - name: Cache nix store
+              uses: nix-community/cache-nix-action@v6
+              with:
+                  primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+                  restore-prefixes-first-match: nix-${{ runner.os }}-
+                  gc-max-store-size-linux: 5G
+                  purge: false
+
+            - name: Check nix flake
+              run: nix -L flake check --keep-going
+
+            - name: Build NixOS VPS
+              run: nix develop --command just bv
