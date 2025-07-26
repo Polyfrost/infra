@@ -40,11 +40,6 @@
             url = "github:nix-community/disko";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        # Home Manager + Plasma
-        home-manager = {
-            url = "github:nix-community/home-manager/master";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
         # Nixos-anywhere & nixos-images for deployment
         nixos-anywhere = {
             url = "github:nix-community/nixos-anywhere";

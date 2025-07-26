@@ -22,8 +22,7 @@
             wantedBy = [ "multi-user.target" ];
 
             environment = {
-                BACKEND_LISTEN_HOST = "0.0.0.0";
-                BACKEND_LISTEN_PORT = "8081";
+                BACKEND_BIND_ADDRS = "[::]:8081";
                 BACKEND_PUBLIC_MAVEN_URL = "https://repo.polyfrost.org";
                 BACKEND_INTERNAL_MAVEN_URL = "http://[${ips.v6.containers.reposilite}]:8080";
             };

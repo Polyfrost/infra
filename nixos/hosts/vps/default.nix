@@ -5,9 +5,12 @@
         inputs.lix-module.nixosModules.lixFromNixpkgs
         {
             nixpkgs.overlays = [
-                # Override the top-level lix to be the nixpkgs version of 2.24.0-dev, which the module expects
-                # Unfortunately the module is fairly out of date and can't find the latest lix on its own
-                (final: prev: { lix = final.lixPackageSets.git.lix; })
+                # Provide the git lix package set in the location the module expects it to be
+                (final: prev: {
+                    lixPackageSets = prev.lixPackageSets // {
+                        lix_2_94 = prev.lixPackageSets.git;
+                    };
+                })
             ];
         }
 
@@ -22,10 +25,6 @@
         # Hardware configuration
         inputs.nixos-facter-modules.nixosModules.facter
         { facter.reportPath = ./facter.json; }
-
-        # Enable home manager
-        inputs.home-manager.nixosModules.home-manager
-        # TODO add ty home-manager configuration as input and such
 
         # Include configuration for testing via QEMU
         ./virtualization.nix

@@ -47,6 +47,11 @@
                     };
                 }
                 {
+                    job_name = "backend";
+                    metrics_path = "/v1/metrics";
+                    static_configs = [ { targets = [ "[${ips.v6.containers.backend}]:8081" ]; } ];
+                }
+                {
                     job_name = "ursa-minor";
                     metrics_path = "/_meta/metrics";
                     static_configs =
