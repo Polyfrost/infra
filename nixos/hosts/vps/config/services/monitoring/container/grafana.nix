@@ -88,8 +88,8 @@
             };
             "grafana-dashboards/postgres-overview.json" = {
                 source = fetchurlWithPatches {
-                    url = "https://raw.githubusercontent.com/prometheus-community/postgres_exporter/refs/heads/master/postgres_mixin/dashboards/postgres-overview.json";
-                    hash = "sha256-RrR+MSjwY8MwjOeyuVYhwYdZMlCOeyDNg55Njm70q1M=";
+                    url = "https://raw.githubusercontent.com/prometheus-community/postgres_exporter/77e1a0d65a00bc0ec5120e27a0f372d03fec0055/postgres_mixin/dashboards/postgres-overview.json";
+                    hash = "sha256-L3jU98XaiKJsrLl4/EbcPi418jJsLVdd2wg8rHhHMvQ=";
 
                     patches = [ ./patches/postgres-overview.patch ];
                 };
