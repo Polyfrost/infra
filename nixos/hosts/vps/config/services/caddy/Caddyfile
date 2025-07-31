@@ -79,18 +79,11 @@
 			respond "Not Found" 404
 		}
 
-		# Proxy legacy backend requests to the old backend
-		handle @backend-legacy {
-			log_append polyfrost_handler legacy-backend
-
-			reverse_proxy backend.containers:8080
-		}
-
 		# Proxy everything else to the new backend
 		handle {
 			log_append polyfrost_handler backend
 
-			reverse_proxy h2c://backend.containers:8081
+			reverse_proxy h2c://backend.containers:8080
 		}
 	}
 }

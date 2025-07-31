@@ -20,9 +20,8 @@
                 # Support
                 "github.com/caddy-dns/cloudflare@v0.2.2-0.20250506153119-35fb8474f57d"
                 "github.com/WeidiDeng/caddy-cloudflare-ip@v0.0.0-20231130002422-f53b62aa13cb"
-                "codeberg.org/tyy/caddy-plugin-victorialogs@v0.0.0-20250629024131-ba0abd470ea5" # TODO remove
             ];
-            hash = "sha256-+t7o96ntMK5DwT3Gm/pN6gg/pwKRRA0ty0GkNeB/luE=";
+            hash = "sha256-K2ygIQiIXWl4Y51lzpgWbI3ypWPj1niS+aTwvtLkfvs=";
         };
 
         configFile = ./Caddyfile;

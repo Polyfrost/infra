@@ -6,28 +6,15 @@
     ...
 }:
 {
-    systemd.services = {
-        backend-legacy = {
-            wantedBy = [ "multi-user.target" ];
+    systemd.services.backend-v1 = {
+        wantedBy = [ "multi-user.target" ];
 
-            environment = {
-                PORT = "8080";
-                PUBLIC_MAVEN_URL = "https://repo.polyfrost.org";
-                INTERNAL_MAVEN_URL = "http://[${ips.v6.containers.reposilite}]:8080";
-            };
-
-            serviceConfig.ExecStart = [ "${lib.getExe inputs.backend-legacy.packages.${system}.default}" ];
+        environment = {
+            BACKEND_BIND_ADDRS = "[::]:8080";
+            BACKEND_PUBLIC_MAVEN_URL = "https://repo.polyfrost.org";
+            BACKEND_INTERNAL_MAVEN_URL = "http://[${ips.v6.containers.reposilite}]:8080";
         };
-        backend-v1 = {
-            wantedBy = [ "multi-user.target" ];
 
-            environment = {
-                BACKEND_BIND_ADDRS = "[::]:8081";
-                BACKEND_PUBLIC_MAVEN_URL = "https://repo.polyfrost.org";
-                BACKEND_INTERNAL_MAVEN_URL = "http://[${ips.v6.containers.reposilite}]:8080";
-            };
-
-            serviceConfig.ExecStart = [ "${lib.getExe inputs.backend-v1.packages.${system}.default}" ];
-        };
+        serviceConfig.ExecStart = [ "${lib.getExe inputs.backend.packages.${system}.default}" ];
     };
 }

@@ -26,10 +26,7 @@
         };
         nixos-facter-modules.url = "github:nix-community/nixos-facter-modules";
         # Colmena unstable
-        colmena = {
-            url = "github:zhaofengli/colmena";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+        colmena.url = "github:zhaofengli/colmena";
         # Sops-nix
         sops-nix = {
             url = "github:Mic92/sops-nix";
@@ -53,15 +50,8 @@
             url = "github:nix-community/nixos-images";
             # Nixpkgs inputs deliberately not ignored to avoid rebuilds and use the cache instead
         };
-        # External services run on our infra
-        backend-legacy = {
-            url = "github:Polyfrost/backend/main";
-            inputs = {
-                nixpkgs.follows = "nixpkgs";
-                flake-utils.follows = "flake-utils";
-            };
-        };
-        backend-v1 = {
+        # Services run on our infra
+        backend = {
             url = "github:Polyfrost/backend/v1";
             inputs = {
                 nixpkgs.follows = "nixpkgs";
