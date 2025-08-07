@@ -25,6 +25,11 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         nixos-facter-modules.url = "github:nix-community/nixos-facter-modules";
+        # Nix index (for https://github.com/nix-community/comma)
+        nix-index-database = {
+            url = "github:nix-community/nix-index-database";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         # Colmena unstable
         colmena.url = "github:zhaofengli/colmena";
         # Sops-nix

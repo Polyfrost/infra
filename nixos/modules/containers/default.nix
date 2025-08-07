@@ -10,11 +10,6 @@
     ...
 }:
 let
-    # moduleType = lib.types.oneOf [
-    #     lib.types.pathInStore
-    #     lib.types.attrs
-    #     lib.types.func
-    # ];
     moduleType = lib.types.deferredModule;
     cfg = config.custom.nixos-containers;
 in
@@ -40,14 +35,6 @@ in
                                     The NixOS configuration to activate inside of the container.
                                 '';
                                 type = moduleType;
-                                # type = lib.mkOptionType {
-                                #     inherit (topLevelType) name;
-                                #     merge =
-                                #         loc: defs:
-                                #         topLevelType.merge
-                                #             loc
-                                #             ((builtins.map (cfg': { value = cfg'; }) cfg.sharedModules) ++ defs);
-                                # };
                             };
 
                             persistentDirs = lib.mkOption {
@@ -158,9 +145,7 @@ in
         ) cfg.containers;
 
         containers = builtins.mapAttrs (name: containerCfg: {
-            config.imports = [
-                containerCfg.config
-            ] ++ cfg.sharedModules;
+            config.imports = [ containerCfg.config ] ++ cfg.sharedModules;
 
             autoStart = true;
 

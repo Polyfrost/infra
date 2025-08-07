@@ -26,6 +26,10 @@
         inputs.nixos-facter-modules.nixosModules.facter
         { facter.reportPath = ./facter.json; }
 
+        # Nix index & comma setup
+        inputs.nix-index-database.nixosModules.nix-index
+        { programs.nix-index-database.comma.enable = true; }
+
         # Include configuration for testing via QEMU
         ./virtualization.nix
 

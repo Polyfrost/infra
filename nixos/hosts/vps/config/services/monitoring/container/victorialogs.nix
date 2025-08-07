@@ -5,7 +5,7 @@
         extraOptions = [
             "-enableTCP6"
             "-retentionPeriod=7d"
-            "-retention.maxDiskSpaceUsageBytes=2G"
+            "-retention.maxDiskSpaceUsageBytes=2GiB"
         ];
     };
 }

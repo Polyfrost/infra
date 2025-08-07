@@ -7,6 +7,13 @@
         age.generateKey = false;
 
         secrets = {
+            "backups/sftp/host" = { };
+            "backups/sftp/known_hosts" = { };
+            "backups/sftp/private_key" = { };
+            "backups/passwords/restic/reposilite" = { };
+            "backups/passwords/restic/polyhelper" = { };
+            "backups/passwords/pgbackrest" = { };
+
             "caddy/cloudflare_api_key" = { };
 
             "ursa/secret" = { };

@@ -1,11 +1,8 @@
-{
-    config,
-    lib,
-    ...
-}:
+{ config, lib, ... }:
 let
     containerIps = config.custom.nixos-containers.networking.addresses;
-in {
+in
+{
     systemd.network = {
         networks."50-bridge" = {
             matchConfig.Name = "br0";
@@ -38,11 +35,10 @@ in {
 
     networking = {
         # Let containers access host ports conditionally
-        firewall.extraInputRules =
-            ''
-                ip saddr ${containerIps.v4.containers.monitoring} tcp dport 9100 accept comment "Allow monitoring to access node exporter"
-                ip6 saddr ${containerIps.v6.containers.monitoring} tcp dport 9100 accept comment "Allow monitoring to access node exporter"
-            '';
+        firewall.extraInputRules = ''
+            ip saddr ${containerIps.v4.containers.monitoring} tcp dport 9100 accept comment "Allow monitoring to access node exporter"
+            ip6 saddr ${containerIps.v6.containers.monitoring} tcp dport 9100 accept comment "Allow monitoring to access node exporter"
+        '';
 
         # Add IPv6 entries for the container aliases, NixOS/nixpkgs#427380
         hosts = lib.mapAttrs' (container: ip: {

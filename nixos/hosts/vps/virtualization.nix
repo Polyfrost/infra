@@ -191,10 +191,22 @@
                 # Make the backends use the production maven server instead of the local one, as the local one
                 # isn't populated with artifacts and thus can't be tested on easily
                 backend.config.systemd.services = {
-                    backend-legacy.environment.INTERNAL_MAVEN_URL = lib.mkForce "https://repo.polyfrost.org";
                     backend-v1.environment.BACKEND_INTERNAL_MAVEN_URL = lib.mkForce "https://repo.polyfrost.org";
                 };
             }
+            (
+                let
+                    containerBackups = {
+                        reposilite = [ "reposilite" ];
+                    };
+                in
+                builtins.mapAttrs (container: backups: {
+                    config.services.restic.backups = lib.genAttrs backups (backup: {
+                        timerConfig = lib.mkForce null;
+                        pruneOpts = lib.mkForce [ ];
+                    });
+                }) containerBackups
+            )
         ];
 
         # Add CPU TSC invariant support to the VM, as it is required by a crate ursa-minor depends on

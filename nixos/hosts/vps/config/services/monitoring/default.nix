@@ -44,9 +44,7 @@ in
             ];
             # Listen on both ipv4 and ipv6
             listenAddress = containerIps.v4.host;
-            extraFlags = [
-                "--web.listen-address [${containerIps.v6.host}]:${builtins.toString cfg.port}"
-            ];
+            extraFlags = [ "--web.listen-address [${containerIps.v6.host}]:${builtins.toString cfg.port}" ];
         };
 
     # The service starts too early (before br0 bindable), so wait for network online
