@@ -15,6 +15,8 @@ vector:
 users:
     ty:
         password_hash: ENC[AES256_GCM,data:fHmdB9wOhNVDLefcAK1ouLrbv/x7yeAPXaneOhpHSMoAQnQfJ+cK2LRlaecH/SKDnwCBbwuT0N+HUwVdGYz7rNMsUIlgO2nGsw==,iv:tnxALqVl5BcTED8BZCTVIC1r+nG/SXuMMBb37y3x6uw=,tag:X4FSPutvIcU9LBz+OTL75A==,type:str]
+backups:
+    sftp_private_key: ENC[AES256_GCM,data:rlActGK6D/0ACx0h2m0Ho7398UbJXX1Xrk8cGS+C2EGxC0XnylJ694nh92NrdVNd73Uzsg3eLLRo4HNN5ij+eBLxzDNrM/YR3CnImo786YwAz8c5Cj0c6gqOGesW+5RIfLEEB8zfh6YudXoUQXKzq0GnU/zAPrwpdevj7uAdapIX1n36vkMtPpTc1JGxeIbUNlKKoaP44+dqn5dCQddg87wU1EatlLyjn5Ka5kdDnT65x7wNrILS6Mtqh49YVKe4FNsTw25VZRh5HB/Bvakx3a87/nkWZp2Lz4d6hISbXBemTcZZxSKm91cC4l0JPBVTg5HYb6B9jKjpvFlL4i7X7oJZzOFpeAjDlf4PSQxkPkV+2/rgfKB5otYf4YqCek2Y+RkpF8cD9jaQ3JB/eHbl/58J7MJwS5S3N2pr0CUotEcF5pdtI8lVa9O1+KMVn5B8GulW/0YPt0MboX1QG1dGdm2NNvSOA21KaX9hYnc48ilLzcqFdyz/zo87esIiDQUl+GQR,iv:ylaPC22Eg2gEmI1PBjbH5CxQsFETtCOno26KuoZK5XI=,tag:wwkyOMtrjM/XVb1UNLG3Rw==,type:str]
 tailscale:
     oauth_key: ENC[AES256_GCM,data:mbjaTJqb+p+3/IZP+i8L7oEZcnAVmSl7yl8p12IZOyV8g/aTXSRp4oR66uCEGcM7QzdKrLRnn4+jUDV8/8HL,iv:nZin+IdG+rdG3h5+DFbpfx47vdFdsLz6FBFR+/N09V4=,tag:ydBPDJOA1mMemTYNAQvoIw==,type:str]
 sops:
@@ -28,8 +30,8 @@ sops:
             OEx4TG10MGFDY1Jpbmk4UWdHbDdPU1EK9JkKe5p0cw6pszL+14bbi0dQIZPjXW6q
             lTXnVaVuivm0LQkG4iQuqpP4r/hxoLi9CXodWitXTeZjxc51uGWFXg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-07-24T07:27:05Z"
-    mac: ENC[AES256_GCM,data:CeYfyaBJic7guy0xkR4RG4U3f9xciLrG8YILiiccOo9dp+SSfaXQCdSjYyrAu6/uEOLY/CNG1irWEugqVZ3PTAgY7nzyawgB2b4q1ptILBWndOo9HpT09/itj/r+lrzl2xCmKl29sTPURBYWJkQkUKc5v6Fw163m+iZWZfX4M3A=,iv:WKkjcH1WoBKVtKiyhkc8+vJIJLALUkOuT2r50fLYjKk=,tag:j1Pi9XJ9L+0S7TPm8AioCw==,type:str]
+    lastmodified: "2025-08-12T23:58:58Z"
+    mac: ENC[AES256_GCM,data:fYZWya0llbV4Vu7QL5HDDN39JLtj9HWTB1wfYci4zkihlPA+Jt/cUZN8D8F40XeJCDMxCUP0EiU0qoVzo4FsRGssYf6JVKslFR3Yq//f70ZN+vA8putox2XhDD20F3KriLpBXjzOQ5Zc7HF1tGimrtr+7BNA/Pp+g5MSfICdduA=,iv:5NYl9wCBUjIi5grfnA4/8sLSYK41geCtusrSg9bef0s=,tag:nukz/XN0LyjNEK+P4WjHJw==,type:str]
     pgp:
         - created_at: "2025-06-12T23:43:01Z"
           enc: |-
