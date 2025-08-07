@@ -83,7 +83,7 @@
                 # to go straight to the local caddy
                 ht =
                     let
-                        caddyIp = config.custom.containerIps.v6.containers.caddy;
+                        caddyIp = config.custom.nixos-containers.networking.addresses.v6.containers.caddy;
                         subdomains = [
                             "api"
                             "grafana"
@@ -163,7 +163,7 @@
         containers = lib.mkMerge [
             (builtins.mapAttrs (_: _: { privateUsers = lib.mkForce "identity"; }) config.containers)
             {
-                # Override the reverse proxy ACME url to avoid ratelimits (TODO: see about just doing self-signed?)
+                # Override the reverse proxy ACME url to avoid ratelimits
                 caddy.config.systemd.services.caddy.environment.ACME_DIRECTORY =
                     lib.mkForce "https://acme-staging-v02.api.letsencrypt.org/directory";
 

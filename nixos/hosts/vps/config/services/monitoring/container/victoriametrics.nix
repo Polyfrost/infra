@@ -6,7 +6,6 @@
 
         retentionPeriod = "4w";
 
-        # TODO: HTTP Basic auth?
         extraOptions = [
             "-http.disableResponseCompression" # Don't bother, its all internally routed anyways
             "-selfScrapeInterval=10s" # Add VictoriaMetrics' metrics to the scraping

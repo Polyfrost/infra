@@ -1,6 +1,6 @@
 {
-    custom.containers.caddy = {
-        entrypoint = ./container.nix;
+    custom.nixos-containers.containers.caddy = {
+        config = ./container.nix;
 
         persistentDirs = {
             caddy = "/var/lib/caddy";

@@ -7,10 +7,16 @@
 ) ?? null
 
 # Parse the user agent of the request
-._vector.user_agent = parse_user_agent(
-    .request.headers."User-Agent"[0],
-    mode: "enriched"
-) ?? null
+ua, err = string(.request.headers."User-Agent"[0])
+if err == null {
+    parsed = parse_user_agent(ua, mode: "enriched")
+
+    ._vector.user_agent = {
+        "browser": parsed.browser.family,
+        "os": parsed.os.family,
+        "device": parsed.device.category,
+    }
+}
 
 # Obscure sensitive fields with truncated hashes
 redact_paths = [

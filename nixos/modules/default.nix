@@ -1,6 +1,6 @@
 {
     imports = [
-        ./containers.nix
+        ./containers
         ./ursa-minor.nix
     ];
 }

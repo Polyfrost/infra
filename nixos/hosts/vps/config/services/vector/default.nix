@@ -1,7 +1,7 @@
 { config, ... }:
 {
-    custom.containers.vector = {
-        entrypoint = ./container.nix;
+    custom.nixos-containers.containers.vector = {
+        config = ./container.nix;
 
         secrets = [ "vector/maxmind_license_key" ];
 

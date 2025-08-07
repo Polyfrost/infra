@@ -1,7 +1,7 @@
 { config, ... }:
 {
-    custom.containers.website = {
-        entrypoint = ./container.nix;
+    custom.nixos-containers.containers.website = {
+        config = ./container.nix;
 
         secrets = [ "website/secrets.env" ];
     };

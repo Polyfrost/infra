@@ -28,10 +28,5 @@
     systemd.services.reposilite.environment = {
         REPOSILITE_PROMETHEUS_USER = "prometheus";
         REPOSILITE_PROMETHEUS_PASSWORD = "prometheus";
-
-        # TODO is this necessary?
-        # _JAVA_OPTIONS = ''
-        #     -Dreposilite.local.database="postgresql ${ips.containers.postgres}:5432 reposilite reposilite '''"
-        # '';
     };
 }

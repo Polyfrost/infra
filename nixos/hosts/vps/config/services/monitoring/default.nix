@@ -1,7 +1,24 @@
-{ config, ... }:
+{ config, lib, ... }:
+let
+    containerIps = config.custom.nixos-containers.networking.addresses;
+    journaldFwdCfg = {
+        # Configure journald to forward logs to victorialogs (provided the contianer exists & has victorialogs enabled)
+        services.journald.upload =
+            lib.mkIf
+                # NOTE: The following is deliberately inheriting the non-containerized `config` value
+                (config.containers ? monitoring && config.containers.monitoring.config.services.victorialogs.enable)
+                {
+                    enable = true;
+                    settings = {
+                        Upload.URL = "http://[${containerIps.v6.containers.monitoring}]:8082/insert/journald";
+                    };
+                };
+    };
+in
 {
-    custom.containers.monitoring = {
-        entrypoint = ./container;
+    # TODO: move everything but custom.containers.monitoring to ./host.nix
+    custom.nixos-containers.containers.monitoring = {
+        config = ./container;
 
         persistentDirs = {
             "monitoring/grafana" = "/var/lib/grafana";
@@ -26,9 +43,9 @@
                 "processes"
             ];
             # Listen on both ipv4 and ipv6
-            listenAddress = config.custom.containerIps.v4.host;
+            listenAddress = containerIps.v4.host;
             extraFlags = [
-                "--web.listen-address [${config.custom.containerIps.v6.host}]:${builtins.toString cfg.port}"
+                "--web.listen-address [${containerIps.v6.host}]:${builtins.toString cfg.port}"
             ];
         };
 
@@ -39,13 +56,6 @@
     };
 
     # Configure journald to forward logs to victorialogs
-    services.journald.upload = {
-        enable = true;
-        settings = {
-            Upload = {
-                URL = "http://[${config.custom.containerIps.v6.containers.monitoring}]:8082/insert/journald";
-                NetworkTimeoutSec = "1min";
-            };
-        };
-    };
+    imports = [ journaldFwdCfg ];
+    custom.nixos-containers.sharedModules = [ journaldFwdCfg ];
 }

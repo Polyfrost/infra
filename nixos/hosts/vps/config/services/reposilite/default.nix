@@ -1,6 +1,6 @@
 {
-    custom.containers.reposilite = {
-        entrypoint = ./container.nix;
+    custom.nixos-containers.containers.reposilite = {
+        config = ./container.nix;
 
         dependencies = [ "container@postgres.service" ];
 

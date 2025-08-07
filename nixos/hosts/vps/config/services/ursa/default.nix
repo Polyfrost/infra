@@ -17,8 +17,8 @@
             builtins.map (name: {
                 sops.secrets."ursa/tokens/${name}" = { };
 
-                custom.containers."ursa-minor-${name}" = {
-                    entrypoint = ./container.nix;
+                custom.nixos-containers.containers."ursa-minor-${name}" = {
+                    config = ./container.nix;
 
                     secrets = [
                         {

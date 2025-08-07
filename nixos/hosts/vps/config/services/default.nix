@@ -1,5 +1,6 @@
 {
     imports = [
+        ./ips.nix
         ./networking.nix
 
         ./backend

@@ -1,6 +1,6 @@
 {
-    custom.containers.backend = {
-        entrypoint = ./container.nix;
+    custom.nixos-containers.containers.backend = {
+        config = ./container.nix;
 
         dependencies = [ "container@reposilite.service" ];
     };
