@@ -15,6 +15,10 @@
 		}
 	}
 
+	metrics
+
+	admin 0.0.0.0:2019
+
 	log {
 		output stdout
 		format json
@@ -43,6 +47,8 @@ polyfrost.cc, *.polyfrost.cc, polyfrost.org, *.polyfrost.org {
 		redir /discord/ https://discord.gg/N4qW7TW3dv 302
 		redir /oneconfig https://polyfrost.org/projects/oneconfig 302
 		redir /oneconfig/ https://polyfrost.org/projects/oneconfig 302
+		redir /oneclient-blog https://polyfrost.org/blog/oneclient-announcement 302
+		redir /oneclient-blog/ https://polyfrost.org/blog/oneclient-announcement 302
 
 		handle /cities500.json {
 			header Access-Control-Allow-Origin *
@@ -80,11 +86,20 @@ polyfrost.cc, *.polyfrost.cc, polyfrost.org, *.polyfrost.org {
 			reverse_proxy @pss pss-ursa-minor:3000
 		}
 
-		# Reverse proxy everything else to backend-rs
-		reverse_proxy backend-rs:8080
+		# Reverse proxy legacy-formatted API requests to the legacy API
+		#reverse_proxy /oneconfig/* backend-legacy:8080
+		# Reverse proxy everything else to the modern API
+		reverse_proxy h2c://backend:80
 	}
 
 	handle @plausible {
+		# Abort any requests asking to opt out of tracking
+		@tracking-opt-out {
+			expression "{http.request.header.dnt} == '1' || {http.request.header.sec-gpc} == '1'"
+			path /js/script.js
+		}
+		abort @tracking-opt-out
+
 		reverse_proxy plausible:80
 	}
 

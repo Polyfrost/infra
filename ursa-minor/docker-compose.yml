@@ -10,9 +10,6 @@ services:
     restart: unless-stopped
     volumes:
       - ./rules/hytils:/etc/ursa-minor/rules
-    networks:
-      external:
-        ipv4_address: 172.16.1.7
     env_file: .env
     environment:
       URSA_HYPIXEL_TOKEN: "${HYTILS_TOKEN}"
@@ -27,9 +24,6 @@ services:
     restart: unless-stopped
     volumes:
       - ./rules/dsm:/etc/ursa-minor/rules
-    networks:
-      external:
-        ipv4_address: 172.16.1.9
     env_file: .env
     environment:
       URSA_HYPIXEL_TOKEN: "${DSM_TOKEN}"
@@ -44,9 +38,6 @@ services:
     restart: unless-stopped
     volumes:
       - ./rules/pss:/etc/ursa-minor/rules
-    networks:
-      external:
-        ipv4_address: 172.16.1.10
     env_file: .env
     environment:
       URSA_HYPIXEL_TOKEN: "${PSS_TOKEN}"
@@ -60,11 +51,8 @@ services:
     restart: always
     healthcheck:
       test: ["CMD", "redis-cli","ping"]
-    networks:
-      external:
-        ipv4_address: 172.16.1.8
 
 networks:
-  external:
+  default:
     external: true
     name: external

@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   reposilite:
-    image: ghcr.io/dzikoysk/reposilite:3.5.12
+    image: ghcr.io/dzikoysk/reposilite:3.5.24
     container_name: reposilite
     environment:
       JAVA_OPTS: -Xmx128M -Dtinylog.writerFile.level=off

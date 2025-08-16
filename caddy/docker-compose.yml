@@ -5,11 +5,12 @@ services:
     image: polyfrost.org/caddy
     pull_policy: never
     container_name: caddy
+    restart: always
     build:
       dockerfile: ./Dockerfile
       args:
-        XCADDY_VERSION: 0.3.5
-        CADDY_VERSION: 2.7.6
+        XCADDY_VERSION: 0.4.4
+        CADDY_VERSION: 2.9.1
     volumes:
       - ./Caddyfile:/srv/caddy/Caddyfile
       - ./data:/srv/caddy/data

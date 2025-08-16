@@ -1,15 +1,23 @@
-version: "3"
 services:
+  #  backend-legacy:
+  #  container_name: backend-legacy
+  #  build:
+  #    dockerfile: Dockerfile
+  #    context: ./repo-legacy
+  #  restart: unless-stopped
+  #  environment:
+  #    PORT: 8080
+  #    INTERNAL_MAVEN_URL: http://reposilite:8080
+  #    PUBLIC_MAVEN_URL: https://repo.polyfrost.org
   backend:
-    container_name: backend-rs
-    build:
-      dockerfile: Dockerfile
-      context: ./repo
+    container_name: backend
+    image: polyfrost/backend:0l2vjhbxavdqs0vcqxgc51aanhsxlhqg # How to update: `cd repo && git pull && nix build .#backend-docker && docker image load -i result`
     restart: unless-stopped
     environment:
-      PORT: 8080
-      INTERNAL_MAVEN_URL: http://reposilite:8080
-      PUBLIC_MAVEN_URL: https://repo.polyfrost.org
+      BACKEND_BIND_ADDRS: "[::]:80"
+      BACKEND_USE_HTTP1: false
+      BACKEND_INTERNAL_MAVEN_URL: http://reposilite:8080
+      BACKEND_PUBLIC_MAVEN_URL: https://repo.polyfrost.org
 
 networks:
   default:
