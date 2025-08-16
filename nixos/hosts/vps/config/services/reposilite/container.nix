@@ -52,12 +52,14 @@
             passwordFile = "%d/password";
             repositoryFile = "${credentialsDir}/repository";
 
-            extraOptions = let sftpArgs = [
-                "-i ${credentialsDir}/ssh_private_key"
-                "-o UserKnownHostsFile=${credentialsDir}/ssh_known_hosts"
-            ]; in [
-                "sftp.args='${builtins.concatStringsSep " " sftpArgs}'"
-            ];
+            extraOptions =
+                let
+                    sftpArgs = [
+                        "-i ${credentialsDir}/ssh_private_key"
+                        "-o UserKnownHostsFile=${credentialsDir}/ssh_known_hosts"
+                    ];
+                in
+                [ "sftp.args='${builtins.concatStringsSep " " sftpArgs}'" ];
 
             paths = [ config.services.reposilite.workingDirectory ];
 

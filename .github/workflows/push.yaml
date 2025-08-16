@@ -10,6 +10,11 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
+            - uses: wimpysworld/nothing-but-nix@main
+              with:
+                  ️hatchet-protocol: cleave
+                  nix-permission-edict: true
+
             - name: Install Nix
               uses: nixbuild/nix-quick-install-action@v31
               with:
