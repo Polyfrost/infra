@@ -15,15 +15,19 @@ jobs:
                   nix-permission-edict: true
                   hatchet-protocol: 'cleave'
 
+            # wimpysworld/nothing-but-nix#18
+            #
+            # This is done by default on Nix 2.30.0+, but nixbuild/nix-quick-install-action
+            # doesn't support those versions yet
             - run: mkdir -p /nix/var/nix/builds
 
             - name: Install Nix
               uses: nixbuild/nix-quick-install-action@v31
               with:
                   nix_conf: |
+                      build-dir = /nix/var/nix/builds
                       keep-env-derivations = true
                       keep-outputs = true
-                      build-dir = /nix/var/nix/builds
 
             - name: Cache nix store
               uses: nix-community/cache-nix-action@v6
