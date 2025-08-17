@@ -15,7 +15,7 @@ jobs:
                   nix-permission-edict: true
                   hatchet-protocol: 'cleave'
 
-            - run: mkdir /nix/var/nix/builds
+            - run: mkdir -p /nix/var/nix/builds
 
             - name: Install Nix
               uses: nixbuild/nix-quick-install-action@v31
