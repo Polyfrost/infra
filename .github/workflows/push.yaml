@@ -13,7 +13,7 @@ jobs:
             - uses: wimpysworld/nothing-but-nix@main
               with:
                   nix-permission-edict: true
-                  hatchet-protocol: 'holster'
+                  hatchet-protocol: 'cleave'
 
             - name: Install Nix
               uses: nixbuild/nix-quick-install-action@v31
@@ -21,6 +21,7 @@ jobs:
                   nix_conf: |
                       keep-env-derivations = true
                       keep-outputs = true
+                      build-dir = /nix/var/nix/builds
 
             - name: Cache nix store
               uses: nix-community/cache-nix-action@v6
