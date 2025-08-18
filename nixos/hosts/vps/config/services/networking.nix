@@ -47,8 +47,13 @@ in
         }) containerIps.v6.containers;
     };
 
-    services.tailscale.extraUpFlags = [
-        "--advertise-routes=${containerIps.v4.cidr},${containerIps.v6.cidr}"
-        "--snat-subnet-routes=true" # Fix bridge subnet routing
-    ];
+    services.tailscale = {
+        custom.advertiseRoutes = [
+            containerIps.v4.cidr
+            containerIps.v6.cidr
+        ];
+        extraUpFlags = [
+            "--snat-subnet-routes=true" # Fix bridge subnet routing
+        ];
+    };
 }

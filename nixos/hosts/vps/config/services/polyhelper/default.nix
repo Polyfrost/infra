@@ -1,5 +1,10 @@
 # Not containerized to allow ruin to imperatively update the bot
-{ pkgs, lib, config, ... }:
+{
+    pkgs,
+    lib,
+    config,
+    ...
+}:
 {
     # TODO find a better way to give access to logs
     # But for now victorialogs is exposed anyways (any local
@@ -88,7 +93,9 @@
 
     # Backups
     sops.templates."backups/polyhelper/repositories/polyhelper".content = ''
-        sftp:${config.sops.placeholder."backups/sftp/host"}:restic/polyhelper
+        sftp:${config.sops.placeholder."backups/sftp/user"}@${
+            config.sops.placeholder."backups/sftp/host"
+        }:restic/polyhelper
     '';
     systemd.services.restic-backups-polyhelper.serviceConfig.LoadCredential = [
         "password:${config.sops.secrets."backups/passwords/restic/polyhelper".path}"

@@ -111,7 +111,7 @@ https://*.polyfrost.cc {
 
 # Handle the canonical polyfrost.org domain
 
-https://polyfrost.org {
+https://polyfrost.org, https://www.polyfrost.org {
 	import prelude index
 
 	reverse_proxy website.containers:8080
@@ -131,6 +131,7 @@ https://*.polyfrost.org {
 	}
 
 	handle @reposilite {
+		header cache-control: no-transform
 		reverse_proxy reposilite.containers:8080
 	}
 

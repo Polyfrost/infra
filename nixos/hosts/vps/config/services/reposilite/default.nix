@@ -21,6 +21,8 @@
     };
 
     sops.templates."backups/restic/repositories/reposilite".content = ''
-        sftp:${config.sops.placeholder."backups/sftp/host"}:restic/reposilite
+        sftp:${config.sops.placeholder."backups/sftp/user"}@${
+            config.sops.placeholder."backups/sftp/host"
+        }:restic/reposilite
     '';
 }

@@ -54,4 +54,13 @@ in
         enable = true;
         runAsLocalSuperUser = true;
     };
+
+    services.pgbackrest = {
+        enable = true;
+        repos.backup = {
+            type = "sftp";
+            path = "pgbackrest";
+            # sftp-host = "";
+        };
+    };
 }

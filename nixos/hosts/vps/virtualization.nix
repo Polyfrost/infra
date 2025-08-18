@@ -85,6 +85,7 @@
                     let
                         caddyIp = config.custom.nixos-containers.networking.addresses.v6.containers.caddy;
                         subdomains = [
+                            "www"
                             "api"
                             "grafana"
                             "repo"
@@ -110,15 +111,22 @@
         disko.memSize = 4096;
         virtualisation.cores = 4;
 
-        # Configure hostname so it is apparent on the tailnet this is a testing instance,
-        # and set the tailscale node as ephemeral for convienience with testing
+        # Configure hostname so it is apparent on the tailnet this is a testing instance
         networking.hostName = lib.mkForce "polyfrost-vps-QEMU-TEST";
+
+        # Reconfigure the networking to use seperate testing subnets & seperate tailscale tags
+        custom.nixos-containers.networking = {
+            v4.cidr = lib.mkForce "172.25.255.0/24";
+            v6.subnetId = lib.mkForce (lib.fromHexString "ffff");
+        };
         services.tailscale = {
+            authKeyFile = lib.mkForce config.sops.secrets."tailscale/testing_oauth_key".path;
             authKeyParameters.ephemeral = lib.mkForce true;
             extraDaemonFlags = [
                 "--state=mem:" # Store state in memory, so ephemeral nodes get removed faster
                 "--statedir=/var/lib/tailscale" # Necessary for tailscale ssh to work
             ];
+            custom.advertiseTags = lib.mkForce [ "test-server" ];
         };
 
         # Be a bit more verbose on the firewall logging

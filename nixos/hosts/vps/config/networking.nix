@@ -61,12 +61,15 @@
         };
         extraUpFlags = [
             "--reset"
-            "--ssh"
-            "--accept-dns"
-            "--accept-routes"
-            "--advertise-tags=tag:server"
             "--operator=ty"
         ];
+
+        custom = {
+            enableSsh = true;
+            acceptDns = true;
+            acceptRoutes = true;
+            advertiseTags = [ "server" ];
+        };
     };
     systemd.services.tailscaled.environment = {
         LTS_DEBUG_FIREWALL_MODE = "nftables";

@@ -7,6 +7,7 @@
         age.generateKey = false;
 
         secrets = {
+            "backups/sftp/user" = { };
             "backups/sftp/host" = { };
             "backups/sftp/known_hosts" = { };
             "backups/sftp/private_key" = { };
@@ -24,6 +25,7 @@
             "vector/maxmind_license_key" = { };
 
             "tailscale/oauth_key" = { };
+            "tailscale/testing_oauth_key" = { };
 
             "users/ty/password_hash" = {
                 neededForUsers = true;
