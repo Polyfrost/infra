@@ -1,8 +1,10 @@
 {
     boot = {
         loader = {
-            systemd-boot.enable = true;
-            efi.canTouchEfiVariables = true;
+            grub = {
+                enable = true;
+                device = "nodev";
+            };
         };
 
         initrd.systemd.enable = true;

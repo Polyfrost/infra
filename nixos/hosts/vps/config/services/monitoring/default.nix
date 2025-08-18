@@ -3,6 +3,10 @@ let
     containerIps = config.custom.nixos-containers.networking.addresses;
     journaldFwdCfg = {
         # Configure journald to forward logs to victorialogs (provided the contianer exists & has victorialogs enabled)
+        systemd.services.systemd-journal-upload = {
+            startLimitBurst = 5;
+            startLimitIntervalSec = 120;
+        };
         services.journald.upload =
             lib.mkIf
                 # NOTE: The following is deliberately inheriting the non-containerized `config` value
@@ -10,7 +14,10 @@ let
                 {
                     enable = true;
                     settings = {
-                        Upload.URL = "http://[${containerIps.v6.containers.monitoring}]:8082/insert/journald";
+                        Upload = {
+                            URL = "http://[${containerIps.v6.containers.monitoring}]:8082/insert/journald";
+                            NetworkTimeoutSec = "15s";
+                        };
                     };
                 };
     };

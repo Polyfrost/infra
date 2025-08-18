@@ -26,7 +26,9 @@
             sslEnabled = false;
 
             defaultFrontend = true;
-            compressionStrategy = "gzip";
+
+            # ANYTHING BUT "none" BREAKS LEGACY LOADER
+            compressionStrategy = "none";
         };
     };
 

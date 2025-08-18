@@ -1,5 +1,5 @@
 # Not containerized to allow ruin to imperatively update the bot
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 {
     # TODO find a better way to give access to logs
     # But for now victorialogs is exposed anyways (any local
@@ -52,7 +52,7 @@
         environment = {
             NODE_ENV = "production";
             DB_DIR = "%S/polyhelper/db";
-            HOME = "%S/polyhelper";
+            HOME = "%t/polyhelper";
         };
 
         script = ''
@@ -85,4 +85,48 @@
             Group = "polyhelper";
         };
     };
+
+    # Backups
+    sops.templates."backups/polyhelper/repositories/polyhelper".content = ''
+        sftp:${config.sops.placeholder."backups/sftp/host"}:restic/polyhelper
+    '';
+    systemd.services.restic-backups-polyhelper.serviceConfig.LoadCredential = [
+        "password:${config.sops.secrets."backups/passwords/restic/polyhelper".path}"
+        "ssh_private_key:${config.sops.secrets."backups/sftp/private_key".path}"
+        "ssh_known_hosts:${config.sops.secrets."backups/sftp/known_hosts".path}"
+        "repository:${config.sops.templates."backups/polyhelper/repositories/polyhelper".path}"
+    ];
+    services.restic.backups.polyhelper =
+        let
+            credentialsDir = "/run/credentials/restic-backups-polyhelper.service";
+        in
+        {
+            initialize = true;
+            createWrapper = false; # Broken due to systemd credentials
+            passwordFile = "%d/password";
+            repositoryFile = "${credentialsDir}/repository";
+
+            extraOptions =
+                let
+                    sftpArgs = [
+                        "-i ${credentialsDir}/ssh_private_key"
+                        "-o UserKnownHostsFile=${credentialsDir}/ssh_known_hosts"
+                    ];
+                in
+                [ "sftp.args='${builtins.concatStringsSep " " sftpArgs}'" ];
+
+            paths = [ "/var/lib/private/polyhelper" ];
+
+            timerConfig = {
+                OnCalendar = "daily";
+                Persistent = true;
+                RandomizedDelaySec = "10m";
+            };
+
+            # Keep all snapshots in the last week, and one every week for a month
+            pruneOpts = [
+                "--keep-daily 7"
+                "--keep-weekly 4"
+            ];
+        };
 }

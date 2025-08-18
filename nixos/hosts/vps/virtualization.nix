@@ -209,7 +209,7 @@
             )
         ];
 
-        # Add CPU TSC invariant support to the VM, as it is required by a crate ursa-minor depends on
-        virtualisation.qemu.options = [ "-cpu max,invtsc" ];
+        # Emulate the hetzner cloud CPU
+        virtualisation.qemu.options = [ "-cpu EPYC-Rome" ];
     };
 }

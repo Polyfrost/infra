@@ -97,8 +97,12 @@
           "prog_if": 0
         },
         "driver": "pcieport",
+        "driver_module": "pcieportdrv",
         "drivers": [
           "pcieport"
+        ],
+        "driver_modules": [
+          "pcieportdrv"
         ],
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
@@ -168,21 +172,6 @@
         "driver_modules": [
           "lpc_ich"
         ],
-        "driver_info": {
-          "type": "module",
-          "db_entry_0": [
-            "lpc_ich"
-          ],
-          "active": true,
-          "modprobe": true,
-          "names": [
-            "lpc_ich"
-          ],
-          "module_args": [
-            ""
-          ],
-          "conf": ""
-        },
         "module_alias": "pci:v00008086d00002918sv00001AF4sd00001100bc06sc01i00"
       },
       {
@@ -260,8 +249,12 @@
           "prog_if": 0
         },
         "driver": "pcieport",
+        "driver_module": "pcieportdrv",
         "drivers": [
           "pcieport"
+        ],
+        "driver_modules": [
+          "pcieportdrv"
         ],
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
@@ -340,8 +333,12 @@
           "prog_if": 0
         },
         "driver": "pcieport",
+        "driver_module": "pcieportdrv",
         "drivers": [
           "pcieport"
+        ],
+        "driver_modules": [
+          "pcieportdrv"
         ],
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
@@ -420,8 +417,12 @@
           "prog_if": 0
         },
         "driver": "pcieport",
+        "driver_module": "pcieportdrv",
         "drivers": [
           "pcieport"
+        ],
+        "driver_modules": [
+          "pcieportdrv"
         ],
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
@@ -556,8 +557,12 @@
           "prog_if": 0
         },
         "driver": "pcieport",
+        "driver_module": "pcieportdrv",
         "drivers": [
           "pcieport"
+        ],
+        "driver_modules": [
+          "pcieportdrv"
         ],
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
@@ -636,8 +641,12 @@
           "prog_if": 0
         },
         "driver": "pcieport",
+        "driver_module": "pcieportdrv",
         "drivers": [
           "pcieport"
+        ],
+        "driver_modules": [
+          "pcieportdrv"
         ],
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
@@ -716,8 +725,12 @@
           "prog_if": 0
         },
         "driver": "pcieport",
+        "driver_module": "pcieportdrv",
         "drivers": [
           "pcieport"
+        ],
+        "driver_modules": [
+          "pcieportdrv"
         ],
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
@@ -796,8 +809,12 @@
           "prog_if": 0
         },
         "driver": "pcieport",
+        "driver_module": "pcieportdrv",
         "drivers": [
           "pcieport"
+        ],
+        "driver_modules": [
+          "pcieportdrv"
         ],
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
@@ -876,8 +893,12 @@
           "prog_if": 0
         },
         "driver": "pcieport",
+        "driver_module": "pcieportdrv",
         "drivers": [
           "pcieport"
+        ],
+        "driver_modules": [
+          "pcieportdrv"
         ],
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       }
@@ -944,8 +965,11 @@
         "unix_device_names": [
           "/dev/cdrom",
           "/dev/disk/by-id/ata-QEMU_DVD-ROM_QM00001",
+          "/dev/disk/by-label/nixos-minimal-25.05-x86_64",
           "/dev/disk/by-path/pci-0000:00:1f.2-ata-1",
           "/dev/disk/by-path/pci-0000:00:1f.2-ata-1.0",
+          "/dev/disk/by-uuid/1980-01-01-00-00-00-00",
+          "/dev/root",
           "/dev/sr0"
         ],
         "unix_device_name2": "/dev/sg1",
@@ -962,7 +986,8 @@
           "sr"
         ],
         "driver_modules": [
-          "ahci"
+          "ahci",
+          "sr_mod"
         ]
       }
     ],
@@ -970,7 +995,6 @@
       {
         "architecture": "x86_64",
         "vendor_name": "AuthenticAMD",
-        "model_name": "AMD EPYC-Rome Processor",
         "family": 23,
         "model": 49,
         "stepping": 0,
@@ -1007,6 +1031,7 @@
           "lm",
           "rep_good",
           "nopl",
+          "xtopology",
           "cpuid",
           "extd_apicid",
           "tsc_known_freq",
@@ -1074,17 +1099,14 @@
           "srso",
           "ibpb_no_ret"
         ],
-        "power_management": [
-          ""
-        ],
-        "bogo": 4890.8,
+        "bogo": 4890.81,
         "cache": 512,
         "units": 3,
         "physical_id": 0,
         "siblings": 3,
         "cores": 3,
-        "fpu": false,
-        "fpu_exception": false,
+        "fpu": true,
+        "fpu_exception": true,
         "cpuid_level": 13,
         "write_protect": false,
         "tlb_size": 1024,
@@ -1180,8 +1202,13 @@
           }
         ],
         "driver": "virtio_scsi",
+        "driver_module": "virtio_scsi",
         "drivers": [
           "sd",
+          "virtio_scsi"
+        ],
+        "driver_modules": [
+          "sd_mod",
           "virtio_scsi"
         ]
       }
@@ -1290,8 +1317,12 @@
           "prog_if": 0
         },
         "driver": "virtio-pci",
+        "driver_module": "virtio_pci",
         "drivers": [
           "virtio-pci"
+        ],
+        "driver_modules": [
+          "virtio_pci"
         ],
         "module_alias": "pci:v00001AF4d00001050sv00001AF4sd00001100bc03sc00i00"
       }
@@ -1320,7 +1351,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.8.0-60-generic xhci-hcd",
+          "name": "Linux 6.12.31 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1330,11 +1361,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.08",
+          "name": "6.12",
           "value": 0
         },
         "serial": "0000:02:00.0",
-        "model": "Linux 6.8.0-60-generic xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.12.31 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.1/0000:02:00.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -1375,10 +1406,14 @@
         },
         "hotplug": "usb",
         "driver": "hub",
+        "driver_module": "usbcore",
         "drivers": [
           "hub"
         ],
-        "module_alias": "usb:v1D6Bp0002d0608dc09dsc00dp01ic09isc00ip00in00"
+        "driver_modules": [
+          "usbcore"
+        ],
+        "module_alias": "usb:v1D6Bp0002d0612dc09dsc00dp01ic09isc00ip00in00"
       },
       {
         "index": 39,
@@ -1403,7 +1438,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.8.0-60-generic xhci-hcd",
+          "name": "Linux 6.12.31 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1413,11 +1448,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.08",
+          "name": "6.12",
           "value": 0
         },
         "serial": "0000:02:00.0",
-        "model": "Linux 6.8.0-60-generic xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.12.31 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.1/0000:02:00.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -1448,10 +1483,14 @@
         },
         "hotplug": "usb",
         "driver": "hub",
+        "driver_module": "usbcore",
         "drivers": [
           "hub"
         ],
-        "module_alias": "usb:v1D6Bp0003d0608dc09dsc00dp03ic09isc00ip00in00"
+        "driver_modules": [
+          "usbcore"
+        ],
+        "module_alias": "usb:v1D6Bp0003d0612dc09dsc00dp03ic09isc00ip00in00"
       }
     ],
     "memory": [
@@ -1476,7 +1515,7 @@
           {
             "type": "mem",
             "base": 0,
-            "range": 4005203968,
+            "range": 4008681472,
             "enabled": true,
             "access": "read_write",
             "prefetch": "unknown"
@@ -1689,11 +1728,11 @@
         "unix_device_names": [
           "/dev/input/mice"
         ],
-        "unix_device_name2": "/dev/input/mouse2",
+        "unix_device_name2": "/dev/input/mouse0",
         "unix_device_number2": {
           "type": 99,
           "major": 13,
-          "minor": 34,
+          "minor": 32,
           "range": 1
         },
         "resources": [
@@ -1786,9 +1825,9 @@
         "model": "Virtio Ethernet Card 0",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.0/0000:01:00.0/virtio1",
         "sysfs_bus_id": "virtio1",
-        "unix_device_name": "eth0",
+        "unix_device_name": "enp1s0",
         "unix_device_names": [
-          "eth0"
+          "enp1s0"
         ],
         "resources": [
           {
@@ -1801,7 +1840,11 @@
           }
         ],
         "driver": "virtio_net",
+        "driver_module": "virtio_net",
         "drivers": [
+          "virtio_net"
+        ],
+        "driver_modules": [
           "virtio_net"
         ],
         "module_alias": "virtio:d00000001v00001AF4"
@@ -1809,7 +1852,7 @@
     ],
     "network_interface": [
       {
-        "index": 49,
+        "index": 40,
         "attached_to": 0,
         "class_list": [
           "network_interface"
@@ -1832,7 +1875,7 @@
         ]
       },
       {
-        "index": 52,
+        "index": 41,
         "attached_to": 27,
         "class_list": [
           "network_interface"
@@ -1848,11 +1891,11 @@
           "value": 1
         },
         "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/eth0",
+        "sysfs_id": "/class/net/enp1s0",
         "sysfs_device_link": "/devices/pci0000:00/0000:00:02.0/0000:01:00.0/virtio1",
-        "unix_device_name": "eth0",
+        "unix_device_name": "enp1s0",
         "unix_device_names": [
-          "eth0"
+          "enp1s0"
         ],
         "resources": [
           {
@@ -1865,7 +1908,11 @@
           }
         ],
         "driver": "virtio_net",
+        "driver_module": "virtio_net",
         "drivers": [
+          "virtio_net"
+        ],
+        "driver_modules": [
           "virtio_net"
         ]
       }
@@ -1953,8 +2000,12 @@
           "prog_if": 0
         },
         "driver": "virtio-pci",
+        "driver_module": "virtio_pci",
         "drivers": [
           "virtio-pci"
+        ],
+        "driver_modules": [
+          "virtio_pci"
         ],
         "module_alias": "pci:v00001AF4d00001043sv00001AF4sd00001100bc07sc80i00"
       },
@@ -2048,8 +2099,12 @@
           "prog_if": 0
         },
         "driver": "virtio-pci",
+        "driver_module": "virtio_pci",
         "drivers": [
           "virtio-pci"
+        ],
+        "driver_modules": [
+          "virtio_pci"
         ],
         "module_alias": "pci:v00001AF4d00001041sv00001AF4sd00001100bc02sc00i00"
       },
@@ -2134,21 +2189,6 @@
         "driver_modules": [
           "i2c_i801"
         ],
-        "driver_info": {
-          "type": "module",
-          "db_entry_0": [
-            "i2c_i801"
-          ],
-          "active": true,
-          "modprobe": true,
-          "names": [
-            "i2c_i801"
-          ],
-          "module_args": [
-            ""
-          ],
-          "conf": ""
-        },
         "module_alias": "pci:v00008086d00002930sv00001AF4sd00001100bc0Csc05i00"
       },
       {
@@ -2224,8 +2264,12 @@
           "prog_if": 0
         },
         "driver": "virtio-pci",
+        "driver_module": "virtio_pci",
         "drivers": [
           "virtio-pci"
+        ],
+        "driver_modules": [
+          "virtio_pci"
         ],
         "module_alias": "pci:v00001AF4d00001044sv00001AF4sd00001100bc00scFFi00"
       },
@@ -2302,8 +2346,12 @@
           "prog_if": 0
         },
         "driver": "virtio-pci",
+        "driver_module": "virtio_pci",
         "drivers": [
           "virtio-pci"
+        ],
+        "driver_modules": [
+          "virtio_pci"
         ],
         "module_alias": "pci:v00001AF4d00001045sv00001AF4sd00001100bc00scFFi00"
       }
@@ -2372,7 +2420,7 @@
           },
           {
             "type": "irq",
-            "base": 42,
+            "base": 46,
             "triggered": 0,
             "enabled": true
           },
@@ -2390,7 +2438,7 @@
           "command": 1287,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 42,
+          "irq": 46,
           "prog_if": 1
         },
         "driver": "ahci",
@@ -2401,21 +2449,6 @@
         "driver_modules": [
           "ahci"
         ],
-        "driver_info": {
-          "type": "module",
-          "db_entry_0": [
-            "ahci"
-          ],
-          "active": true,
-          "modprobe": true,
-          "names": [
-            "ahci"
-          ],
-          "module_args": [
-            ""
-          ],
-          "conf": ""
-        },
         "module_alias": "pci:v00008086d00002922sv00001AF4sd00001100bc01sc06i01"
       },
       {
@@ -2500,8 +2533,12 @@
           "prog_if": 0
         },
         "driver": "virtio-pci",
+        "driver_module": "virtio_pci",
         "drivers": [
           "virtio-pci"
+        ],
+        "driver_modules": [
+          "virtio_pci"
         ],
         "module_alias": "pci:v00001AF4d00001048sv00001AF4sd00001100bc01sc00i00"
       }
@@ -2539,21 +2576,6 @@
         "driver_modules": [
           "virtio_rng"
         ],
-        "driver_info": {
-          "type": "module",
-          "db_entry_0": [
-            "virtio_rng"
-          ],
-          "active": true,
-          "modprobe": true,
-          "names": [
-            "virtio_rng"
-          ],
-          "module_args": [
-            ""
-          ],
-          "conf": ""
-        },
         "module_alias": "virtio:d00000004v00001AF4"
       },
       {
@@ -2578,7 +2600,11 @@
         "sysfs_id": "/devices/pci0000:00/0000:00:02.2/0000:03:00.0/virtio2",
         "sysfs_bus_id": "virtio2",
         "driver": "virtio_console",
+        "driver_module": "virtio_console",
         "drivers": [
+          "virtio_console"
+        ],
+        "driver_modules": [
           "virtio_console"
         ],
         "module_alias": "virtio:d00000003v00001AF4"
@@ -2612,21 +2638,6 @@
         "driver_modules": [
           "virtio_gpu"
         ],
-        "driver_info": {
-          "type": "module",
-          "db_entry_0": [
-            "virtio_gpu"
-          ],
-          "active": true,
-          "modprobe": true,
-          "names": [
-            "virtio_gpu"
-          ],
-          "module_args": [
-            ""
-          ],
-          "conf": ""
-        },
         "module_alias": "virtio:d00000010v00001AF4"
       },
       {
@@ -2651,7 +2662,11 @@
         "sysfs_id": "/devices/pci0000:00/0000:00:02.5/0000:06:00.0/virtio5",
         "sysfs_bus_id": "virtio5",
         "driver": "virtio_scsi",
+        "driver_module": "virtio_scsi",
         "drivers": [
+          "virtio_scsi"
+        ],
+        "driver_modules": [
           "virtio_scsi"
         ],
         "module_alias": "virtio:d00000008v00001AF4"
@@ -2678,7 +2693,11 @@
         "sysfs_id": "/devices/pci0000:00/0000:00:02.3/0000:04:00.0/virtio3",
         "sysfs_bus_id": "virtio3",
         "driver": "virtio_balloon",
+        "driver_module": "virtio_balloon",
         "drivers": [
+          "virtio_balloon"
+        ],
+        "driver_modules": [
           "virtio_balloon"
         ],
         "module_alias": "virtio:d00000005v00001AF4"
@@ -2817,21 +2836,6 @@
         "driver_modules": [
           "xhci_pci"
         ],
-        "driver_info": {
-          "type": "module",
-          "db_entry_0": [
-            "xhci_pci"
-          ],
-          "active": true,
-          "modprobe": true,
-          "names": [
-            "xhci_pci"
-          ],
-          "module_args": [
-            ""
-          ],
-          "conf": ""
-        },
         "module_alias": "pci:v00001B36d0000000Dsv00001AF4sd00001100bc0Csc03i30"
       }
     ]

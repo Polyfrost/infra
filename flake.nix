@@ -205,10 +205,12 @@
         extra-substituters = [
             "https://nix-community.cachix.org"
             "https://colmena.cachix.org"
+            "https://polyfrost.cachix.org"
         ];
         extra-trusted-public-keys = [
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
             "colmena.cachix.org-1:7BzpDnjjH8ki2CT3f6GdOk7QAzPOl+1t3LvTLXqYcSg="
+            "polyfrost.cachix.org-1:fDpH46ULMhZsXOIu9JuiXBQUx1Z5cQsfOxXzd8Gvd20="
         ];
     };
 }

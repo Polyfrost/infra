@@ -67,7 +67,7 @@ deploy-vps ssh-host:
     # Actually install NixOS
     {{ nixos-anywhere }} \
         --flake .#vps \
-        --kexec "$KEXEC_PATH"/nixos-kexec-installer-noninteractive-x86_64.tar.gz \
+        --kexec "$KEXEC_PATH"/nixos-kexec-installer-noninteractive-x86_64-linux.tar.gz \
         --generate-hardware-config nixos-facter ./nixos/hosts/vps/facter.json \
         --extra-files "$TMP_DIR"/nixos-anywhere-extras \
         --target-host "{{ ssh-host }}"
