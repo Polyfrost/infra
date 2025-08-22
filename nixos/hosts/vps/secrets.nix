@@ -13,6 +13,7 @@
             "backups/sftp/private_key" = { };
             "backups/passwords/restic/reposilite" = { };
             "backups/passwords/restic/polyhelper" = { };
+            "backups/passwords/restic/forgejo" = { };
             "backups/passwords/pgbackrest" = { };
 
             "caddy/cloudflare_api_key" = { };
@@ -26,6 +27,19 @@
 
             "tailscale/oauth_key" = { };
             "tailscale/testing_oauth_key" = { };
+
+            "forgejo/smtp_password" = { };
+            "forgejo/initial_admin_password" = { };
+
+            "dex/secrets/forgejo" = { };
+            "dex/github/client_id" = { };
+            "dex/github/client_secret" = { };
+
+            "plus/tebex/webhook_secret" = { };
+            "plus/tebex/game_server_secret" = { };
+            "plus/s3/endpoint" = { };
+            "plus/s3/access_key_id" = { };
+            "plus/s3/access_key_secret" = { };
 
             "users/ty/password_hash" = {
                 neededForUsers = true;

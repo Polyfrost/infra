@@ -2,6 +2,7 @@
     pkgs,
     lib,
     config,
+    customUtils,
     ...
 }:
 {
@@ -60,164 +61,180 @@
         '';
     };
 
-    virtualisation.vmVariantWithDisko = {
-        # Disable qemu graphics so it just uses the same terminal it was started from
-        virtualisation.graphics = false;
+    virtualisation.vmVariantWithDisko =
+        let
+            outerConfig = config;
+        in
+        { config, ... }:
+        {
+            # Disable qemu graphics so it just uses the same terminal it was started from
+            virtualisation.graphics = false;
 
-        # Set known root password for login if there is a problem with other config
-        services.getty.autologinUser = "root";
-        users.users.root.password = "password";
+            # Set known root password for login if there is a problem with other config
+            services.getty.autologinUser = "root";
+            users.users.root.password = "password";
 
-        # Provide some utilities for testing
-        environment = {
-            systemPackages = with pkgs; [
-                btop
-                nmap
-                zellij
-                bat
-                xh
-            ];
-            shellAliases = {
-                q = "systemctl poweroff";
-                # Wrapper around xh to disable TLS validation and override polyfrost.{org,cc} DNS
-                # to go straight to the local caddy
-                ht =
-                    let
-                        caddyIp = config.custom.nixos-containers.networking.addresses.v6.containers.caddy;
-                        subdomains = [
-                            "www"
-                            "api"
-                            "grafana"
-                            "repo"
-                        ];
-                        resolveArgs =
-                            (lib.flatten (
-                                builtins.map (subdomain: [
-                                    "--resolve '${subdomain}.polyfrost.org:[${caddyIp}]'"
-                                    "--resolve '${subdomain}.polyfrost.cc:[${caddyIp}]'"
-                                ]) subdomains
-                            ))
-                            ++ [
-                                "--resolve 'polyfrost.org:[${caddyIp}]'"
-                                "--resolve 'polyfrost.cc:[${caddyIp}]'"
+            # Provide some utilities for testing
+            environment = {
+                systemPackages = with pkgs; [
+                    btop
+                    nmap
+                    zellij
+                    bat
+                    xh
+                ];
+                shellAliases = {
+                    q = "systemctl poweroff";
+                    # Wrapper around xh to disable TLS validation and override polyfrost.{org,cc} DNS
+                    # to go straight to the local caddy
+                    ht =
+                        let
+                            caddyIp = config.custom.nixos-containers.networking.addresses.v6.containers.caddy;
+                            subdomains = [
+                                "www"
+                                "api"
+                                "grafana"
+                                "repo"
+                                "git"
                             ];
-                    in
-                    "xhs --verify no ${builtins.concatStringsSep " " resolveArgs}";
-            };
-        };
-
-        # Configure VM specs
-        disko.devices.disk.main.imageSize = "8G";
-        disko.memSize = 4096;
-        virtualisation.cores = 4;
-
-        # Configure hostname so it is apparent on the tailnet this is a testing instance
-        networking.hostName = lib.mkForce "polyfrost-vps-QEMU-TEST";
-
-        # Reconfigure the networking to use seperate testing subnets & seperate tailscale tags
-        custom.nixos-containers.networking = {
-            v4.cidr = lib.mkForce "172.25.255.0/24";
-            v6.subnetId = lib.mkForce (lib.fromHexString "ffff");
-        };
-        services.tailscale = {
-            authKeyFile = lib.mkForce config.sops.secrets."tailscale/testing_oauth_key".path;
-            authKeyParameters.ephemeral = lib.mkForce true;
-            extraDaemonFlags = [
-                "--state=mem:" # Store state in memory, so ephemeral nodes get removed faster
-                "--statedir=/var/lib/tailscale" # Necessary for tailscale ssh to work
-            ];
-            custom.advertiseTags = lib.mkForce [ "test-server" ];
-        };
-
-        # Be a bit more verbose on the firewall logging
-        networking.firewall = {
-            logRefusedConnections = true;
-            logRefusedPackets = true;
-        };
-
-        # Mount the host's secrets into the VM and configure sops to find the key
-        sops.age.keyFile = lib.mkForce "/mnt/host-secrets/age.txt";
-        systemd.tmpfiles.settings."10-vm-host-secrets" =
-            let
-                permissions = {
-                    user = "root";
-                    group = "root";
-                };
-            in
-            {
-                "/mnt/host-secrets"."z" = permissions // {
-                    mode = "0700";
-                };
-                "/mnt/host-secrets/age.txt"."z" = permissions // {
-                    mode = "0600";
-                };
-                "/mnt/host-secrets/geoip"."z" = permissions // {
-                    mode = "0755";
-                };
-                "/mnt/host-secrets/geoip/*.mmdb"."z" = permissions // {
-                    mode = "0644";
+                            resolveArgs =
+                                (lib.flatten (
+                                    builtins.map (subdomain: [
+                                        "--resolve '${subdomain}.polyfrost.org:[${caddyIp}]'"
+                                        "--resolve '${subdomain}.polyfrost.cc:[${caddyIp}]'"
+                                    ]) subdomains
+                                ))
+                                ++ [
+                                    "--resolve 'polyfrost.org:[${caddyIp}]'"
+                                    "--resolve 'polyfrost.cc:[${caddyIp}]'"
+                                ];
+                        in
+                        "xhs --verify no ${builtins.concatStringsSep " " resolveArgs}";
                 };
             };
-        virtualisation.sharedDirectories = {
-            secrets = {
-                source = "$VM_SECRETS_DIR"; # Passed from a wrapper script
-                target = "/mnt/host-secrets";
-                securityModel = "mapped-xattr";
+
+            # Configure VM specs
+            disko.devices.disk.main.imageSize = "8G";
+            disko.memSize = 4096;
+            virtualisation.cores = 4;
+
+            # Configure hostname so it is apparent on the tailnet this is a testing instance
+            networking.hostName = lib.mkForce "polyfrost-vps-QEMU-TEST";
+
+            # Reconfigure the networking to use seperate testing subnets & seperate tailscale tags
+            custom.nixos-containers.networking = {
+                v4.cidr = lib.mkForce "172.25.255.0/24";
+                v6.subnetId = lib.mkForce (lib.fromHexString "ffff");
             };
-        };
+            services.tailscale = {
+                authKeyFile = lib.mkForce config.sops.secrets."tailscale/testing_oauth_key".path;
+                authKeyParameters.ephemeral = lib.mkForce true;
+                extraDaemonFlags = [
+                    "--state=mem:" # Store state in memory, so ephemeral nodes get removed faster
+                    "--statedir=/var/lib/tailscale" # Necessary for tailscale ssh to work
+                ];
+                custom.advertiseTags = lib.mkForce [ "test-server" ];
+            };
 
-        # When testing, downgrade container UID isolation as it doesn't work
-        # when the nix store is mounted as a 9p filesystem
-        containers = lib.mkMerge [
-            (builtins.mapAttrs (_: _: { privateUsers = lib.mkForce "identity"; }) config.containers)
-            {
-                # Override the reverse proxy ACME url to avoid ratelimits
-                caddy.config.systemd.services.caddy.environment.ACME_DIRECTORY =
-                    lib.mkForce "https://acme-staging-v02.api.letsencrypt.org/directory";
+            # Be a bit more verbose on the firewall logging
+            networking.firewall = {
+                logRefusedConnections = true;
+                logRefusedPackets = true;
+            };
 
-                # Disable domain validation in testing, so you don't have to do DNS hacks
-                monitoring.config.services.grafana.settings.server.enforce_domain = lib.mkForce false;
-
-                # Override geoip database to use the local one rather than download every time
-                # This is to avoid ratelimits when repeatedly restarting the VM for testing
-                vector = {
-                    bindMounts."/mnt/geoip" = {
-                        hostPath = "/mnt/host-secrets/geoip";
-                        isReadOnly = true;
-                    };
-                    config = {
-                        services.geoipupdate.enable = lib.mkForce false;
-                        systemd.services.geoipupdate.enable = false;
-                        systemd.tmpfiles.settings."10-local-geoip" = {
-                            "/var/lib/geoip"."C" = {
-                                argument = "/mnt/geoip";
-                            };
-                        };
-                    };
-                };
-
-                # Make the backends use the production maven server instead of the local one, as the local one
-                # isn't populated with artifacts and thus can't be tested on easily
-                backend.config.systemd.services = {
-                    backend-v1.environment.BACKEND_INTERNAL_MAVEN_URL = lib.mkForce "https://repo.polyfrost.org";
-                };
-            }
-            (
+            # Mount the host's secrets into the VM and configure sops to find the key
+            sops.age.keyFile = lib.mkForce "/mnt/host-secrets/age.txt";
+            systemd.tmpfiles.settings."10-vm-host-secrets" =
                 let
-                    containerBackups = {
-                        reposilite = [ "reposilite" ];
+                    permissions = {
+                        user = "root";
+                        group = "root";
                     };
                 in
-                builtins.mapAttrs (container: backups: {
-                    config.services.restic.backups = lib.genAttrs backups (backup: {
-                        timerConfig = lib.mkForce null;
-                        pruneOpts = lib.mkForce [ ];
-                    });
-                }) containerBackups
-            )
-        ];
+                {
+                    "/mnt/host-secrets"."z" = permissions // {
+                        mode = "0700";
+                    };
+                    "/mnt/host-secrets/age.txt"."z" = permissions // {
+                        mode = "0600";
+                    };
+                    "/mnt/host-secrets/geoip"."z" = permissions // {
+                        mode = "0755";
+                    };
+                    "/mnt/host-secrets/geoip/*.mmdb"."z" = permissions // {
+                        mode = "0644";
+                    };
+                };
+            virtualisation.sharedDirectories = {
+                secrets = {
+                    source = "$VM_SECRETS_DIR"; # Passed from a wrapper script
+                    target = "/mnt/host-secrets";
+                    securityModel = "mapped-xattr";
+                };
+            };
 
-        # Emulate the hetzner cloud CPU
-        virtualisation.qemu.options = [ "-cpu EPYC-Rome" ];
-    };
+            # When testing, downgrade container UID isolation as it doesn't work
+            # when the nix store is mounted as a 9p filesystem
+            containers =
+                let
+                    ips = config.custom.nixos-containers.networking.addresses;
+                in
+                lib.mkMerge [
+                    (builtins.mapAttrs (_: _: { privateUsers = lib.mkForce "identity"; }) outerConfig.containers)
+                    {
+                        # Override the reverse proxy ACME url to avoid ratelimits
+                        caddy.config.systemd.services.caddy.environment.ACME_DIRECTORY =
+                            lib.mkForce "https://acme-staging-v02.api.letsencrypt.org/directory";
+
+                        # Disable domain validation in testing, so you don't have to do DNS hacks
+                        monitoring.config.services.grafana.settings.server.enforce_domain = lib.mkForce false;
+
+                        # Override geoip database to use the local one rather than download every time
+                        # This is to avoid ratelimits when repeatedly restarting the VM for testing
+                        vector = {
+                            bindMounts."/mnt/geoip" = {
+                                hostPath = "/mnt/host-secrets/geoip";
+                                isReadOnly = true;
+                            };
+                            config = {
+                                services.geoipupdate.enable = lib.mkForce false;
+                                systemd.services.geoipupdate.enable = false;
+                                systemd.tmpfiles.settings."10-local-geoip" = {
+                                    "/var/lib/geoip"."C" = {
+                                        argument = "/mnt/geoip";
+                                    };
+                                };
+                            };
+                        };
+
+                        # Make the backends use the production maven server instead of the local one, as the local one
+                        # isn't populated with artifacts and thus can't be tested on easily
+                        backend.config.systemd.services = {
+                            backend-v1.environment.BACKEND_INTERNAL_MAVEN_URL = lib.mkForce "https://repo.polyfrost.org";
+                        };
+
+                        # Override forgejo settings to allow non-canonical domain access
+                        forgejo.config.services.forgejo.settings = {
+                            server.ROOT_URL = lib.mkForce "http://[${customUtils.ipv6.compressAddr ips.v6.containers.forgejo}]:8080";
+                            session.COOKIE_SECURE = lib.mkForce false;
+                        };
+                    }
+                    (
+                        let
+                            containerBackups = {
+                                reposilite = [ "reposilite" ];
+                            };
+                        in
+                        builtins.mapAttrs (container: backups: {
+                            config.services.restic.backups = lib.genAttrs backups (backup: {
+                                timerConfig = lib.mkForce null;
+                                pruneOpts = lib.mkForce [ ];
+                            });
+                        }) containerBackups
+                    )
+                ];
+
+            # Emulate the hetzner cloud CPU
+            virtualisation.qemu.options = [ "-cpu EPYC-Rome" ];
+        };
 }

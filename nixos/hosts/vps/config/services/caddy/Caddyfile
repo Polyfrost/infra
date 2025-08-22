@@ -13,6 +13,7 @@
 			interval 12h
 			timeout 15s
 		}
+		trusted_proxies_strict
 	}
 
 	log {
@@ -124,6 +125,9 @@ https://*.polyfrost.org {
 
 	@grafana host grafana.polyfrost.org
 	@reposilite host repo.polyfrost.org
+	@forgejo host git.polyfrost.org
+	@dex host dex.polyfrost.org
+	@plus-staging host plus-staging.polyfrost.org
 
 	# Handle all other containers
 	handle @grafana {
@@ -131,8 +135,26 @@ https://*.polyfrost.org {
 	}
 
 	handle @reposilite {
-		header cache-control: no-transform
+		header Cache-Control "no-transform"
 		reverse_proxy reposilite.containers:8080
+	}
+
+	handle @forgejo {
+		handle /metrics {
+			respond "Unauthorized" 401
+		}
+
+		reverse_proxy forgejo.containers:8080
+	}
+
+	handle @dex {
+		reverse_proxy dex.containers:8080
+	}
+
+	handle @plus-staging {
+		reverse_proxy plus.containers:8080 {
+			header_up X-Real-IP {client_ip}
+		}
 	}
 
 	# Handle all unmatched requests as a 404

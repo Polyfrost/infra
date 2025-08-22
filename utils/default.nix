@@ -29,6 +29,7 @@ let
         };
 
         ipv4 = import ./ipv4.nix (args // { inherit utils; });
+        ipv6 = import ./ipv6.nix (args // { inherit utils; });
     };
 in
 utils

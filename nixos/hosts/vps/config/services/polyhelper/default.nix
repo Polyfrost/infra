@@ -48,6 +48,9 @@
             "/srv/polyhelper/.env"."f" = perms // {
                 mode = "0700"; # Ensure correct perms on the secrets file
             };
+            "/var/lib/private/polyhelper"."A+" = {
+                argument = "user:ruin:rwX";
+            };
         };
 
     systemd.services.polyhelper = {

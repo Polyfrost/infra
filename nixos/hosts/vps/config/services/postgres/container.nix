@@ -8,6 +8,9 @@ let
     databases = {
         "grafana" = ips.v6.containers.monitoring;
         "reposilite" = ips.v6.containers.reposilite;
+        "forgejo" = ips.v6.containers.forgejo;
+        "dex" = ips.v6.containers.dex;
+        "plus" = ips.v6.containers.plus;
     };
     mkAuthEntry =
         { name, value }:
@@ -55,12 +58,13 @@ in
         runAsLocalSuperUser = true;
     };
 
-    services.pgbackrest = {
-        enable = true;
-        repos.backup = {
-            type = "sftp";
-            path = "pgbackrest";
-            # sftp-host = "";
-        };
-    };
+    # TODO: is it better do this manually? the NixOS module doesn't support secrets well
+    # services.pgbackrest = {
+    #     enable = true;
+    #     repos.backup = {
+    #         type = "sftp";
+    #         path = "pgbackrest";
+    #         # sftp-host = "";
+    #     };
+    # };
 }

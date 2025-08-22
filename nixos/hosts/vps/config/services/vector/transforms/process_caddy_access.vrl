@@ -31,19 +31,44 @@ redact_paths = [
     [ "request", "headers", "CF-Ray" ],
 ]
 for_each(redact_paths) -> |_, redact_path| {
-    # Check if the path exists and needs to be redacted first
-    value, err = string(get!(., redact_path))
-    if err == null {
-        # Take the first 6 bytes of the sha3 base64 hash and base64 encode them
-        # Collision probability: 0.1% with 1 million hashes
-        truncated_hash = encode_base64(
-            slice!(
-                decode_base16!(sha3(value)),
-                start: 0,
-                end: 6
-            )
-        )
+    value = get!(., redact_path)
 
-        . = set!(., redact_path, truncated_hash)
+    obj_val, obj_err = object(value)
+    arr_val, arr_err = array(value)
+    str_val, str_err = string(value)
+
+    typed_value = if obj_err == null {
+        obj_val
+    } else if arr_err == null {
+        arr_val
+    } else if str_err == null {
+        [str_val]
+    } else {
+        null
+    }
+
+    if typed_value != null {
+        redacted = map_values(typed_value, recursive: true) -> |v| {
+            str, err = string(v)
+            decoded_hash, err2 = decode_base16(sha3(str))
+            if err == null && err2 == null {
+                # Take the first 6 bytes of the sha3 base64 hash and base64 encode them
+                # Collision probability: 0.1% with 1 million hashes
+                encode_base64(
+                    slice(
+                        decoded_hash,
+                        start: 0,
+                        end: 6
+                    )
+                )
+            } else { v }
+        }
+        redacted = if (arr, err = array(value); err == null) {
+            arr[0]
+        } else {
+            redacted
+        }
+
+        . = set!(., redact_path, redacted)
     }
 }

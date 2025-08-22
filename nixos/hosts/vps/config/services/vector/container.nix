@@ -2,6 +2,8 @@
     ips,
     hostConfig,
     lib,
+    inputs,
+    system,
     ...
 }:
 {
@@ -52,6 +54,7 @@
     services.vector = {
         enable = true;
         journaldAccess = false; # VictoriaLogs manages journald
+        package = inputs.nixos-stable.legacyPackages.${system}.vector;
 
         settings = {
             schema.log_namespace = true;

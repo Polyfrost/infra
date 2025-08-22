@@ -51,6 +51,11 @@
                     static_configs = [ { targets = [ "[${ips.v6.containers.backend}]:8080" ]; } ];
                 }
                 {
+                    job_name = "forgejo";
+                    metrics_path = "/metrics";
+                    static_configs = [ { targets = [ "[${ips.v6.containers.forgejo}]:8080" ]; } ];
+                }
+                {
                     job_name = "ursa-minor";
                     metrics_path = "/_meta/metrics";
                     static_configs =

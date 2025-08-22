@@ -2,7 +2,6 @@
     pkgs,
     lib,
     config,
-    options,
     customUtils,
     self,
     system,
@@ -141,7 +140,12 @@ in
         );
 
         systemd.services = lib.mapAttrs' (
-            name: { dependencies, ... }: lib.nameValuePair "container@${name}" { after = dependencies; }
+            name:
+            { dependencies, ... }:
+            lib.nameValuePair "container@${name}" {
+                after = dependencies;
+                bindsTo = dependencies;
+            }
         ) cfg.containers;
 
         containers = builtins.mapAttrs (name: containerCfg: {

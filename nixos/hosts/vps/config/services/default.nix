@@ -6,6 +6,7 @@
         ./backend
         ./caddy
         ./monitoring
+        ./plus
         ./polyhelper
         ./postgres
         ./reposilite

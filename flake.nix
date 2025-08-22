@@ -4,7 +4,7 @@
     inputs = {
         # Nixpkgs
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-        nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+        nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
         # Nixpkgs forks (usually unmerged PRs)
         nixpkgs-ipv6-lib.url = "github:woojiq/nixpkgs/lib-network-ipv6-first-and-last-addresses";
         # Flake utils
@@ -63,6 +63,7 @@
                 flake-utils.follows = "flake-utils";
             };
         };
+        plus.url = "github:Polyfrost/plus-backend";
         ursa-minor = {
             # url = "github:NotEnoughUpdates/ursa-minor";
             url = "github:Polyfrost/ursa-minor"; # Fork w/ prometheus metrics support
@@ -169,6 +170,8 @@
                         sops
                         geoipupdate
                         yq
+                        openssl
+                        # vector
                     ]);
                 };
 
@@ -195,9 +198,10 @@
                         '';
                 };
 
-                # Re-export a kexec image locked on the flake's version of nixos-images
-                packages.kexec-image =
-                    inputs.nixos-images.packages.${system}.kexec-installer-nixos-stable-noninteractive;
+                packages = {
+                    # Re-export a kexec image locked on the flake's version of nixos-images
+                    kexec-image = inputs.nixos-images.packages.${system}.kexec-installer-nixos-stable-noninteractive;
+                };
             }
         ));
 
