@@ -28,13 +28,6 @@
             "tailscale/oauth_key" = { };
             "tailscale/testing_oauth_key" = { };
 
-            "forgejo/smtp_password" = { };
-            "forgejo/initial_admin_password" = { };
-
-            "dex/secrets/forgejo" = { };
-            "dex/github/client_id" = { };
-            "dex/github/client_secret" = { };
-
             "plus/tebex/webhook_secret" = { };
             "plus/tebex/game_server_secret" = { };
             "plus/s3/endpoint" = { };

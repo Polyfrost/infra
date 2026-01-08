@@ -1,6 +1,8 @@
 keys:
     # Encryption keys
   - &admin_ty A6299C20250223DCDEBA5E2C933B9437A97A56B8
+  - &admin_wyvest age1xjn9d59krlnf4yzmzw2ar0ugs6ma4j9hww6tp6mcg4kmqddgwgjqgwwlpe
+  - &admin_deftu EB464A7593099F22362346E08979600F34814EC1
     # Decryption keys
   - &host_vps age1v3rwucwe2luzsp2uv834gt9tktf95qcvw78fsg6t2k2fq07z8eas83rz5l
 creation_rules:
@@ -9,5 +11,7 @@ creation_rules:
     key_groups:
       - pgp:
           - *admin_ty
+          - *admin_deftu
         age:
+          - *admin_wyvest
           - *host_vps

@@ -14,11 +14,6 @@
             url = "github:numtide/treefmt-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        # Lix
-        lix-module = {
-            url = "git+https://git.lix.systems/lix-project/nixos-module";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
         # Facter (for hardware configuration)
         nixos-facter = {
             url = "github:nix-community/nixos-facter";
@@ -30,8 +25,8 @@
             url = "github:nix-community/nix-index-database";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        # Colmena unstable
-        colmena.url = "github:zhaofengli/colmena";
+        # Colmena
+        colmena.url = "github:zhaofengli/colmena/stable";
         # Sops-nix
         sops-nix = {
             url = "github:Mic92/sops-nix";
@@ -161,7 +156,6 @@
                 devShells.default = pkgs.mkShellNoCC {
                     packages = [
                         nixos-anywhere.packages.${system}.default
-                        colmena.packages.${system}.colmena
                         treefmt-wrapper
                     ]
                     ++ (with pkgs; [
@@ -171,6 +165,7 @@
                         geoipupdate
                         yq
                         openssl
+                        pkgs.colmena
                         # vector
                     ]);
                 };

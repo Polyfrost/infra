@@ -1,19 +1,6 @@
-{ inputs, self, ... }:
+{ inputs, self, pkgs, ... }:
 {
     imports = [
-        # Enable lix (better fork of nix)
-        inputs.lix-module.nixosModules.lixFromNixpkgs
-        {
-            nixpkgs.overlays = [
-                # Provide the git lix package set in the location the module expects it to be
-                (final: prev: {
-                    lixPackageSets = prev.lixPackageSets // {
-                        lix_2_94 = prev.lixPackageSets.git;
-                    };
-                })
-            ];
-        }
-
         # Secrets provisioning
         inputs.sops-nix.nixosModules.sops
         ./secrets.nix
@@ -41,4 +28,16 @@
     ];
 
     system.stateVersion = "25.05";
+
+    # Enable lix (better fork of nix)
+    nixpkgs.overlays = [
+        (final: prev: {
+            inherit (prev.lixPackageSets.stable)
+                nixpkgs-review
+                nix-eval-jobs
+                nix-fast-build
+                colmena;
+        })
+    ];
+    nix.package = pkgs.lixPackageSets.stable.lix;
 }
