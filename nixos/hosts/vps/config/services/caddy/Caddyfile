@@ -159,9 +159,9 @@ https://*.polyfrost.org {
 	}
 
 	handle @plus-admin {
-	    file_server {
-		    root /var/www/plus-admin-dashboard
-        }
+		file_server {
+			root /var/www/plus-admin-dashboard
+		}
 	}
 
 	# Handle all unmatched requests as a 404

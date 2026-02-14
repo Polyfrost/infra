@@ -1,4 +1,9 @@
-{ inputs, self, pkgs, ... }:
+{
+    inputs,
+    self,
+    pkgs,
+    ...
+}:
 {
     imports = [
         # Secrets provisioning
@@ -36,7 +41,8 @@
                 nixpkgs-review
                 nix-eval-jobs
                 nix-fast-build
-                colmena;
+                colmena
+                ;
         })
     ];
     nix.package = pkgs.lixPackageSets.stable.lix;
