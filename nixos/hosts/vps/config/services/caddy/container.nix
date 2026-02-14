@@ -2,6 +2,8 @@
     lib,
     ips,
     pkgs,
+    inputs,
+    system,
     ...
 }:
 {
@@ -34,6 +36,12 @@
             # Provided dynamically to caddy to allow for overrides when testing
             ACME_DIRECTORY = "https://acme-v02.api.letsencrypt.org/directory";
             VECTOR_URL = "tcp/[${ips.v6.containers.vector}]:9000";
+        };
+    };
+
+    systemd.tmpfiles.settings."10-var-www" = {
+        "/var/www/plus-admin-dashboard"."L" = {
+            argument = "${inputs.plus-admin-dashboard.packages.${system}.default}/share";
         };
     };
 }

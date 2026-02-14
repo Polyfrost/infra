@@ -30,7 +30,7 @@
             perms = {
                 user = "ruin";
                 group = "users";
-                mode = "0755";
+                mode = "0700";
             };
         in
         {
@@ -47,9 +47,6 @@
             };
             "/srv/polyhelper/.env"."f" = perms // {
                 mode = "0700"; # Ensure correct perms on the secrets file
-            };
-            "/var/lib/private/polyhelper"."A+" = {
-                argument = "user:ruin:rwX";
             };
         };
 
@@ -87,10 +84,9 @@
             ProtectSystem = "strict";
             PrivateTmp = true;
             ProtectHome = true;
-            DynamicUser = "yes";
 
-            User = "polyhelper";
-            Group = "polyhelper";
+            User = "ruin";
+            Group = "nogroup";
         };
     };
 
@@ -125,7 +121,7 @@
                 in
                 [ "sftp.args='${builtins.concatStringsSep " " sftpArgs}'" ];
 
-            paths = [ "/var/lib/private/polyhelper" ];
+            paths = [ "/var/lib/polyhelper" ];
 
             timerConfig = {
                 OnCalendar = "daily";

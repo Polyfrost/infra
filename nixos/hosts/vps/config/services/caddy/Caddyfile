@@ -128,6 +128,7 @@ https://*.polyfrost.org {
 	@forgejo host git.polyfrost.org
 	@dex host dex.polyfrost.org
 	@plus-staging host plus-staging.polyfrost.org
+	@plus-admin host plus-admin.polyfrost.org
 
 	# Handle all other containers
 	handle @grafana {
@@ -155,6 +156,12 @@ https://*.polyfrost.org {
 		reverse_proxy plus.containers:8080 {
 			header_up X-Real-IP {client_ip}
 		}
+	}
+
+	handle @plus-admin {
+	    file_server {
+		    root /var/www/plus-admin-dashboard
+        }
 	}
 
 	# Handle all unmatched requests as a 404

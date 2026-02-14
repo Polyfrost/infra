@@ -607,6 +607,29 @@
         "type": "github"
       }
     },
+    "plus-admin-dashboard": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1770400213,
+        "narHash": "sha256-noB/65EzneZsL4GAPXoBR5D7DE/FbqR1I9K9qTGTkeo=",
+        "owner": "Polyfrost",
+        "repo": "plus-admin-dashboard",
+        "rev": "d4fcfdc9502a4d794a40b8f046d10a72fcba3805",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Polyfrost",
+        "repo": "plus-admin-dashboard",
+        "type": "github"
+      }
+    },
     "pnpm2nix": {
       "inputs": {
         "flake-utils": [
@@ -647,6 +670,7 @@
         "nixpkgs-ipv6-lib": "nixpkgs-ipv6-lib",
         "nixpkgs-stable": "nixpkgs-stable",
         "plus": "plus",
+        "plus-admin-dashboard": "plus-admin-dashboard",
         "sops-nix": "sops-nix",
         "treefmt-nix": "treefmt-nix_5",
         "ursa-minor": "ursa-minor",

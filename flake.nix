@@ -75,6 +75,13 @@
                 flake-utils.follows = "flake-utils";
             };
         };
+        plus-admin-dashboard = {
+            url = "github:Polyfrost/plus-admin-dashboard";
+            inputs = {
+                nixpkgs.follows = "nixpkgs";
+                flake-utils.follows = "flake-utils";
+            };
+        };
     };
 
     outputs =
