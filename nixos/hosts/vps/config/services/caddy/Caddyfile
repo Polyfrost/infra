@@ -153,6 +153,8 @@ https://*.polyfrost.org {
 	}
 
 	handle @plus-staging {
+		header Access-Control-Allow-Origin "*"
+		header Access-Control-Allow-Headers "GET, POST, PUT, PATCH, DELETE, OPTIONS"
 		reverse_proxy plus.containers:8080 {
 			header_up X-Real-IP {client_ip}
 		}
