@@ -5,6 +5,7 @@
 
         ./backend
         ./caddy
+        ./hydra
         ./monitoring
         ./plus
         ./polyhelper

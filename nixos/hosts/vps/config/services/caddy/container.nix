@@ -13,7 +13,10 @@
                 containerIps:
                 lib.mapAttrs' (name: value: lib.attrsets.nameValuePair value [ "${name}.containers" ]) containerIps;
         in
-        (mkHosts ips.v4.containers) // (mkHosts ips.v6.containers);
+        (mkHosts ips.v4.containers) // (mkHosts ips.v6.containers) // {
+            "${ips.v4.host}" = [ "host.containers" ];
+            "${ips.v6.host}" = [ "host.containers" ];
+        };
 
     services.caddy = {
         enable = true;
@@ -23,7 +26,7 @@
                 "github.com/caddy-dns/cloudflare@v0.2.2-0.20250506153119-35fb8474f57d"
                 "github.com/WeidiDeng/caddy-cloudflare-ip@v0.0.0-20231130002422-f53b62aa13cb"
             ];
-            hash = "sha256-MhLXRQd6EjQ/yfOpMbr6X/sIXgdhQwXaxkIBmUKAK2I=";
+            hash = "sha256-ldD2gIlEthnLbRckH+BPKKde95gNPEJbXHTQEjBnE0Q=";
         };
 
         configFile = ./Caddyfile;

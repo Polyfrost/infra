@@ -30,6 +30,8 @@
             };
 
             analytics.reporting_enabled = false;
+
+            security.secret_key = "SW2YcwTIb9zpOOhoPsMm"; # yes this is the default from nix. no i don't care. anyone can decrypt the database if they get access to it
         };
 
         provision = {

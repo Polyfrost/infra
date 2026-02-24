@@ -103,6 +103,10 @@
             };
         in
         {
+            hydraJobs = {
+                vps = self.nixosConfigurations.vps.config.system.build.toplevel;
+            };
+
             nixosConfigurations = {
                 "vps" = nixpkgs.lib.nixosSystem (
                     let

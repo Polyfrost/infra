@@ -11,6 +11,7 @@ let
         "forgejo" = ips.v6.containers.forgejo;
         "dex" = ips.v6.containers.dex;
         "plus" = ips.v6.containers.plus;
+        "hydra" = ips.v6.host;
     };
     mkAuthEntry =
         { name, value }:

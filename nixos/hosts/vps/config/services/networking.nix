@@ -36,6 +36,9 @@ in
     networking = {
         # Let containers access host ports conditionally
         firewall.extraInputRules = ''
+            ip saddr ${containerIps.v4.containers.caddy} tcp dport 3000 accept comment "Allow caddy to access hydra"
+            ip6 saddr ${containerIps.v6.containers.caddy} tcp dport 3000 accept comment "Allow caddy to access hydra"
+
             ip saddr ${containerIps.v4.containers.monitoring} tcp dport 9100 accept comment "Allow monitoring to access node exporter"
             ip6 saddr ${containerIps.v6.containers.monitoring} tcp dport 9100 accept comment "Allow monitoring to access node exporter"
         '';

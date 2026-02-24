@@ -129,6 +129,7 @@ https://*.polyfrost.org {
 	@dex host dex.polyfrost.org
 	@plus-staging host plus-staging.polyfrost.org
 	@plus-admin host plus-admin.polyfrost.org
+	@hydra host hydra.polyfrost.org
 
 	# Handle all other containers
 	handle @grafana {
@@ -164,6 +165,10 @@ https://*.polyfrost.org {
 		file_server {
 			root /var/www/plus-admin-dashboard
 		}
+	}
+
+	handle @hydra {
+	    reverse_proxy host.containers:3000
 	}
 
 	# Handle all unmatched requests as a 404
