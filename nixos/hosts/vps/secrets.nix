@@ -23,6 +23,8 @@
 
             "website/github_pat" = { };
 
+            "hydra/github_webhook_secret" = { };
+
             "vector/maxmind_license_key" = { };
 
             "tailscale/oauth_key" = { };

@@ -44,7 +44,10 @@
                 LLDP = "yes";
             };
 
-            linkConfig.RequiredForOnline = "yes";
+            linkConfig = {
+                RequiredForOnline = "yes";
+                RequiredFamilyForOnline = "any";
+            };
         };
     };
 

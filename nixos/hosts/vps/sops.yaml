@@ -1,3 +1,5 @@
+hydra:
+    github_webhook_secret: ENC[AES256_GCM,data:3QCc7fpx0XpMG1BB+x1BIHghH1w7moF1x/LolAx9Imt0HHHJuiIVS/VZknN0tljpYfzlzk4DoZKznN6BD6R6HQ==,iv:elAu+/LO+NNoc3Paf6P405FgHHX3Am/CFkeY59CojHg=,tag:6jcjXzf2dWwBw3gMWRwjpQ==,type:str]
 plus:
     admin_password: ENC[AES256_GCM,data:DrZaI6Bt5NvgCsDWxqywTCp5Jvs=,iv:+O/yVRoitArcsK4fm0pOMqvXI0a2rXOHo3ztel5Fw8A=,tag:Hg5zqUkI4tl1nwP6EiKDrg==,type:str]
     tebex:
@@ -68,8 +70,8 @@ sops:
             bk9Ra0dsbGlEUlduUVMzQzlleHM5Y1kKdaEt6JCF+vcNHdzuKqhqnDuRz15+Bc+5
             yGS2hxzTdxZXJtmoi6Kz12b45fEa2G2+UcofwCUleNXga5vEo8ip7Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-01-08T08:13:17Z"
-    mac: ENC[AES256_GCM,data:0O59+sf9PsSkeQWZaVSOk0ZO7Q1AsqErsRqe+4TYbQkDAJVpZHzhuGoTtOjodrwIpKDIfPgNgpXXHZsSgvcvziIGIVJcdBN8nCB5GFalwz4vSTtXItqEHwRY0BybOHDdgMEKdGA4zCNGKkEC5DjHreRFTernOogV8+O3hZEbpS0=,iv:oO5Ch4hC+1GYv7VrrRV5uzIfEP2AuGnfArceccOj5YU=,tag:MeaaY7LGzJ5uXcPWK4gEGg==,type:str]
+    lastmodified: "2026-03-03T23:03:43Z"
+    mac: ENC[AES256_GCM,data:sB6Qhw00bh6OP0PXkkmJSlndyddhN7n+69he5SMaGxfM0+iJPeJF1RyChO+NV9aeSxg7Fem8Nw02cerqz6eKjLyH9WhbXP7mr/qh0vA7b/X6X5ultYJBn4TMfYNj13n79wDuxv/0pNYjKJ/YmKctovsh953PzsI7gLVU1EcM/ng=,iv:ffTDA3fGRMQw/o+RfwfCSahZ9RrRIIoHqZD2929670k=,tag:tbr0/V5mAHeTP7g2nX7i+A==,type:str]
     pgp:
         - created_at: "2026-01-01T20:32:29Z"
           enc: |-
@@ -94,4 +96,4 @@ sops:
             -----END PGP MESSAGE-----
           fp: EB464A7593099F22362346E08979600F34814EC1
     unencrypted_suffix: _unencrypted
-    version: 3.11.0
+    version: 3.12.1
