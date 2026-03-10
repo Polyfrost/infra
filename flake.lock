@@ -956,11 +956,11 @@
         "pnpm2nix": "pnpm2nix"
       },
       "locked": {
-        "lastModified": 1772866636,
-        "narHash": "sha256-NCC5xfkW+gY0A4/B5Wtk3XgGU2JJyzP4BKcz4CnXo1Y=",
+        "lastModified": 1773109223,
+        "narHash": "sha256-zxJgacVVkayRTFe8zdXAlUVII0DqiJ3GJwme52lhjCY=",
         "owner": "Polyfrost",
         "repo": "website",
-        "rev": "64711b593be708efc7361503b5d7da201b3bf838",
+        "rev": "2c96fb064e939a6f82ade02e06bbd51653e606e8",
         "type": "github"
       },
       "original": {
