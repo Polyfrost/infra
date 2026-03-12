@@ -1,0 +1,32 @@
+{
+    "main": {
+        "enabled": 1,
+        "hidden": false,
+        "description": "Polyfrost NixOS infra main branch",
+        "nixexprinput": "",
+        "nixexprpath": "",
+        "checkinterval": 0,
+        "schedulingshares": 1,
+        "enableemail": false,
+        "emailoverride": "",
+        "keepnr": 3,
+        "type": 1,
+        "flake": "github:Polyfrost/infra/main",
+        "inputs": {}
+    },
+    "release": {
+        "enabled": 1,
+        "hidden": false,
+        "description": "Polyfrost NixOS infra releases",
+        "nixexprinput": "",
+        "nixexprpath": "",
+        "checkinterval": 0,
+        "schedulingshares": 1,
+        "enableemail": false,
+        "emailoverride": "",
+        "keepnr": 3,
+        "type": 1,
+        "flake": "github:Polyfrost/infra/release",
+        "inputs": {}
+    }
+}
