@@ -37,6 +37,12 @@
             "plus/s3/access_key_id" = { };
             "plus/s3/access_key_secret" = { };
 
+            "grafana/secret_key" = { };
+            "grafana/smtp/address" = { };
+            "grafana/smtp/user" = { };
+            "grafana/smtp/host" = { };
+            "grafana/smtp/password" = { };
+
             "users/ty/password_hash" = {
                 neededForUsers = true;
             };

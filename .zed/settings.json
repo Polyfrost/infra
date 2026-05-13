@@ -1,10 +1,10 @@
 {
     "languages": {
         "Caddyfile": {
-            "hard_tabs": true
-        }
+            "hard_tabs": true,
+        },
     },
     "file_types": {
-        "JSON": [ "jsonl" ]
-    }
+        "JSON": ["jsonl"],
+    },
 }

@@ -8,3 +8,4 @@ indent_size = 4
 
 [*.{nix,yaml}]
 indent_style = space
+indent_size = 4

@@ -1,3 +1,10 @@
+grafana:
+    secret_key: ENC[AES256_GCM,data:Di4LwABlQIU3cqvJPG5raQFskPA=,iv:ShKAOqCKk9PFz83628pQdsCVyxc0iuLQBIV5NAfDzu8=,tag:KJN8oWUTeXRBGHaubykPSQ==,type:str]
+    smtp:
+        host: ENC[AES256_GCM,data:C4395R/vV88kR1ADCeyTl/mB8W85PoE=,iv:xjRgOwzlO95FDVb8K0F5BxsOYwPfe1NTqudgkLlquCQ=,tag:/Echcds3ugqddxUBJROSMg==,type:str]
+        address: ENC[AES256_GCM,data:+XbV3oGqtjrX3bG4SDPh/RALwS2D,iv:p/0d/1V9Fw4ztiV7gUGZbMlZGdoqHpmZvNsuy+1WFZA=,tag:c8LxoEwdGBsrj+ZtCSn58w==,type:str]
+        user: ENC[AES256_GCM,data:JV3JOrfWp5lTA812cF2LAso7WmG0,iv:prRfQvAHSOCIFdgHqKSlqeojhdPVgc5ZK4+qODuarL0=,tag:jAhm5uGwsuYPaAA4CfmRQw==,type:str]
+        password: ENC[AES256_GCM,data:D64ySMJGJqIZEALN5m3iK0StnOM2MkU1pkAPTz3cs1BytCfdPtfJbtJgWBkBw3ruLSK9L1ayhKp5JxvbkvYYcA==,iv:lSvcWRFjcGByOzlcmj6rTcHbxV1GYHvQdNZIVnlR+KQ=,tag:oEahSDdYQxCwOzj36aoWew==,type:str]
 hydra:
     github_webhook_secret: ENC[AES256_GCM,data:3QCc7fpx0XpMG1BB+x1BIHghH1w7moF1x/LolAx9Imt0HHHJuiIVS/VZknN0tljpYfzlzk4DoZKznN6BD6R6HQ==,iv:elAu+/LO+NNoc3Paf6P405FgHHX3Am/CFkeY59CojHg=,tag:6jcjXzf2dWwBw3gMWRwjpQ==,type:str]
 plus:
@@ -52,8 +59,7 @@ tailscale:
 #ENC[AES256_GCM,data:pqakZtCYJGxv4gXnNx8x9laiN3gqEaCRfRInk4jIXSEVnzWtNp1CIBk9dlxVVsBQoZjtKrvIJG11ElpJKlc4Eg==,iv:5bpF3/X+gyN3jkI+P2rxv7JwghTgn5vMdk+EGq0HqGU=,tag:YL5wFfJPb4RrSq0E5gTG+Q==,type:comment]
 sops:
     age:
-        - recipient: age1xjn9d59krlnf4yzmzw2ar0ugs6ma4j9hww6tp6mcg4kmqddgwgjqgwwlpe
-          enc: |
+        - enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
             YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBIMExiNkRpNFNnemxDSGM3
             bHdRYWppZWZJRmxWazFrR1hoZmUwa09LWnpjCldCTldiWG9WTmlQUU1HNWl0SklZ
@@ -61,8 +67,8 @@ sops:
             SWJhRlpXZE5UMGRhUHVJZDUxellxd0UK6NRma7uOHs6V0aPovSYj/LquwKTKJuQ3
             p8++B7WJdaZOZzfeNx8So63jsJW0evxda2Sx52I01ts3xFus0ykhlQ==
             -----END AGE ENCRYPTED FILE-----
-        - recipient: age1v3rwucwe2luzsp2uv834gt9tktf95qcvw78fsg6t2k2fq07z8eas83rz5l
-          enc: |
+          recipient: age1xjn9d59krlnf4yzmzw2ar0ugs6ma4j9hww6tp6mcg4kmqddgwgjqgwwlpe
+        - enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
             YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBEckhQUGJiWmI5Zi9ORC9D
             cEdLK2VaRUJza1RzQ3N1YitrV3JMM3pwSXh3CmFzeDNnbkpRZHZuSXBkeGZYVGsy
@@ -70,8 +76,9 @@ sops:
             bk9Ra0dsbGlEUlduUVMzQzlleHM5Y1kKdaEt6JCF+vcNHdzuKqhqnDuRz15+Bc+5
             yGS2hxzTdxZXJtmoi6Kz12b45fEa2G2+UcofwCUleNXga5vEo8ip7Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-10T02:09:55Z"
-    mac: ENC[AES256_GCM,data:zH/FeONo+mNf1mSp3xt+VpHB/AjbZUQyXwqaDxjZZXmC2UC18AY3tSVg/qvCohPByNV7EVpBBQdZQUihDWmAG+qQTG4R8TvOkD61uMgIayPkU9Jfk//OaOUlvECagnz9zzpAMka36mBGEY1h2uLADaO3x9AydGCNbisIcCS/RAg=,iv:7Y4GYS27ORoHnTBPg9oZkSGqXGxTmMYDKUI+cDN2MJo=,tag:Vs95xpI0SCoiwzohkkHQMQ==,type:str]
+          recipient: age1v3rwucwe2luzsp2uv834gt9tktf95qcvw78fsg6t2k2fq07z8eas83rz5l
+    lastmodified: "2026-05-13T22:12:11Z"
+    mac: ENC[AES256_GCM,data:yrs2vMOEEgFBeGnZAj+MgpdK6SBylQSm3X92UcBLrvO89/iBYRMXPi7aHmJVvqwgSj5AcNojgvVMzd6wKcDehiS74lSi+laqL6/anTuRIZz0YF3dethtxtheA1fl66I4+JHwgVdgtgs+j6smljUDBN0lP5OdEqDpmRAfa7ofFsw=,iv:UfClbQEmkke84QczY1ANXKHfh3wcDwS2grSkjr5vERo=,tag:ip+ClYi4tcT2M/5n7zwd4g==,type:str]
     pgp:
         - created_at: "2026-01-01T20:32:29Z"
           enc: |-
@@ -96,4 +103,4 @@ sops:
             -----END PGP MESSAGE-----
           fp: EB464A7593099F22362346E08979600F34814EC1
     unencrypted_suffix: _unencrypted
-    version: 3.12.1
+    version: 3.13.0

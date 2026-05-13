@@ -35,7 +35,13 @@ in
 
         dependencies = [ "container@postgres.service" ];
 
-        secrets = [ ];
+        secrets = [
+            "grafana/secret_key"
+            "grafana/smtp/address"
+            "grafana/smtp/user"
+            "grafana/smtp/host"
+            "grafana/smtp/password"
+        ];
     };
 
     # Run node exporter on the host for metrics

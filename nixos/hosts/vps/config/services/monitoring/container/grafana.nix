@@ -13,7 +13,9 @@
             victoriametrics-logs-datasource
         ];
 
-        settings = {
+        settings = let
+            mkSecret = name: "$__file{/run/credentials/grafana.service/${name}}";
+        in {
             server = {
                 http_addr = "::";
                 http_port = 8080;
@@ -31,7 +33,18 @@
 
             analytics.reporting_enabled = false;
 
-            security.secret_key = "SW2YcwTIb9zpOOhoPsMm"; # yes this is the default from nix. no i don't care. anyone can decrypt the database if they get access to it
+            security.secret_key = mkSecret "secret_key";
+
+            smtp = {
+                enabled = true;
+                host = mkSecret "smtp.host";
+                user = mkSecret "smtp.user";
+                password = mkSecret "smtp.password";
+                startTLS_policy = "MandatoryStartTLS"; # We use starttls to circumvent hetzner port blocking, but require TLS anyways
+
+                from_address = mkSecret "smtp.address";
+                from_name = "Polyfrost Grafana";
+            };
         };
 
         provision = {
@@ -64,6 +77,14 @@
             ];
         };
     };
+
+    systemd.services.grafana.serviceConfig.LoadCredential = [
+        "secret_key:grafana.secret_key"
+        "smtp.address:grafana.smtp.address"
+        "smtp.user:grafana.smtp.user"
+        "smtp.host:grafana.smtp.host"
+        "smtp.password:grafana.smtp.password"
+    ];
 
     environment.etc =
         let

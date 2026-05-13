@@ -41,7 +41,7 @@
                 DHCP = "yes";
                 KeepConfiguration = "static";
                 IPv6AcceptRA = "yes";
-                LLDP = "yes";
+                LLDP = "no";
             };
 
             linkConfig = {

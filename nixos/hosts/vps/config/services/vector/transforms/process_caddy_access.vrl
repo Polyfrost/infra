@@ -24,11 +24,11 @@ redact_paths = [
     [ "request", "client_ip" ],
     [ "request", "remote_ip" ],
     [ "request", "headers", "X-Forwarded-For" ],
-    [ "request", "headers", "CF-Connecting-IP" ],
-    [ "request", "headers", "CF-Connecting-IPv6" ],
-    [ "request", "headers", "True-Client-IP" ],
+    [ "request", "headers", "Cf-Connecting-Ip" ],
+    [ "request", "headers", "Cf-Connecting-Ipv6" ],
+    [ "request", "headers", "True-Client-Ip" ],
     # Other potentially identifying information
-    [ "request", "headers", "CF-Ray" ],
+    [ "request", "headers", "Cf-Ray" ],
 ]
 for_each(redact_paths) -> |_, redact_path| {
     value = get!(., redact_path)
@@ -48,14 +48,15 @@ for_each(redact_paths) -> |_, redact_path| {
     }
 
     if typed_value != null {
-        redacted = map_values(typed_value, recursive: true) -> |v| {
+        # || [] is used to force coerce typed_value to non-null
+        redacted = map_values(typed_value || [], recursive: true) -> |v| {
             str, err = string(v)
             decoded_hash, err2 = decode_base16(sha3(str))
             if err == null && err2 == null {
                 # Take the first 6 bytes of the sha3 base64 hash and base64 encode them
                 # Collision probability: 0.1% with 1 million hashes
                 encode_base64(
-                    slice(
+                    slice!(
                         decoded_hash,
                         start: 0,
                         end: 6
@@ -63,7 +64,7 @@ for_each(redact_paths) -> |_, redact_path| {
                 )
             } else { v }
         }
-        redacted = if (arr, err = array(value); err == null) {
+        redacted = if (arr, err = array(redacted); err == null && str_err == null) {
             arr[0]
         } else {
             redacted
