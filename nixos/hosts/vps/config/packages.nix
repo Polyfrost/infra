@@ -1,6 +1,5 @@
 {
     pkgs,
-    inputs,
     system,
     ...
 }:
@@ -11,7 +10,7 @@
         wget
         curl
         neovim
-        inputs.nixos-facter.packages.${system}.nixos-facter
+        nixos-facter
         git
     ];
 

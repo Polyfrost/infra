@@ -4,7 +4,7 @@
         listenAddress = ":8082";
         extraOptions = [
             "-enableTCP6"
-            "-retentionPeriod=7d"
+            "-retentionPeriod=14d"
             "-retention.maxDiskSpaceUsageBytes=2GiB"
         ];
     };
