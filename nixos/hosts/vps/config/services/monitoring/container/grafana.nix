@@ -22,6 +22,7 @@
                 enforce_domain = true;
                 enable_gzip = false;
                 domain = "grafana.polyfrost.org";
+                root_url = "https://%(domain)s/"; # Override root URL to be HTTPS w/ default port
             };
 
             database = {
