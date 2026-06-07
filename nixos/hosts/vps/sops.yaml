@@ -77,8 +77,8 @@ sops:
             yGS2hxzTdxZXJtmoi6Kz12b45fEa2G2+UcofwCUleNXga5vEo8ip7Q==
             -----END AGE ENCRYPTED FILE-----
           recipient: age1v3rwucwe2luzsp2uv834gt9tktf95qcvw78fsg6t2k2fq07z8eas83rz5l
-    lastmodified: "2026-05-13T22:12:11Z"
-    mac: ENC[AES256_GCM,data:yrs2vMOEEgFBeGnZAj+MgpdK6SBylQSm3X92UcBLrvO89/iBYRMXPi7aHmJVvqwgSj5AcNojgvVMzd6wKcDehiS74lSi+laqL6/anTuRIZz0YF3dethtxtheA1fl66I4+JHwgVdgtgs+j6smljUDBN0lP5OdEqDpmRAfa7ofFsw=,iv:UfClbQEmkke84QczY1ANXKHfh3wcDwS2grSkjr5vERo=,tag:ip+ClYi4tcT2M/5n7zwd4g==,type:str]
+    lastmodified: "2026-06-12T00:35:22Z"
+    mac: ENC[AES256_GCM,data:XjBg1nRQabV4mMG8dRrE0uK6H5H5CToxv8ZvJGU/W8GMrW/1xKa2fiksKjPkx5JgfVP4Rcy95IaiI79sMqg8AssE+UJgOwjcZIepiaN0jSaPLiAENHNJRdqghZeDYgOO+8eMTb7DO+UX6/guWVzqILve3RYIMELDECRQgccQkzs=,iv:1xiU//Wus0C1z/zon4/BIq4XRBqMmanqL8Eonxuzn24=,tag:olijNb7Yhc8/CkGb7CSmpQ==,type:str]
     pgp:
         - created_at: "2026-01-01T20:32:29Z"
           enc: |-
@@ -103,4 +103,4 @@ sops:
             -----END PGP MESSAGE-----
           fp: EB464A7593099F22362346E08979600F34814EC1
     unencrypted_suffix: _unencrypted
-    version: 3.13.0
+    version: 3.13.1

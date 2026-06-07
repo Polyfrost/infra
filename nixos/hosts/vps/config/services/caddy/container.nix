@@ -23,10 +23,10 @@
         package = pkgs.caddy.withPlugins {
             plugins = [
                 # Support
-                "github.com/caddy-dns/cloudflare@v0.2.2-0.20250506153119-35fb8474f57d"
+                "github.com/caddy-dns/cloudflare@v0.2.4-0.20260323191214-a8737d095ad5"
                 "github.com/WeidiDeng/caddy-cloudflare-ip@v0.0.0-20231130002422-f53b62aa13cb"
             ];
-            hash = "sha256-LPAkwY90yI0jwMm2zKoq8aXeiXIyenzfQUc1lLZsG4g=";
+            hash = "sha256-c5Ze/EnmPayYnpbb8zjvcsiNMmQMiiLbmHP2fRluShI=";
         };
 
         configFile = ./Caddyfile;

@@ -4,7 +4,7 @@
     inputs = {
         # Nixpkgs
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-        nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
+        nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
         # Nixpkgs forks (usually unmerged PRs)
         nixpkgs-ipv6-lib.url = "github:woojiq/nixpkgs/lib-network-ipv6-first-and-last-addresses";
         # Flake utils
@@ -58,7 +58,7 @@
                 flake-utils.follows = "flake-utils";
             };
         };
-        plus.url = "github:Polyfrost/plus-backend";
+        plus.url = "github:Polyfrost/plus-backend/0701ba36cfa4bbb861b5a46949f42039a4ed87c0";
         ursa-minor = {
             # url = "github:NotEnoughUpdates/ursa-minor";
             url = "github:Polyfrost/ursa-minor"; # Fork w/ prometheus metrics support
