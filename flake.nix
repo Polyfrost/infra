@@ -58,7 +58,7 @@
                 flake-utils.follows = "flake-utils";
             };
         };
-        plus.url = "github:Polyfrost/plus-backend/0701ba36cfa4bbb861b5a46949f42039a4ed87c0";
+        plus.url = "github:Polyfrost/plus-backend";
         ursa-minor = {
             # url = "github:NotEnoughUpdates/ursa-minor";
             url = "github:Polyfrost/ursa-minor"; # Fork w/ prometheus metrics support

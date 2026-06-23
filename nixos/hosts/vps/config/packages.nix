@@ -12,6 +12,8 @@
         neovim
         nixos-facter
         git
+        btop
+        zellij
     ];
 
     # Install zsh
