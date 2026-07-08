@@ -39,12 +39,12 @@
             "plus/s3/access_key_secret" = { };
 
             # Plus Staging
-            "plus_staging/admin_password" = { };
-            "plus_staging/stripe/secret" = { };
-            "plus_staging/stripe/webhook_secret" = { };
-            "plus_staging/s3/endpoint" = { };
-            "plus_staging/s3/access_key_id" = { };
-            "plus_staging/s3/access_key_secret" = { };
+            "plus-staging/admin_password" = { };
+            "plus-staging/stripe/secret" = { };
+            "plus-staging/stripe/webhook_secret" = { };
+            "plus-staging/s3/endpoint" = { };
+            "plus-staging/s3/access_key_id" = { };
+            "plus-staging/s3/access_key_secret" = { };
 
             "grafana/secret_key" = { };
             "grafana/smtp/address" = { };

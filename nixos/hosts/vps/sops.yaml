@@ -7,7 +7,7 @@ grafana:
         password: ENC[AES256_GCM,data:D64ySMJGJqIZEALN5m3iK0StnOM2MkU1pkAPTz3cs1BytCfdPtfJbtJgWBkBw3ruLSK9L1ayhKp5JxvbkvYYcA==,iv:lSvcWRFjcGByOzlcmj6rTcHbxV1GYHvQdNZIVnlR+KQ=,tag:oEahSDdYQxCwOzj36aoWew==,type:str]
 hydra:
     github_webhook_secret: ENC[AES256_GCM,data:3QCc7fpx0XpMG1BB+x1BIHghH1w7moF1x/LolAx9Imt0HHHJuiIVS/VZknN0tljpYfzlzk4DoZKznN6BD6R6HQ==,iv:elAu+/LO+NNoc3Paf6P405FgHHX3Am/CFkeY59CojHg=,tag:6jcjXzf2dWwBw3gMWRwjpQ==,type:str]
-plus_staging:
+plus-staging:
     admin_password: ENC[AES256_GCM,data:UFEEIQjnoPxqp7FPU3wM+OCKD8Y=,iv:kFOLu1y0XaqozV6tM6ycdnDuQi+4jVb25csaoqPc5YU=,tag:K0AjyeF3gauHr4H5sJ7XUA==,type:str]
     stripe:
         secret: ENC[AES256_GCM,data:JIyz23k1xEVgV7VEdB1DRl/KSotxolP3km4fQ6oDs3ax+oSB9iC5NT+LBAqpqlxYKUSL/Deo+nrwC9vrO/5Vp1aXnYOXKf6ENDXJ9O0griZ6rQ8O1Wh4qlvYoNylEHGSLPynf6xSJEt7Q2U=,iv:Lwsi/cjWaih1bL+YWn3JYvq2A//7Tn+Bo2gD9aPzTxs=,tag:P3EJjC6VSYpZr2GkB/cPCw==,type:str]
