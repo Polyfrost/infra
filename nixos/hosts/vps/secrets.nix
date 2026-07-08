@@ -31,8 +31,8 @@
             "tailscale/testing_oauth_key" = { };
 
             "plus/admin_password" = { };
-            "plus/tebex/webhook_secret" = { };
-            "plus/tebex/game_server_secret" = { };
+            "plus/stripe/secret" = { };
+            "plus/stripe/webhook_secret" = { };
             "plus/s3/endpoint" = { };
             "plus/s3/access_key_id" = { };
             "plus/s3/access_key_secret" = { };
