@@ -19,8 +19,8 @@ plus-staging:
 plus:
     admin_password: ENC[AES256_GCM,data:DrZaI6Bt5NvgCsDWxqywTCp5Jvs=,iv:+O/yVRoitArcsK4fm0pOMqvXI0a2rXOHo3ztel5Fw8A=,tag:Hg5zqUkI4tl1nwP6EiKDrg==,type:str]
     stripe:
-        secret: ""
-        webhook_secret: ""
+        secret: ENC[AES256_GCM,data:RVgD9X1sZfcZUDYyz9t3/HAKcx3UUPtOTbcILzz7JxgVjTV4w3xxTs36dxfy1LVJTyoKZG5LMjNvzoqFvl1YPuMRIRDa3vzLY6ArK4+R0EjKNlk64lq/1pYDw3rpcy9ikEt1WbucL/B3Dcg=,iv:jji1odqsX8gKBnIGWi78xwzRbAKwsez7TORdxEgGALs=,tag:SLMePOWyN/8KXN6QwNYcWg==,type:str]
+        webhook_secret: ENC[AES256_GCM,data:6+F5Nrso539lLo+Axml0lajIYzMaXA7xK9hgsHts61ylzrGLkHU=,iv:8eB45TI/OREPCJBoBnh1qE1FbB2QB/gW8JSVZvlghhI=,tag:fHp6paxit6m/pGvOCykLng==,type:str]
     s3:
         endpoint: ENC[AES256_GCM,data:Y9vgyHmAmrWRVedpJHSBGIfk3YNsrFK5+wBFXfwv6aGHi7c4ewIDiKQ5x1EvByWAhz6X7sXZ4tbD7y1lrZk+f/M=,iv:11sUP4DkHiUel535vnGFFT/EJQVSOMSfQKMkRh5BBug=,tag:3y2MeC8ChKsfZ0rA8c5PqQ==,type:str]
         access_key_id: ENC[AES256_GCM,data:zhe6AX41/nsWpLxOYMT7aCw2q41ITjQqGMgteGZmqew=,iv:5HRMQFrX/PDZuTXI0bWHdboOs+3PBaR4uTEpkMxRAvk=,tag:k4m0uloihdxo3UsEcYxKPw==,type:str]
@@ -95,8 +95,8 @@ sops:
             Wmf9jaBQdgm/dLcghyB7mp4gpPvd/d9A7IYRWrH0rY2Cp/Ng2u/GvA==
             -----END AGE ENCRYPTED FILE-----
           recipient: age1v3rwucwe2luzsp2uv834gt9tktf95qcvw78fsg6t2k2fq07z8eas83rz5l
-    lastmodified: "2026-07-08T11:56:31Z"
-    mac: ENC[AES256_GCM,data:D1Rbla06CeyITVsvzfj932yGdNB0MLx1iUBU9bg4nWE8+xiVV3WBqh0o01SedVrtPaFtOGDCpQjROMBNYDzlW4mxFtLvLY1Oa14yypwXICk1X113Ao+j/SUcro0VrY/f0bYEcNBIZ9C9I0An16GqaYZuaktsOvC9cOaOlDrERPg=,iv:us/W+Q2o+d8sbpmoC5i+iWJtz2KL3NqSRBxDRlZqdJc=,tag:Olj8LqxJ75k+9Tl0bCOZuw==,type:str]
+    lastmodified: "2026-07-08T17:35:46Z"
+    mac: ENC[AES256_GCM,data:IlgeATBq6nzMnKgHF8Wgkgba5v640QyEpsz3mbyx8LwYGaq++nhy8/ehlx8GmKTE/CUb/71L918X3IId/0l7OEHztlxiDjQeiSJmGZhwOtyiLQhGD6WMXCfg84GuqibsSKk8qoRI12n0fCn9Neoj0xqQMsck0piFfZs/xenMlsk=,iv:Je3/8q/fsQ8nTx5ok3/l4n2gIZB04LfXA263qOj1rnY=,tag:dwsoQky55iCyUbbOcpeazA==,type:str]
     pgp:
         - created_at: "2026-07-08T04:10:08Z"
           enc: |-
