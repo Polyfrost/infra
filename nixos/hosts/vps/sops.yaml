@@ -8,14 +8,14 @@ grafana:
 hydra:
     github_webhook_secret: ENC[AES256_GCM,data:3QCc7fpx0XpMG1BB+x1BIHghH1w7moF1x/LolAx9Imt0HHHJuiIVS/VZknN0tljpYfzlzk4DoZKznN6BD6R6HQ==,iv:elAu+/LO+NNoc3Paf6P405FgHHX3Am/CFkeY59CojHg=,tag:6jcjXzf2dWwBw3gMWRwjpQ==,type:str]
 plus-staging:
-    admin_password: ENC[AES256_GCM,data:UFEEIQjnoPxqp7FPU3wM+OCKD8Y=,iv:kFOLu1y0XaqozV6tM6ycdnDuQi+4jVb25csaoqPc5YU=,tag:K0AjyeF3gauHr4H5sJ7XUA==,type:str]
+    admin_password: ENC[AES256_GCM,data:F/y6ZUc6lEnO+ULIiw2i/iwytR0=,iv:iXJi+1XzlzAppfA2oFcESZsspN0l1I6InrptIW5nlnk=,tag:Kw0fTzdS8rtsdXU6gAncIg==,type:str]
     stripe:
-        secret: ENC[AES256_GCM,data:JIyz23k1xEVgV7VEdB1DRl/KSotxolP3km4fQ6oDs3ax+oSB9iC5NT+LBAqpqlxYKUSL/Deo+nrwC9vrO/5Vp1aXnYOXKf6ENDXJ9O0griZ6rQ8O1Wh4qlvYoNylEHGSLPynf6xSJEt7Q2U=,iv:Lwsi/cjWaih1bL+YWn3JYvq2A//7Tn+Bo2gD9aPzTxs=,tag:P3EJjC6VSYpZr2GkB/cPCw==,type:str]
-        webhook_secret: ENC[AES256_GCM,data:HcBgWTu/ojH1SaY7CzNFfzjYTo4MdrnAXt8yQFDR91cBFwcbQyo=,iv:CoqEtk1No1VYKiJItuVDTjzrUYmnRuhyN/cgifjrIU4=,tag:hdVw2CfF8uDGqqgfToqKiQ==,type:str]
+        secret: ENC[AES256_GCM,data:dxAovUiXV0W3uqzXq/1s/3zkyFU5WS0njkXkAtaO32tBz37M4uiqUqXq0unwQ1eJpunCduMbb3om/iat8xZJhFFRlpz/nBPNSqg+PnqE3e2UXxjzdcuJPKAGa8RkEouQloQs4TLNhWWxaRM=,iv:egL2JreZ1jpIqJNVYYYkGWkQm2We3X5XKJwczdcw3Ww=,tag:n5GKtkFDTXQW+JDj8RtmNw==,type:str]
+        webhook_secret: ENC[AES256_GCM,data:JtsZDww2Gz0YjwJ0GtjnR8D+t/rnZCyrsSdBYlDBho49odFb5pw=,iv:vmPjarvxuHLKCcqMovetl3dpca5aHlHcxTB2RpPYRJA=,tag:LCs538dwYAhj73iqF8yi2Q==,type:str]
     s3:
-        endpoint: ENC[AES256_GCM,data:LzwgPluKMq4yU9j9EhXubH0Bop6zVkV1NXhmeDWgiHBJS0Jw5TnSfjsVkKeALhLVpprp9p/S6ZU1KPk+wKBNzcI=,iv:rEF76vPovoHkGya8kVSecN7SP1R0atu24wRpBDxRM90=,tag:m/tExJpxknIqdvJ4zPjV+w==,type:str]
-        access_key_id: ENC[AES256_GCM,data:keoEksTT7gT3XCU3SYIT8Xv1iW/RddWQrsGCE2h4z1s=,iv:N9uWfpjpOD0meERSv8Tc/NLopLRu8rVWEM3F4tWBWac=,tag:npdJtE2CIcR3lGdG+RNdcQ==,type:str]
-        access_key_secret: ENC[AES256_GCM,data:nQyJ9r+nNMMeGTSvTI1zVU52CApu2jX1XlfRxalxq1Osm/r00fXEb2OjTDzOl1CKeeiklkJ/EtdU6rOxdz9TXQ==,iv:qOPxyJq5XhPPBF3waWqAc6a6mgC9cIzLlxSD03vxwKM=,tag:l3kekZkAkDB7LiSDS9ZIGQ==,type:str]
+        endpoint: ENC[AES256_GCM,data:YHJdDreoyz2MAENj/dRGVDfGPFU482Z5UxguE3tiLxyegICvFmXH8LhJzvWnW+vdq0rpN8W7VX08AW7e6zeXQPc=,iv:lng4jHVxEjH2D58Vda2511y+EKlq5oz/dsR2HEbMXC8=,tag:W30TlXlSBZzBjM2Afs9XWw==,type:str]
+        access_key_id: ENC[AES256_GCM,data:9rN42tJqpH/ymZuFXPoVHhms0b8xqfTbs4AkMfi2iuc=,iv:eOnh+0fg2kBnThRo1BBLb7n/FoBl3aDf/MVmBiWUxR8=,tag:8AhKVHz+dcWlKDT9+vHRgA==,type:str]
+        access_key_secret: ENC[AES256_GCM,data:PMaECD2FQ2PXkR8g4kNwdJtEpzquZc7y6rMZNTf2Th9oiSiIKsxO/+ZG/dZA5yxPfhnNGpDQdzxwd230hI8X3w==,iv:Vg5gLeOn9whwO2ERhYsT5nNDyG13eZAqmh0Rj/797Ss=,tag:R2A0oljFyj6vGmWommoIQQ==,type:str]
 plus:
     admin_password: ENC[AES256_GCM,data:DrZaI6Bt5NvgCsDWxqywTCp5Jvs=,iv:+O/yVRoitArcsK4fm0pOMqvXI0a2rXOHo3ztel5Fw8A=,tag:Hg5zqUkI4tl1nwP6EiKDrg==,type:str]
     stripe:
@@ -95,8 +95,8 @@ sops:
             Wmf9jaBQdgm/dLcghyB7mp4gpPvd/d9A7IYRWrH0rY2Cp/Ng2u/GvA==
             -----END AGE ENCRYPTED FILE-----
           recipient: age1v3rwucwe2luzsp2uv834gt9tktf95qcvw78fsg6t2k2fq07z8eas83rz5l
-    lastmodified: "2026-07-08T10:56:01Z"
-    mac: ENC[AES256_GCM,data:DjbBPq1Ul0Xzvjq4OsFrivIT1+qsRCwoRcSsCeXSzu/787cets0zYpnNu2w3wdSP4ROYT6hgCTqkdTr2kK0Jxgt/8v1pA5DB++daKBy4YePKkiqbM6s85mqLZIxhMUHAvLcGfp0o0Icm+im28FAA7j1UTWGh3PXNJ5mLJZ4ykbo=,iv:S7MvC3fKtDHlNeJNDhIS60iw0qvREEHA1l2Fpoqw5Pk=,tag:4mwYLYPzLz8tO/jNqtaGWA==,type:str]
+    lastmodified: "2026-07-08T11:56:31Z"
+    mac: ENC[AES256_GCM,data:D1Rbla06CeyITVsvzfj932yGdNB0MLx1iUBU9bg4nWE8+xiVV3WBqh0o01SedVrtPaFtOGDCpQjROMBNYDzlW4mxFtLvLY1Oa14yypwXICk1X113Ao+j/SUcro0VrY/f0bYEcNBIZ9C9I0An16GqaYZuaktsOvC9cOaOlDrERPg=,iv:us/W+Q2o+d8sbpmoC5i+iWJtz2KL3NqSRBxDRlZqdJc=,tag:Olj8LqxJ75k+9Tl0bCOZuw==,type:str]
     pgp:
         - created_at: "2026-07-08T04:10:08Z"
           enc: |-
