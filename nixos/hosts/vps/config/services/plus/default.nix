@@ -2,14 +2,14 @@
 let
     instances = {
         # Production instance
-        "plus" = {
-            db = "plus";
-            s3Bucket = "plus";
+        # "plus" = {
+        #     db = "plus";
+        #     s3Bucket = "plus";
 
-            stripePublic = "pk_live_51TDj2HCtMbq6LoswkfDJtjyt5Wpd9suZP5Q4ThWea0DorKlWQHX0xMxz9T0HMz6N21KJfQleOjVvFa37QQk1Eynq00pHdnPHHa";
-            stripeSuccessUrl = "https://polyfrost.org/success_stub";
-            stripeCancelUrl = "https://polyfrost.org/cancel_stub";
-        };
+        #     stripePublic = "pk_live_51TDj2HCtMbq6LoswkfDJtjyt5Wpd9suZP5Q4ThWea0DorKlWQHX0xMxz9T0HMz6N21KJfQleOjVvFa37QQk1Eynq00pHdnPHHa";
+        #     stripeSuccessUrl = "https://polyfrost.org/success_stub";
+        #     stripeCancelUrl = "https://polyfrost.org/cancel_stub";
+        # };
 
         # Staging instance
         "plus_staging" = {
