@@ -12,9 +12,9 @@ let
         # };
 
         # Staging instance
-        "plus_staging" = {
-            db = "plus_staging";
-            s3Bucket = "plus_staging";
+        "plus-staging" = {
+            db = "plus-staging";
+            s3Bucket = "plus-staging";
 
             # Staging uses Stripe sandbox keys
             stripePublic = "pk_test_51To9giE04pyRM44VoanYF3t5LDlrdtxtwHLXTQaxePn7IGmCmUftMIcUCVSoxUn8mxsozpsac8CLCY7WhVf2KbjQ00P45ey2OV";

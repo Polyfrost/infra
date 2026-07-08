@@ -11,7 +11,7 @@ let
         "forgejo" = ips.v6.containers.forgejo;
         "dex" = ips.v6.containers.dex;
         "plus" = ips.v6.containers.plus;
-        "plus_staging" = ips.v6.containers."plus_staging";
+        "plus-staging" = ips.v6.containers."plus-staging";
         "hydra" = ips.v6.host;
     };
     mkAuthEntry =
