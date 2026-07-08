@@ -17,7 +17,7 @@
             "forgejo" # unused
             "dex" # unused
             "plus"
-            "plus-staging"
+            "plus_staging"
         ];
 
         v4.cidr = "172.25.0.0/24";

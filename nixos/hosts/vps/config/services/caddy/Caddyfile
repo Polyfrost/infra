@@ -128,7 +128,7 @@ https://*.polyfrost.org {
 	#@forgejo host git.polyfrost.org
 	#@dex host dex.polyfrost.org
 	@plus host plus.polyfrost.org
-	@plus-staging host plus-staging.polyfrost.org
+	@plus_staging host plus-staging.polyfrost.org
 	@plus-admin host plus-admin.polyfrost.org
 	@plus-admin-staging host plus-admin-staging.polyfrost.org
 	@hydra host hydra.polyfrost.org
@@ -161,8 +161,8 @@ https://*.polyfrost.org {
 		}
 	}
 
-	handle @plus-staging {
-		reverse_proxy plus-staging.containers:8080 {
+	handle @plus_staging {
+		reverse_proxy plus_staging.containers:8080 {
 			header_up X-Real-IP {client_ip}
 		}
 	}
