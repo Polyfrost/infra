@@ -30,12 +30,21 @@
             "tailscale/oauth_key" = { };
             "tailscale/testing_oauth_key" = { };
 
+            # Plus Prod
             "plus/admin_password" = { };
             "plus/stripe/secret" = { };
             "plus/stripe/webhook_secret" = { };
             "plus/s3/endpoint" = { };
             "plus/s3/access_key_id" = { };
             "plus/s3/access_key_secret" = { };
+
+            # Plus Staging
+            "plus_staging/admin_password" = { };
+            "plus_staging/stripe/secret" = { };
+            "plus_staging/stripe/webhook_secret" = { };
+            "plus_staging/s3/endpoint" = { };
+            "plus_staging/s3/access_key_id" = { };
+            "plus_staging/s3/access_key_secret" = { };
 
             "grafana/secret_key" = { };
             "grafana/smtp/address" = { };

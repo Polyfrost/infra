@@ -7,15 +7,20 @@ grafana:
         password: ENC[AES256_GCM,data:D64ySMJGJqIZEALN5m3iK0StnOM2MkU1pkAPTz3cs1BytCfdPtfJbtJgWBkBw3ruLSK9L1ayhKp5JxvbkvYYcA==,iv:lSvcWRFjcGByOzlcmj6rTcHbxV1GYHvQdNZIVnlR+KQ=,tag:oEahSDdYQxCwOzj36aoWew==,type:str]
 hydra:
     github_webhook_secret: ENC[AES256_GCM,data:3QCc7fpx0XpMG1BB+x1BIHghH1w7moF1x/LolAx9Imt0HHHJuiIVS/VZknN0tljpYfzlzk4DoZKznN6BD6R6HQ==,iv:elAu+/LO+NNoc3Paf6P405FgHHX3Am/CFkeY59CojHg=,tag:6jcjXzf2dWwBw3gMWRwjpQ==,type:str]
+plus_staging:
+    admin_password: ENC[AES256_GCM,data:UFEEIQjnoPxqp7FPU3wM+OCKD8Y=,iv:kFOLu1y0XaqozV6tM6ycdnDuQi+4jVb25csaoqPc5YU=,tag:K0AjyeF3gauHr4H5sJ7XUA==,type:str]
+    stripe:
+        secret: ENC[AES256_GCM,data:JIyz23k1xEVgV7VEdB1DRl/KSotxolP3km4fQ6oDs3ax+oSB9iC5NT+LBAqpqlxYKUSL/Deo+nrwC9vrO/5Vp1aXnYOXKf6ENDXJ9O0griZ6rQ8O1Wh4qlvYoNylEHGSLPynf6xSJEt7Q2U=,iv:Lwsi/cjWaih1bL+YWn3JYvq2A//7Tn+Bo2gD9aPzTxs=,tag:P3EJjC6VSYpZr2GkB/cPCw==,type:str]
+        webhook_secret: ENC[AES256_GCM,data:HcBgWTu/ojH1SaY7CzNFfzjYTo4MdrnAXt8yQFDR91cBFwcbQyo=,iv:CoqEtk1No1VYKiJItuVDTjzrUYmnRuhyN/cgifjrIU4=,tag:hdVw2CfF8uDGqqgfToqKiQ==,type:str]
+    s3:
+        endpoint: ENC[AES256_GCM,data:LzwgPluKMq4yU9j9EhXubH0Bop6zVkV1NXhmeDWgiHBJS0Jw5TnSfjsVkKeALhLVpprp9p/S6ZU1KPk+wKBNzcI=,iv:rEF76vPovoHkGya8kVSecN7SP1R0atu24wRpBDxRM90=,tag:m/tExJpxknIqdvJ4zPjV+w==,type:str]
+        access_key_id: ENC[AES256_GCM,data:keoEksTT7gT3XCU3SYIT8Xv1iW/RddWQrsGCE2h4z1s=,iv:N9uWfpjpOD0meERSv8Tc/NLopLRu8rVWEM3F4tWBWac=,tag:npdJtE2CIcR3lGdG+RNdcQ==,type:str]
+        access_key_secret: ENC[AES256_GCM,data:nQyJ9r+nNMMeGTSvTI1zVU52CApu2jX1XlfRxalxq1Osm/r00fXEb2OjTDzOl1CKeeiklkJ/EtdU6rOxdz9TXQ==,iv:qOPxyJq5XhPPBF3waWqAc6a6mgC9cIzLlxSD03vxwKM=,tag:l3kekZkAkDB7LiSDS9ZIGQ==,type:str]
 plus:
     admin_password: ENC[AES256_GCM,data:DrZaI6Bt5NvgCsDWxqywTCp5Jvs=,iv:+O/yVRoitArcsK4fm0pOMqvXI0a2rXOHo3ztel5Fw8A=,tag:Hg5zqUkI4tl1nwP6EiKDrg==,type:str]
     stripe:
-        #ENC[AES256_GCM,data:MJSTaTibX2A=,iv:f9boGwJFzL0/H+E+JUNX/RuracHdsMuWx/mpI4AAj7c=,tag:gpx0R9WMo3t3pt3cODK1DA==,type:comment]
-        secret: ENC[AES256_GCM,data:CyF/5UVH67nhc8+OTmin6+CmJyfT8RWcGIzGcDHV8+r08dtxLQ/kDQ2g8+h+aT/NsocFD/0OWVMdYun1yTafBkdjL/bIqDyCv/Lhx6A5yefBypVPKBuo2l4ythn24CT9iqD6R47u8TX2uVM=,iv:N/gwMTg5CEa8ypSgSxQgoCxNEY3sV71gdEX4LNli4Jk=,tag:NyyxxpVs4cSH0mAb+b2sRA==,type:str]
-        webhook_secret: ENC[AES256_GCM,data:lAXeXu7lc96BdfG0VijS7FRnbQhZeZEqmqzIq9oG/rfiO694/1c=,iv:7st6xBOHxGWbOf7GLnrd0l1RkmfAVEIH4hO2SUMiA6w=,tag:ardIqZTVuZwmeDh6T+0+jg==,type:str]
-        #ENC[AES256_GCM,data:9bHT+4I=,iv:BcUc450CF4lze1+OQMTB2k/ZDNjTcLvyo0BpP39HR/8=,tag:V7pV5i9Ox5kOn63imo9zbg==,type:comment]
-        #ENC[AES256_GCM,data:3lZc0Q1c/00trd0=,iv:ZrtVI15OOyeJho7niEYsrRMVoIyE5BASk50lP5RByHw=,tag:5TTZXzuQyeDWufeBBGoBJA==,type:comment]
-        #ENC[AES256_GCM,data:GADvZBntzqwM3Zbnn12RVYmlKA==,iv:rVGMF/4AeIWjAGlcvzzjfHBBCA5XS89qVmw6Ap5v0Ns=,tag:MSEJxbntjw1XTh2kjQudiQ==,type:comment]
+        secret: ""
+        webhook_secret: ""
     s3:
         endpoint: ENC[AES256_GCM,data:Y9vgyHmAmrWRVedpJHSBGIfk3YNsrFK5+wBFXfwv6aGHi7c4ewIDiKQ5x1EvByWAhz6X7sXZ4tbD7y1lrZk+f/M=,iv:11sUP4DkHiUel535vnGFFT/EJQVSOMSfQKMkRh5BBug=,tag:3y2MeC8ChKsfZ0rA8c5PqQ==,type:str]
         access_key_id: ENC[AES256_GCM,data:zhe6AX41/nsWpLxOYMT7aCw2q41ITjQqGMgteGZmqew=,iv:5HRMQFrX/PDZuTXI0bWHdboOs+3PBaR4uTEpkMxRAvk=,tag:k4m0uloihdxo3UsEcYxKPw==,type:str]
@@ -90,8 +95,8 @@ sops:
             Wmf9jaBQdgm/dLcghyB7mp4gpPvd/d9A7IYRWrH0rY2Cp/Ng2u/GvA==
             -----END AGE ENCRYPTED FILE-----
           recipient: age1v3rwucwe2luzsp2uv834gt9tktf95qcvw78fsg6t2k2fq07z8eas83rz5l
-    lastmodified: "2026-07-08T10:30:31Z"
-    mac: ENC[AES256_GCM,data:3jD6CmsOl+xfxCRLa6gAkRIoWq0r1agHQ/cN4X7aD8ARHhy7wrEV2GZ6bhOude4/sWy1PaTCJBYo1i8LXCwN0n+SMoRtZHuozRHlqMcjyr7M4ynL02I2zCF2524FoxQ0nppGhpyPC8ZnVGAKGu/xQvBhquOodfPHtLxZfCYeUhM=,iv:SKsLuU5LWoaf2/lrGHWoA3Ez9bzGkqLM/qIjns8rCFs=,tag:9BWHj5DPYKMbfXTyD+tnIg==,type:str]
+    lastmodified: "2026-07-08T10:56:01Z"
+    mac: ENC[AES256_GCM,data:DjbBPq1Ul0Xzvjq4OsFrivIT1+qsRCwoRcSsCeXSzu/787cets0zYpnNu2w3wdSP4ROYT6hgCTqkdTr2kK0Jxgt/8v1pA5DB++daKBy4YePKkiqbM6s85mqLZIxhMUHAvLcGfp0o0Icm+im28FAA7j1UTWGh3PXNJ5mLJZ4ykbo=,iv:S7MvC3fKtDHlNeJNDhIS60iw0qvREEHA1l2Fpoqw5Pk=,tag:4mwYLYPzLz8tO/jNqtaGWA==,type:str]
     pgp:
         - created_at: "2026-07-08T04:10:08Z"
           enc: |-
