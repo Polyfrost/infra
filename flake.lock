@@ -422,11 +422,11 @@
         "nixos-unstable": "nixos-unstable"
       },
       "locked": {
-        "lastModified": 1782988183,
-        "narHash": "sha256-jDPW1HqcKfvJVDdRiahQjtBAFJnV0Qh+bmbkf8VM+kU=",
+        "lastModified": 1783593136,
+        "narHash": "sha256-zy5an02BdZ65OgVKdRkz2TpbdBrsW+uQD7AA2wLuiTM=",
         "owner": "nix-community",
         "repo": "nixos-images",
-        "rev": "342de1c65c2a1585e6f03676111963174386c9cf",
+        "rev": "803f28511c7d5f39f2537c342122fd94b8e1d519",
         "type": "github"
       },
       "original": {
@@ -437,10 +437,10 @@
     },
     "nixos-stable": {
       "locked": {
-        "lastModified": 1782847225,
-        "narHash": "sha256-JC9PjqKYG9ve5U8aDOLQipp3+KLANBHUvGdLZlxzdKI=",
+        "lastModified": 1783389287,
+        "narHash": "sha256-0xIy4dVLqq47rA+mRy0hXDfjhQd4E5PoIns/RmB7nR4=",
         "ref": "nixos-26.05",
-        "rev": "95ca1e203c0750115fd4a6f17d5a245dfe6b1edd",
+        "rev": "0ad6f47ea4fe188f4bc8f0380f93ae8523337c6c",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/NixOS/nixpkgs"
@@ -606,11 +606,11 @@
         "treefmt-nix": "treefmt-nix_4"
       },
       "locked": {
-        "lastModified": 1783283224,
-        "narHash": "sha256-qwjS1RydiVWuOEcQEQU84aAmj9X4mjGlCWXtsRALhhQ=",
+        "lastModified": 1783613217,
+        "narHash": "sha256-wXzFlqBTWiEAUsUjBkE9CuGbqCyGr1JKpCwhU5ecVik=",
         "owner": "Polyfrost",
         "repo": "plus-backend",
-        "rev": "b972c5c2e9fae42afc75260fbf85e70d8f0f8993",
+        "rev": "1a686e2bc88ba258e8ddc98f8b3cfa21a37b294f",
         "type": "github"
       },
       "original": {
