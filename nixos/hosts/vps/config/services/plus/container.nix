@@ -47,7 +47,7 @@
         };
     };
 
-    systemd.service.plus-render = {
+    systemd.services.plus-render = {
         wantedBy = [ "multi-user.target" ];
         before = [ "plus.service" ];
 
