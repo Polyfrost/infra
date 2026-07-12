@@ -6,6 +6,8 @@ let
             db = "plus";
             s3Bucket = "plus";
 
+            flakeInput = "plus";
+
             stripePublic = "pk_live_51TDj2HCtMbq6LoswkfDJtjyt5Wpd9suZP5Q4ThWea0DorKlWQHX0xMxz9T0HMz6N21KJfQleOjVvFa37QQk1Eynq00pHdnPHHa";
             stripeSuccessUrl = "https://polyfrost.org/success_stub";
             stripeCancelUrl = "https://polyfrost.org/cancel_stub";
@@ -15,6 +17,8 @@ let
         "plus-staging" = {
             db = "plus-staging";
             s3Bucket = "plus-staging";
+
+            flakeInput = "plus-staging";
 
             # Staging uses Stripe sandbox keys
             stripePublic = "pk_test_51To9giE04pyRM44VoanYF3t5LDlrdtxtwHLXTQaxePn7IGmCmUftMIcUCVSoxUn8mxsozpsac8CLCY7WhVf2KbjQ00P45ey2OV";

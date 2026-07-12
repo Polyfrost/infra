@@ -58,7 +58,10 @@
                 flake-utils.follows = "flake-utils";
             };
         };
-        plus.url = "github:Polyfrost/plus-backend";
+        # Production tracks a pinned release tag. Bump this tag manually
+        plus.url = "github:Polyfrost/plus-backend/v1.0.0";
+        # Staging tracks HEAD.
+        plus-staging.url = "github:Polyfrost/plus-backend";
         ursa-minor = {
             # url = "github:NotEnoughUpdates/ursa-minor";
             url = "github:Polyfrost/ursa-minor"; # Fork w/ prometheus metrics support

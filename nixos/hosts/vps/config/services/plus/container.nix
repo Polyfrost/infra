@@ -10,6 +10,13 @@
     systemd.services.plus = {
         wantedBy = [ "multi-user.target" ];
 
+        # Wait for eth0 to get its global address before connecting to postgres
+        after = [ "network-online.target" ];
+        wants = [ "network-online.target" ];
+
+        # Retry with backoff instead of giving up on a transient DB failure.
+        startLimitIntervalSec = 0;
+
         environment = {
             BIND_ADDR = "[::]:8080";
             CLIENT_IP_SOURCE = "XRealIp";
@@ -31,7 +38,10 @@
             Group = "plus";
             DynamicUser = true;
 
-            ExecStart = [ "${lib.getExe inputs.plus.packages.${system}.default} serve" ];
+            Restart = "on-failure";
+            RestartSec = "5s";
+
+            ExecStart = [ "${lib.getExe inputs.${plusInstance.flakeInput}.packages.${system}.default} serve" ];
         };
     };
 }
