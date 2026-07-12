@@ -68,7 +68,7 @@
             RuntimeDirectory = "plus-render";
 
             ExecStart = [ "${lib.getExe inputs.${plusInstance.flakeInput}.packages.${system}.render-service}" ];
-        }
+        };
 
     }
 }
