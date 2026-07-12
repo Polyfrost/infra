@@ -29,6 +29,8 @@
             S3_BUCKET_NAME = plusInstance.s3Bucket;
             S3_BUCKET_REGION = "auto";
             RUST_LOG = "debug,sea_orm=debug,sqlx=warn";
+
+            RENDER_SERVICE_URL = "http://127.0.0.1:8090";
         };
 
         serviceConfig = {
@@ -44,4 +46,29 @@
             ExecStart = [ "${lib.getExe inputs.${plusInstance.flakeInput}.packages.${system}.default} serve" ];
         };
     };
+
+    systemd.service.plus-render = {
+        wantedBy = [ "multi-user.target" ];
+        before = [ "plus.service" ];
+
+        environment = {
+            PORT = "8090";
+            # for chromium
+            HOME = "%t/plus-render";
+        };
+
+        serviceConfig = {
+            User = "plus";
+            Group = "plus";
+            DynamicUser = true;
+
+            Restart = "on-failure";
+            RestartSec = "5s";
+
+            RuntimeDirectory = "plus-render";
+
+            ExecStart = [ "${lib.getExe inputs.${plusInstance.flakeInput}.packages.${system}.render-service}" ];
+        }
+
+    }
 }
