@@ -18,6 +18,8 @@
             "dex" # unused
             "plus"
             "plus-staging"
+            "plus-website"
+            "plus-website-staging"
         ];
 
         v4.cidr = "172.25.0.0/24";

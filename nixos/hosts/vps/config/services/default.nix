@@ -8,6 +8,7 @@
         ./hydra
         ./monitoring
         ./plus
+        ./plus-website
         ./polyhelper
         ./postgres
         ./reposilite

@@ -78,6 +78,21 @@
                 flake-utils.follows = "flake-utils";
             };
         };
+        # The store frontend. Tracks HEAD for now
+        plus-website = {
+            url = "github:Polyfrost/plus-website/v1.0.0";
+            inputs = {
+                nixpkgs.follows = "nixpkgs";
+                flake-utils.follows = "flake-utils";
+            };
+        };
+        plus-website-staging = {
+            url = "github:Polyfrost/plus-website";
+            inputs = {
+                nixpkgs.follows = "nixpkgs";
+                flake-utils.follows = "flake-utils";
+            };
+        };
         plus-admin-dashboard.url = "github:Polyfrost/plus-admin-dashboard";
     };
 

@@ -710,6 +710,52 @@
         "type": "github"
       }
     },
+    "plus-website": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784234831,
+        "narHash": "sha256-cpwkAwAIFRag0rTnGGs8OX1AI8HaoAIkMM2V4JM3t2o=",
+        "owner": "Polyfrost",
+        "repo": "plus-website",
+        "rev": "0cb4eb0eec77e395d82e47b53dea2d6b7d03ba23",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Polyfrost",
+        "repo": "plus-website",
+        "type": "github"
+      }
+    },
+    "plus-website-staging": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784234831,
+        "narHash": "sha256-cpwkAwAIFRag0rTnGGs8OX1AI8HaoAIkMM2V4JM3t2o=",
+        "owner": "Polyfrost",
+        "repo": "plus-website",
+        "rev": "0cb4eb0eec77e395d82e47b53dea2d6b7d03ba23",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Polyfrost",
+        "repo": "plus-website",
+        "type": "github"
+      }
+    },
     "pnpm2nix": {
       "inputs": {
         "flake-utils": [
@@ -752,6 +798,8 @@
         "plus": "plus",
         "plus-admin-dashboard": "plus-admin-dashboard",
         "plus-staging": "plus-staging",
+        "plus-website": "plus-website",
+        "plus-website-staging": "plus-website-staging",
         "sops-nix": "sops-nix",
         "treefmt-nix": "treefmt-nix_6",
         "ursa-minor": "ursa-minor",

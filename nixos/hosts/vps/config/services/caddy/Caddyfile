@@ -131,6 +131,8 @@ https://*.polyfrost.org {
 	@plus-staging host plus-staging.polyfrost.org
 	@plus-admin host plus-admin.polyfrost.org
 	@plus-admin-staging host plus-admin-staging.polyfrost.org
+	@store host store.polyfrost.org
+	@store-staging host store-staging.polyfrost.org
 	@hydra host hydra.polyfrost.org
 
 	# Handle all other containers
@@ -179,8 +181,16 @@ https://*.polyfrost.org {
 		}
 	}
 
+	handle @store {
+		reverse_proxy plus-website.containers:8080
+	}
+
+	handle @store-staging {
+		reverse_proxy plus-website-staging.containers:8080
+	}
+
 	handle @hydra {
-	    reverse_proxy host.containers:3000
+		reverse_proxy host.containers:3000
 	}
 
 	# Handle all unmatched requests as a 404
