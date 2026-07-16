@@ -11,6 +11,12 @@ let
             stripePublic = "pk_live_51TDj2HCtMbq6LoswkfDJtjyt5Wpd9suZP5Q4ThWea0DorKlWQHX0xMxz9T0HMz6N21KJfQleOjVvFa37QQk1Eynq00pHdnPHHa";
             stripeSuccessUrl = "https://polyfrost.org/success_stub";
             stripeCancelUrl = "https://polyfrost.org/cancel_stub";
+
+            corsOrigins = builtins.concatStringsSep "," [
+                "https://plus-admin.polyfrost.org"
+                "http://localhost:3000"
+                "https://store.polyfrost.org"
+            ];
         };
 
         # Staging instance
@@ -24,6 +30,12 @@ let
             stripePublic = "pk_test_51To9giE04pyRM44VoanYF3t5LDlrdtxtwHLXTQaxePn7IGmCmUftMIcUCVSoxUn8mxsozpsac8CLCY7WhVf2KbjQ00P45ey2OV";
             stripeSuccessUrl = "https://staging.polyfrost.org/success_stub";
             stripeCancelUrl = "https://staging.polyfrost.org/cancel_stub";
+
+            corsOrigins = builtins.concatStringsSep "," [
+                "https://plus-admin-staging.polyfrost.org"
+                "http://localhost:3000"
+                "https://store-staging.polyfrost.org"
+            ];
         };
     };
 in

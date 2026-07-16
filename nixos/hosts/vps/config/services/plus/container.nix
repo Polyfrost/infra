@@ -31,6 +31,7 @@
             RUST_LOG = "debug,sea_orm=debug,sqlx=warn";
 
             RENDER_SERVICE_URL = "http://127.0.0.1:8090";
+            CORS_ORIGINS = plusInstance.corsOrigins;
         };
 
         serviceConfig = {
