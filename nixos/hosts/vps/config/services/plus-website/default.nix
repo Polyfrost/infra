@@ -2,11 +2,11 @@
 let
     instances = {
         # Production instance
-        # "plus-website" = {
-        #     flakeInput = "plus-website";
+        "plus-website" = {
+            flakeInput = "plus-website";
 
-        #     backendUrl = "https://plus.polyfrost.org";
-        # };
+            backendUrl = "https://plus.polyfrost.org";
+        };
 
         # Staging instance, pointed at the staging backend
         "plus-website-staging" = {
