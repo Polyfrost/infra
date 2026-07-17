@@ -59,7 +59,7 @@
             };
         };
         # Production tracks a pinned release tag. Bump this tag manually
-        plus.url = "github:Polyfrost/plus-backend/v1.0.4";
+        plus.url = "github:Polyfrost/plus-backend/v1.0.5";
         # Staging tracks HEAD.
         plus-staging.url = "github:Polyfrost/plus-backend";
         ursa-minor = {
@@ -80,7 +80,7 @@
         };
         # The store frontend. Pinned to a release tag; staging tracks HEAD.
         plus-website = {
-            url = "github:Polyfrost/plus-website/v1.0.1";
+            url = "github:Polyfrost/plus-website/v1.1.0";
             inputs = {
                 nixpkgs.follows = "nixpkgs";
                 flake-utils.follows = "flake-utils";
