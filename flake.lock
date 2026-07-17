@@ -744,11 +744,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784263638,
-        "narHash": "sha256-ra462Pdl/WhA+vdFwW4M7dcVelfVtOlXdt94ZUi0B7c=",
+        "lastModified": 1784264937,
+        "narHash": "sha256-0iDVkiGEL+qTdv5n7THpRkQBGTUsCY4PTnJ/Co4a9ao=",
         "owner": "Polyfrost",
         "repo": "plus-website",
-        "rev": "ee8f01b07620d5e40037ce8854a08c4a915a360f",
+        "rev": "7af585112301ffed14411ca19a0dec7e4def2e1d",
         "type": "github"
       },
       "original": {
