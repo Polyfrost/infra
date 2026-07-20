@@ -655,16 +655,16 @@
         "treefmt-nix": "treefmt-nix_4"
       },
       "locked": {
-        "lastModified": 1784314923,
-        "narHash": "sha256-xiVU5aSl4NPMl9+oHwmVEVY21iV4W5rH1ti2U/VNQYU=",
+        "lastModified": 1784536117,
+        "narHash": "sha256-3x+zvdkluN6N7KKsyv52RhvWZ7BEhl27jeNIdVJ7VsY=",
         "owner": "Polyfrost",
         "repo": "plus-backend",
-        "rev": "4e7359e01bf806043cfb852cfc471084da521c00",
+        "rev": "cd3de97945d99a72fa1cd3f445da675455c334f3",
         "type": "github"
       },
       "original": {
         "owner": "Polyfrost",
-        "ref": "v1.1.0",
+        "ref": "v1.1.1",
         "repo": "plus-backend",
         "type": "github"
       }
