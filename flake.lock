@@ -655,16 +655,16 @@
         "treefmt-nix": "treefmt-nix_4"
       },
       "locked": {
-        "lastModified": 1784583312,
-        "narHash": "sha256-PBmZ+5PDe47LuLnab2HQdC161g7VH0e3jOgar2/b/dY=",
+        "lastModified": 1784588766,
+        "narHash": "sha256-wv+sfhmoq3RyYXHy45KxrlCq25J6NumHHu+0xEx8REo=",
         "owner": "Polyfrost",
         "repo": "plus-backend",
-        "rev": "efc8c8fec78b5f3b324af0152c1c4d00ac79f3ef",
+        "rev": "c8d8ab355439d5c7c29f49a9f8cc5ce0530fbb40",
         "type": "github"
       },
       "original": {
         "owner": "Polyfrost",
-        "ref": "v1.1.2",
+        "ref": "v1.1.3",
         "repo": "plus-backend",
         "type": "github"
       }
@@ -697,11 +697,11 @@
         "treefmt-nix": "treefmt-nix_5"
       },
       "locked": {
-        "lastModified": 1784586289,
-        "narHash": "sha256-Ex6K0wpa9ODvTAz8/5FCIMkcYF39uFexXH9JnJ78M9M=",
+        "lastModified": 1784588766,
+        "narHash": "sha256-wv+sfhmoq3RyYXHy45KxrlCq25J6NumHHu+0xEx8REo=",
         "owner": "Polyfrost",
         "repo": "plus-backend",
-        "rev": "9cea57c3741aa6738203436a9dc4a93e38d32161",
+        "rev": "c8d8ab355439d5c7c29f49a9f8cc5ce0530fbb40",
         "type": "github"
       },
       "original": {
