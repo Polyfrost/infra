@@ -72,6 +72,13 @@
             };
         };
         website = {
+            url = "github:Polyfrost/website/release";
+            inputs = {
+                nixpkgs.follows = "nixpkgs";
+                flake-utils.follows = "flake-utils";
+            };
+        };
+        website-redesign = {
             url = "github:Polyfrost/website?ref=website/redesign";
             inputs = {
                 nixpkgs.follows = "nixpkgs";

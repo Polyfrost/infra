@@ -20,6 +20,7 @@
             "plus-staging"
             "plus-website"
             "plus-website-staging"
+            "website-redesign"
         ];
 
         v4.cidr = "172.25.0.0/24";

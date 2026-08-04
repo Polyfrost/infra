@@ -2,10 +2,11 @@
     lib,
     inputs,
     system,
+    websiteInstance,
     ...
 }:
 {
-    systemd.services.polyfrost-website = {
+    systemd.services.${websiteInstance.serviceName} = {
         wantedBy = [ "multi-user.target" ];
 
         environment = {
@@ -14,9 +15,9 @@
         };
 
         serviceConfig = {
-            ExecStart = lib.getExe inputs.website.packages.${system}.website;
+            ExecStart = lib.getExe inputs.${websiteInstance.flakeInput}.packages.${system}.website;
 
-            EnvironmentFile = [ "/run/host/credentials/website.secrets.env" ];
+            EnvironmentFile = [ "/run/host/credentials/${websiteInstance.credential}" ];
         };
     };
 }

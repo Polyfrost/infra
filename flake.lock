@@ -782,6 +782,31 @@
         "type": "github"
       }
     },
+    "pnpm2nix_2": {
+      "inputs": {
+        "flake-utils": [
+          "website-redesign",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "website-redesign",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1749022118,
+        "narHash": "sha256-7Qzmy1snKbxFBKoqUrfyxxmEB8rPxDdV7PQwRiAR01o=",
+        "owner": "FliegendeWurst",
+        "repo": "pnpm2nix-nzbr",
+        "rev": "35f88a41d29839b3989f31871263451c8e092cb1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "FliegendeWurst",
+        "repo": "pnpm2nix-nzbr",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "backend": "backend",
@@ -804,7 +829,8 @@
         "sops-nix": "sops-nix",
         "treefmt-nix": "treefmt-nix_6",
         "ursa-minor": "ursa-minor",
-        "website": "website"
+        "website": "website",
+        "website-redesign": "website-redesign"
       }
     },
     "rust-overlay": {
@@ -1155,6 +1181,31 @@
           "nixpkgs"
         ],
         "pnpm2nix": "pnpm2nix"
+      },
+      "locked": {
+        "lastModified": 1784536024,
+        "narHash": "sha256-XHlV0kmoc45//xFCTSlMNCvMnZI29JDZGdFmx9a4Sgo=",
+        "owner": "Polyfrost",
+        "repo": "website",
+        "rev": "310c77e8ece5c36a34dfe9bb7814d73a7ccdde17",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Polyfrost",
+        "ref": "release",
+        "repo": "website",
+        "type": "github"
+      }
+    },
+    "website-redesign": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pnpm2nix": "pnpm2nix_2"
       },
       "locked": {
         "lastModified": 1785877502,

@@ -115,7 +115,34 @@ https://*.polyfrost.cc {
 https://polyfrost.org, https://www.polyfrost.org {
 	import prelude index
 
-	reverse_proxy website.containers:8080
+	# Both builds ship these, so the main site keeps them
+	@site-assets path /favicon.ico /favicon.svg /apple-touch-icon.png /android-chrome-*.png /site.webmanifest /safari-pinned-tab.svg /robots.txt
+
+	handle @site-assets {
+		reverse_proxy website.containers:8080
+	}
+
+	# Not a /projects/oneclient* wildcard, as /projects/oneclient/linux only exists on release
+	@redesign path /projects/oneclient /projects/oneclient/ /assets/* /_serverFn/*
+
+	handle @redesign {
+		log_append polyfrost_handler website-redesign
+
+		reverse_proxy website-redesign.containers:8080
+	}
+
+	# Anchored to a single path segment so it can't shadow the main site's /media/**.png
+	@redesign-public path_regexp ^/[^/]+\.(png|webmanifest)$
+
+	handle @redesign-public {
+		log_append polyfrost_handler website-redesign
+
+		reverse_proxy website-redesign.containers:8080
+	}
+
+	handle {
+		reverse_proxy website.containers:8080
+	}
 }
 
 https://*.polyfrost.org {
