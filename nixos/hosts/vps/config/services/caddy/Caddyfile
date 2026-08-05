@@ -132,7 +132,7 @@ https://polyfrost.org, https://www.polyfrost.org {
 	}
 
 	# Anchored to a single path segment so it can't shadow the main site's /media/**.png
-	@redesign-public path_regexp ^/[^/]+\.(png|webmanifest)$
+	@redesign-public path_regexp ^/[^/]+\.(png|webp|webmanifest)$
 
 	handle @redesign-public {
 		log_append polyfrost_handler website-redesign
