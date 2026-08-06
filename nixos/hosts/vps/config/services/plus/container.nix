@@ -42,6 +42,8 @@
             Group = "plus";
             DynamicUser = true;
 
+            LimitNOFILE = 65536;
+
             Restart = "on-failure";
             RestartSec = "5s";
 
