@@ -32,7 +32,8 @@
 
             RENDER_SERVICE_URL = "http://127.0.0.1:8090";
             CORS_ORIGINS = plusInstance.corsOrigins;
-        };
+        }
+        // (plusInstance.extraEnv or { });
 
         serviceConfig = {
             EnvironmentFile = "/run/host/credentials/${plusInstance.name}.secrets.env";

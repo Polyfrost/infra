@@ -36,6 +36,14 @@ let
                 "http://localhost:3000"
                 "https://store-staging.polyfrost.org"
             ];
+
+            extraEnv = {
+                OIDC_ISSUER = "https://plus-staging.polyfrost.org/";
+                SPECIAL_CHAT_TARGETS = builtins.concatStringsSep "," [
+                    "a5331404-0e77-440e-8bef-24c071dac1ae"
+                    "f247be7c-5b82-41c6-9148-793ded77e71f"
+                ];
+            };
         };
     };
 in
