@@ -61,7 +61,7 @@
         # Production tracks a pinned release tag. Bump this tag manually
         plus.url = "github:Polyfrost/plus-backend/v1.1.4";
         # Staging tracks the social system feature branch.
-        plus-staging.url = "github:Polyfrost/plus-backend?ref=feat/social-system";
+        plus-staging.url = "github:Polyfrost/plus-backend?ref=main";
         ursa-minor = {
             # url = "github:NotEnoughUpdates/ursa-minor";
             url = "github:Polyfrost/ursa-minor"; # Fork w/ prometheus metrics support
