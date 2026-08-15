@@ -77,6 +77,15 @@ deploy-vps ssh-host:
 test-vps:
     {{ nix }} run -L '.#nixosConfigurations.vps.config.system.build.vmWithSecrets'
 
+[group("NixOS")]
+[script("bash")]
+builder:
+    set -euo pipefail
+    STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/darwin-builder"
+    mkdir -p "$STATE_DIR"
+    cd "$STATE_DIR"
+    {{ nix }} run '{{ justfile_directory() }}#linux-builder'
+
 # Opens an editor for the NixOS sops secrets
 [group("NixOS")]
 secrets-vps $EDITOR="zeditor --wait":

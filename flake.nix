@@ -226,6 +226,21 @@
                 packages = {
                     # Re-export a kexec image locked on the flake's version of nixos-images
                     kexec-image = inputs.nixos-images.packages.${system}.kexec-installer-nixos-stable-noninteractive;
+                }
+                // lib.optionalAttrs (system == "aarch64-darwin") {
+                    linux-builder = pkgs.darwin.linux-builder-vz.override {
+                        modules = [
+                            {
+                                virtualisation = {
+                                    cores = 8;
+                                    darwin-builder = {
+                                        memorySize = 12 * 1024;
+                                        diskSize = 50 * 1024;
+                                    };
+                                };
+                            }
+                        ];
+                    };
                 };
             }
         ));
