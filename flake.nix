@@ -59,9 +59,15 @@
             };
         };
         # Production tracks a pinned release tag. Bump this tag manually
-        plus.url = "github:Polyfrost/plus-backend/v1.2.0";
+        plus = {
+            url = "github:Polyfrost/plus-backend/v1.2.0";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         # Staging tracks the social system feature branch.
-        plus-staging.url = "github:Polyfrost/plus-backend?ref=main";
+        plus-staging = {
+            url = "github:Polyfrost/plus-backend?ref=main";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         ursa-minor = {
             # url = "github:NotEnoughUpdates/ursa-minor";
             url = "github:Polyfrost/ursa-minor"; # Fork w/ prometheus metrics support
