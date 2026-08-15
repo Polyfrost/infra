@@ -59,7 +59,7 @@
             };
         };
         # Production tracks a pinned release tag. Bump this tag manually
-        plus.url = "github:Polyfrost/plus-backend/v1.1.4";
+        plus.url = "github:Polyfrost/plus-backend/v1.2.0";
         # Staging tracks the social system feature branch.
         plus-staging.url = "github:Polyfrost/plus-backend?ref=main";
         ursa-minor = {
