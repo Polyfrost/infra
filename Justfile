@@ -97,6 +97,10 @@ builder:
     STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/darwin-builder"
     mkdir -p "$STATE_DIR"
     cd "$STATE_DIR"
+    # Without this the guest has no CA bundle, so it can't verify cache.nixos.org
+    # and substitutes nothing -- every path is pushed over the vsock from the host
+    # instead. The vzvm wrapper only forwards the certs if this is set at launch.
+    export NIX_SSL_CERT_FILE="${NIX_SSL_CERT_FILE:-/etc/ssl/cert.pem}"
     {{ nix }} run '{{ justfile_directory() }}#linux-builder'
 
 # Opens an editor for the NixOS sops secrets
