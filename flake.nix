@@ -60,7 +60,7 @@
         };
         # Production tracks a pinned release tag. Bump this tag manually
         plus = {
-            url = "github:Polyfrost/plus-backend/v1.2.0";
+            url = "github:Polyfrost/plus-backend/v1.2.1";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         # Staging tracks the social system feature branch.
