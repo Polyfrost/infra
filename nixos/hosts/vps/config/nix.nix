@@ -29,8 +29,12 @@
                 "polyfrost.cachix.org-1:fDpH46ULMhZsXOIu9JuiXBQUx1Z5cQsfOxXzd8Gvd20="
             ];
 
-            # The 1MiB default throttles receiving large closures from colmena.
-            download-buffer-size = 256 * 1024 * 1024;
+            # More parallel connections when pulling from the caches above.
+            #
+            # Note: this host runs Lix, not CppNix, so CppNix-only settings
+            # (e.g. download-buffer-size) are rejected outright by the nix.conf
+            # validation at build time.
+            http-connections = 50;
 
             # Deliberately off: hard-linking every path as it is added makes
             # every `colmena apply` copy slower on this box. The weekly
