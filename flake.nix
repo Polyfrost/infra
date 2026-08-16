@@ -121,6 +121,7 @@
         }:
         let
             mkPkgs = system: import nixpkgs { inherit system; };
+            pkgsLinux = mkPkgs "x86_64-linux";
             inherit (nixpkgs) lib;
             utils = import ./utils {
                 inherit nixpkgs;
@@ -139,7 +140,7 @@
                     in
                     {
                         system = "x86_64-linux";
-                        pkgs = mkPkgs system;
+                        pkgs = pkgsLinux;
                         specialArgs = {
                             inherit inputs system self;
                             customUtils = utils;
@@ -152,15 +153,15 @@
 
             colmenaHive = colmena.lib.makeHive {
                 meta = {
-                    nixpkgs = mkPkgs "x86_64-linux";
+                    # Single instantiation, shared by every x86_64-linux node.
+                    # Calling `mkPkgs "x86_64-linux"` again for `nodeNixpkgs`
+                    # would evaluate nixpkgs a second time for no benefit.
+                    nixpkgs = pkgsLinux;
                     specialArgs = {
                         inherit inputs self;
                         customUtils = utils;
                     };
 
-                    nodeNixpkgs = {
-                        vps = mkPkgs "x86_64-linux";
-                    };
                     nodeSpecialArgs = {
                         vps = {
                             system = "x86_64-linux";

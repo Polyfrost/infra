@@ -37,6 +37,19 @@ build-vps-qemu *args="":
 rebuild-vps *args="":
     {{ colmena }} apply --on vps --keep-result{{ if args != "" { " " + args } else { "" } }} switch
 
+# Skips the local x86_64-under-Rosetta build and the closure upload entirely --
+# the VPS substitutes straight from the caches at datacenter bandwidth. Use this
+# when the local build is the bottleneck (big rebuild, poor uplink).
+#
+# NOT the default on purpose: the VPS is 3 cores / 4GiB RAM and also runs
+# Hydra, Postgres and the production services. A large from-source build there
+# can push it into swap and disrupt them.
+
+# Applies the VPS NixOS configuration, building on the VPS instead of locally
+[group("NixOS")]
+rebuild-vps-remote *args="":
+    {{ colmena }} apply --on vps --build-on-target --keep-result{{ if args != "" { " " + args } else { "" } }} switch
+
 # Applies the VPS (QEMU) NixOS configuration
 [group("NixOS")]
 rebuild-qemu *args="":
