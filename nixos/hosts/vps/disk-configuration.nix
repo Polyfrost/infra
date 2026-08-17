@@ -1,3 +1,13 @@
+{ lib, ... }:
+let
+    volumeId = "106639144";
+
+    onVolume = [
+        "reposilite"
+        "monitoring/victoriametrics"
+        "monitoring/victorialogs"
+    ];
+in
 {
     disko.devices = {
         disk = {
@@ -37,11 +47,42 @@
                     };
                 };
             };
+
+            volume = {
+                type = "disk";
+                device = "/dev/disk/by-id/scsi-0HC_Volume_${volumeId}";
+
+                destroy = false;
+
+                content = {
+                    type = "btrfs";
+                    extraArgs = [
+                        "-L"
+                        "polyfrost-data"
+                    ];
+
+                    subvolumes = builtins.listToAttrs (
+                        builtins.map (
+                            name:
+                            lib.nameValuePair name {
+                                mountpoint = "/var/lib/containers-persistent/${name}";
+                                mountOptions = [
+                                    "compress=zstd:3"
+                                    "noatime"
+                                    "nofail"
+                                ];
+                            }
+                        ) onVolume
+                    );
+                };
+            };
         };
     };
 
-    swapDevices = [{
-        device = "/swapfile";
-        size = 8 * 1024; # 8GiB
-    }];
+    swapDevices = [
+        {
+            device = "/swapfile";
+            size = 8 * 1024; # 8GiB
+        }
+    ];
 }
