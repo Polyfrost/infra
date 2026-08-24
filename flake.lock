@@ -568,11 +568,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1786599213,
-        "narHash": "sha256-yNJd40f11EzXBjSByCB7IPpeFFAdeoSKKM67dGkfFoU=",
+        "lastModified": 1786106723,
+        "narHash": "sha256-zDSUbpoeo/9ZmD2+wXnzxoo1+uhL8vxc0b8yuYMKYq0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0e251e24a4f24e036a084b6b4b2d2491af4167f4",
+        "rev": "f13ff45afd1bb73e640eaa08a7066dbed07e3238",
         "type": "github"
       },
       "original": {
@@ -600,11 +600,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1786599213,
-        "narHash": "sha256-yNJd40f11EzXBjSByCB7IPpeFFAdeoSKKM67dGkfFoU=",
+        "lastModified": 1786106723,
+        "narHash": "sha256-zDSUbpoeo/9ZmD2+wXnzxoo1+uhL8vxc0b8yuYMKYq0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0e251e24a4f24e036a084b6b4b2d2491af4167f4",
+        "rev": "f13ff45afd1bb73e640eaa08a7066dbed07e3238",
         "type": "github"
       },
       "original": {
@@ -655,16 +655,16 @@
         "treefmt-nix": "treefmt-nix_4"
       },
       "locked": {
-        "lastModified": 1786888912,
-        "narHash": "sha256-qbXo9jYmFUv1fWj5F7QOqbO0X4TQlWh9djqcl2s4tIU=",
+        "lastModified": 1787521394,
+        "narHash": "sha256-7ZYcpJP2PDtaNFRnNf/+uheJQFI9PvQfjSSnuwj0cqU=",
         "owner": "Polyfrost",
         "repo": "plus-backend",
-        "rev": "00f735968ab8698c60c61dad9bfe57ddfb807d43",
+        "rev": "b08e25238983783778e72fe006e3bc9edf3a21e5",
         "type": "github"
       },
       "original": {
         "owner": "Polyfrost",
-        "ref": "v1.2.1",
+        "ref": "v1.2.2",
         "repo": "plus-backend",
         "type": "github"
       }
@@ -697,11 +697,11 @@
         "treefmt-nix": "treefmt-nix_5"
       },
       "locked": {
-        "lastModified": 1786888912,
-        "narHash": "sha256-qbXo9jYmFUv1fWj5F7QOqbO0X4TQlWh9djqcl2s4tIU=",
+        "lastModified": 1787521394,
+        "narHash": "sha256-7ZYcpJP2PDtaNFRnNf/+uheJQFI9PvQfjSSnuwj0cqU=",
         "owner": "Polyfrost",
         "repo": "plus-backend",
-        "rev": "00f735968ab8698c60c61dad9bfe57ddfb807d43",
+        "rev": "b08e25238983783778e72fe006e3bc9edf3a21e5",
         "type": "github"
       },
       "original": {
