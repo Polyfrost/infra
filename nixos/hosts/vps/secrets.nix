@@ -40,8 +40,8 @@
 
             # Plus Staging
             "plus-staging/admin_password" = { };
-            "plus-staging/stripe/secret" = { };
-            "plus-staging/stripe/webhook_secret" = { };
+            "plus-staging/paynow/api_key" = { };
+            "plus-staging/paynow/webhook_secret" = { };
             "plus-staging/s3/endpoint" = { };
             "plus-staging/s3/access_key_id" = { };
             "plus-staging/s3/access_key_secret" = { };

@@ -18,3 +18,15 @@ so just use `nix fmt` to format all code.
 
 A `Justfile` is also provided, which can simplify a lot of common tasks, run `just` to have all the
 tasks listed.
+
+## Storage
+
+The VPS has two block devices, both described in `nixos/hosts/vps/disk-configuration.nix`:
+
+- `main` - the root volume
+- `volume` - a Network Attached Storage Volume
+
+To move a container's state onto the volume, add its `persistentDirs` key to the `onVolume` list in
+`nixos/hosts/vps/disk-configuration.nix`. Since the containers module bind mounts
+`/var/lib/containers-persistent/<name>` into the container, nothing requires changes (only changes
+is where the directory physically exists).

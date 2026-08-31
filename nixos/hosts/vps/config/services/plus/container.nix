@@ -22,10 +22,6 @@
             CLIENT_IP_SOURCE = "XRealIp";
             DATABASE_URL = "postgresql://${plusInstance.db}@[${ips.v6.containers.postgres}]:5432/${plusInstance.db}";
 
-            STRIPE_PUBLIC = plusInstance.stripePublic;
-            STRIPE_SUCCESS_URL = plusInstance.stripeSuccessUrl;
-            STRIPE_CANCEL_URL = plusInstance.stripeCancelUrl;
-
             S3_BUCKET_NAME = plusInstance.s3Bucket;
             S3_BUCKET_REGION = "auto";
             RUST_LOG = "debug,sea_orm=debug,sqlx=warn";
@@ -45,6 +41,7 @@
                 if you have any suggestions or questions or issues you're having, you can join our discord at discord.gg/polyfrost.
                 also, you can message us directly here! you can only send 1 message per 3 days, so be wise with what you say (but feel free to send us anything you feel is "dumb", we like hearing stuff like that)'';
         }
+        # The payment provider's settings, which differ per instance.
         // (plusInstance.extraEnv or { });
 
         serviceConfig = {
