@@ -697,11 +697,11 @@
         "treefmt-nix": "treefmt-nix_5"
       },
       "locked": {
-        "lastModified": 1788189143,
-        "narHash": "sha256-nzDYNaCLxGdEgKptA5koWy4FWUxmdngnUJdv/Qin87w=",
+        "lastModified": 1788201863,
+        "narHash": "sha256-FwzaiAGfYrhYKxGvTr0yAr7re1RntjvIk9en9w1UYq8=",
         "owner": "Polyfrost",
         "repo": "plus-backend",
-        "rev": "b6bb163a883908918f172531cbadfb4cc500c8c7",
+        "rev": "14802be47db267d9d5b640992cb6da5847be5d74",
         "type": "github"
       },
       "original": {
