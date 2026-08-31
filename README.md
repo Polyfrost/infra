@@ -19,6 +19,21 @@ so just use `nix fmt` to format all code.
 A `Justfile` is also provided, which can simplify a lot of common tasks, run `just` to have all the
 tasks listed.
 
+## Working from macOS
+
+The configuration target is `x86_64-linux`, so there may be a few issues when working on macOS (especially on Apple Silicon).
+  Just run:
+```bash
+just seed-ifd
+```
+
+After that everything evaluates locally in ~20s and `just rebuild-vps-remote` builds the closure on
+the VPS. Re-run `just seed-ifd` whenever a `website*` input is bumped.
+
+`just seed-ifd` is only needed because the nix daemon runs as root and has no SSH access to the VPS,
+so it cannot use it as a regular remote builder. The alternative is the local Linux VM
+(`just builder`), which also satisfies the eval-time build but uses a 12GiB VM.
+
 ## Storage
 
 The VPS has two block devices, both described in `nixos/hosts/vps/disk-configuration.nix`:
