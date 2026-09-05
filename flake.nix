@@ -58,11 +58,7 @@
                 flake-utils.follows = "flake-utils";
             };
         };
-        # Production tracks a pinned release tag. Bump this tag manually.
-        # No `nixpkgs.follows` on purpose: it changes the outPath, so infra can
-        # no longer substitute what plus-backend's CI pushes to cachix.
         plus.url = "github:Polyfrost/plus-backend/v1.2.2";
-        # Staging tracks the paynow feature branch.
         plus-staging.url = "github:Polyfrost/plus-backend?ref=chore/paynow";
         ursa-minor = {
             # url = "github:NotEnoughUpdates/ursa-minor";
@@ -100,8 +96,7 @@
                 flake-utils.follows = "flake-utils";
             };
         };
-        # Pinned to an explicit revision. Bump this rev manually.
-        plus-admin-dashboard.url = "github:Polyfrost/plus-admin-dashboard/c4a068213b9b055d02764fa91b6c6e67be9352d7";
+        plus-admin-dashboard.url = "github:Polyfrost/plus-admin-dashboard";
     };
 
     outputs =
