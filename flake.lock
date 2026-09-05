@@ -675,16 +675,17 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1788206765,
-        "narHash": "sha256-0lALY1uj+A38hJW/GwA5DXBGksOX9StkxtyOMIhA3RY=",
+        "lastModified": 1787659304,
+        "narHash": "sha256-qmMeB1VhBsUjBKogJFUD22wqL2k4TpyvoVamJPR/tbo=",
         "owner": "Polyfrost",
         "repo": "plus-admin-dashboard",
-        "rev": "f26c7a13ed66f0a11c3467f82a62e5861743379e",
+        "rev": "c4a068213b9b055d02764fa91b6c6e67be9352d7",
         "type": "github"
       },
       "original": {
         "owner": "Polyfrost",
         "repo": "plus-admin-dashboard",
+        "rev": "c4a068213b9b055d02764fa91b6c6e67be9352d7",
         "type": "github"
       }
     },

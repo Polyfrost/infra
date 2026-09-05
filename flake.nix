@@ -100,7 +100,8 @@
                 flake-utils.follows = "flake-utils";
             };
         };
-        plus-admin-dashboard.url = "github:Polyfrost/plus-admin-dashboard";
+        # Pinned to an explicit revision. Bump this rev manually.
+        plus-admin-dashboard.url = "github:Polyfrost/plus-admin-dashboard/c4a068213b9b055d02764fa91b6c6e67be9352d7";
     };
 
     outputs =
