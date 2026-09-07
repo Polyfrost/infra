@@ -1,11 +1,16 @@
 set unstable := true
 
 nix := require("nix")
+nix-store := require("nix-store")
 nixos-anywhere := require("nixos-anywhere")
 colmena := require("colmena")
 treefmt := require("treefmt")
 geoipupdate := require("geoipupdate")
 yq := require("yq")
+
+# SSH target used to build the handful of x86_64-linux derivations that a
+# non-Linux machine cannot produce itself. See the `seed-ifd` recipe.
+linux-host := "root@polyfrost-vps"
 
 _default:
     @just --list
@@ -20,6 +25,7 @@ alias dv := deploy-vps
 alias t := test-vps
 alias tv := test-vps
 alias sv := secrets-vps
+alias si := seed-ifd
 alias f := format
 
 # Builds the VPS NixOS configuration
@@ -89,6 +95,51 @@ deploy-vps ssh-host:
 [group("NixOS")]
 test-vps:
     {{ nix }} run -L '.#nixosConfigurations.vps.config.system.build.vmWithSecrets'
+
+[group("NixOS")]
+[script("bash")]
+seed-ifd host=linux-host:
+    set -uo pipefail
+
+    ATTR='.#nixosConfigurations.vps.config.system.build.toplevel.drvPath'
+    ROOT_DIR=".gcroots/ifd"
+    mkdir -p "$ROOT_DIR"
+
+    # Each round can uncover IFD nested inside the previous round's output.
+    for attempt in $(seq 1 10); do
+        echo "{{ BOLD }}{{ GREEN }}Evaluating (round $attempt)...{{ NORMAL }}"
+
+        if ERR=$({{ nix }} eval --raw "$ATTR" 2>&1 >/dev/null); then
+            echo "{{ BOLD }}{{ GREEN }}Evaluates locally, nothing left to seed.{{ NORMAL }}"
+            exit 0
+        fi
+
+        DRVS=$(grep -E "Cannot build|required to build" <<< "$ERR" \
+            | grep -oE "/nix/store/[0-9a-z]{32}-[^']+\.drv" \
+            | sort -u)
+
+        if [ -z "$DRVS" ]; then
+            echo "$ERR" >&2
+            echo "{{ BOLD }}{{ RED }}Evaluation failed for a reason other than a missing IFD build.{{ NORMAL }}" >&2
+            exit 1
+        fi
+
+        echo "{{ BOLD }}{{ GREEN }}Building on {{ host }}:{{ NORMAL }}"
+        printf '  %s\n' $DRVS
+
+        {{ nix }} copy --to "ssh-ng://{{ host }}" --derivation $DRVS || exit 1
+        OUTS=$(ssh "{{ host }}" nix-store --realise $DRVS) || exit 1
+        {{ nix }} copy --no-check-sigs --from "ssh-ng://{{ host }}" $OUTS || exit 1
+
+        # Without a root these get collected again on the next `nix-collect-garbage`
+        # and every subsequent evaluation has to round-trip to the target.
+        for out in $OUTS; do
+            {{ nix-store }} --realise --indirect --add-root "$ROOT_DIR/$(basename "$out")" "$out" >/dev/null || exit 1
+        done
+    done
+
+    echo "{{ BOLD }}{{ RED }}Still not evaluating after 10 rounds, giving up.{{ NORMAL }}" >&2
+    exit 1
 
 [group("NixOS")]
 [script("bash")]

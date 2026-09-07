@@ -58,18 +58,12 @@
                 flake-utils.follows = "flake-utils";
             };
         };
-        # Production tracks a pinned release tag. Bump this tag manually.
-        # No `nixpkgs.follows` on purpose: it changes the outPath, so infra can
-        # no longer substitute what plus-backend's CI pushes to cachix.
         plus.url = "github:Polyfrost/plus-backend/v1.2.2";
-        # Staging tracks the social system feature branch.
-        plus-staging.url = "github:Polyfrost/plus-backend?ref=main";
+        plus-staging.url = "github:Polyfrost/plus-backend?ref=chore/paynow";
         ursa-minor = {
             # url = "github:NotEnoughUpdates/ursa-minor";
             url = "github:Polyfrost/ursa-minor"; # Fork w/ prometheus metrics support
             inputs = {
-                # Nixpkgs override breaks as the rust-overlay input then is desynced and
-                # it tries to execute scripts that don't exist during build
                 flake-utils.follows = "flake-utils";
             };
         };
