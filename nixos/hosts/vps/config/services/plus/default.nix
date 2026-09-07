@@ -17,6 +17,8 @@ let
                 "http://localhost:3000"
                 "https://store.polyfrost.org"
             ];
+
+            extraEnv.RUST_LOG = "info,sqlx=warn";
         };
 
         # Staging instance
