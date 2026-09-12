@@ -13,8 +13,8 @@ plus-staging:
         secret: ENC[AES256_GCM,data:dxAovUiXV0W3uqzXq/1s/3zkyFU5WS0njkXkAtaO32tBz37M4uiqUqXq0unwQ1eJpunCduMbb3om/iat8xZJhFFRlpz/nBPNSqg+PnqE3e2UXxjzdcuJPKAGa8RkEouQloQs4TLNhWWxaRM=,iv:egL2JreZ1jpIqJNVYYYkGWkQm2We3X5XKJwczdcw3Ww=,tag:n5GKtkFDTXQW+JDj8RtmNw==,type:str]
         webhook_secret: ENC[AES256_GCM,data:JtsZDww2Gz0YjwJ0GtjnR8D+t/rnZCyrsSdBYlDBho49odFb5pw=,iv:vmPjarvxuHLKCcqMovetl3dpca5aHlHcxTB2RpPYRJA=,tag:LCs538dwYAhj73iqF8yi2Q==,type:str]
     paynow:
-        api_key: ENC[AES256_GCM,data:rG37sNLKwPuqKAs5AmIWBz2Nz0kkE48Jy9Mh7+qvYd/qe3alMSAUcbucOo6zKhKfMAaCLc0=,iv:z4v2rUCVTSXeBW5QxJSA77ukGg6061wQNnAGlQonBks=,tag:m/nLR8M3Orx6CVMAG2Regw==,type:str]
-        webhook_secret: ENC[AES256_GCM,data:cMs4Px/hGHTom2TMftMw3M2JWtCkI2u1d31EB5We/qV/7Lw=,iv:gwRK0ELYdS2nWnmdEypXVlPwj/PwTZ0ksX9qV3xB84c=,tag:wTl0smVyUjIT1Qs9UBr6IA==,type:str]
+        api_key: ENC[AES256_GCM,data:fR7sBkPy2Xdfe3sItoug8UbcR7NskLQInhFmbpyfVch3Yqeyrp8upZhVLfBICQNWLz46Gw0=,iv:CFtT8OmTmNutpbnnm+iCnLWUBnjIAGWHUpIqes7kY+Q=,tag:RfriDjm7wl7j1rcP7Tu09g==,type:str]
+        webhook_secret: ENC[AES256_GCM,data:6D7YzQOzNFBarhL5B/Uj8AYdJrqPhyWG6aiU1lRCaqgcz4U=,iv:xTRueFha77T8obxphDHt2P+xmwd2B/mWstx/AEjmlYg=,tag:puDvzKZDvV8TPAhSukZTOQ==,type:str]
     s3:
         #ENC[AES256_GCM,data:KqEPz2dzQ6zeXtRqz542dBIKJrkm5I+bSiyoTKVk1RPS3a0BugsmiioqJ9O71zzNp4/YAEmJsTrMlUprqxKt4N9b,iv:qko/NvkRSw10gVHK530+qvrJ73KXzdzpylevxFyhNmM=,tag:hHoEadqWNaS8uhl2rNEVAA==,type:comment]
         endpoint: ENC[AES256_GCM,data:YHJdDreoyz2MAENj/dRGVDfGPFU482Z5UxguE3tiLxyegICvFmXH8LhJzvWnW+vdq0rpN8W7VX08AW7e6zeXQPc=,iv:lng4jHVxEjH2D58Vda2511y+EKlq5oz/dsR2HEbMXC8=,tag:W30TlXlSBZzBjM2Afs9XWw==,type:str]
@@ -25,6 +25,9 @@ plus:
     stripe:
         secret: ENC[AES256_GCM,data:RVgD9X1sZfcZUDYyz9t3/HAKcx3UUPtOTbcILzz7JxgVjTV4w3xxTs36dxfy1LVJTyoKZG5LMjNvzoqFvl1YPuMRIRDa3vzLY6ArK4+R0EjKNlk64lq/1pYDw3rpcy9ikEt1WbucL/B3Dcg=,iv:jji1odqsX8gKBnIGWi78xwzRbAKwsez7TORdxEgGALs=,tag:SLMePOWyN/8KXN6QwNYcWg==,type:str]
         webhook_secret: ENC[AES256_GCM,data:6+F5Nrso539lLo+Axml0lajIYzMaXA7xK9hgsHts61ylzrGLkHU=,iv:8eB45TI/OREPCJBoBnh1qE1FbB2QB/gW8JSVZvlghhI=,tag:fHp6paxit6m/pGvOCykLng==,type:str]
+    paynow:
+        api_key: ENC[AES256_GCM,data:EdtmVrsnOquh0xUDf4lmAwYQlDju5HNkWwHbcM1TWDxlNs/XtT/XoL66lAmD7nRr1uSpHq8=,iv:F8Iaetpse2miLRC4dUN8m3txKp04TLYYwBXQl0VvSkk=,tag:xIayCezgJuKYEC9739sJ9g==,type:str]
+        webhook_secret: ENC[AES256_GCM,data:uCGRBsvgdIVgUfWuhTYq4KSah8xHlfwO2Deh7MN8ZMh5z/c=,iv:yw66Nmlx2sC4Mu5A3L120J5oy7/tgw8w9SMuAzXqBfE=,tag:RuMOmHdE6zVjLNTtYBw98A==,type:str]
     s3:
         #ENC[AES256_GCM,data:OWdQiWt+sDFM5y5hrLckbq4DNMK3MbsILCLfSK3PGWjekWHnXBnRGMEm0ToB4R9DzBrlCA/siYq9HE8QFBxDc2OY,iv:8whx0IRJvJTLWV4daA8o2UWb7WzNmcKaf1mqFVrP6VY=,tag:XIMGtZzuRJWWiZuWvMTYvw==,type:comment]
         endpoint: ENC[AES256_GCM,data:Y9vgyHmAmrWRVedpJHSBGIfk3YNsrFK5+wBFXfwv6aGHi7c4ewIDiKQ5x1EvByWAhz6X7sXZ4tbD7y1lrZk+f/M=,iv:11sUP4DkHiUel535vnGFFT/EJQVSOMSfQKMkRh5BBug=,tag:3y2MeC8ChKsfZ0rA8c5PqQ==,type:str]
@@ -100,8 +103,8 @@ sops:
             Wmf9jaBQdgm/dLcghyB7mp4gpPvd/d9A7IYRWrH0rY2Cp/Ng2u/GvA==
             -----END AGE ENCRYPTED FILE-----
           recipient: age1v3rwucwe2luzsp2uv834gt9tktf95qcvw78fsg6t2k2fq07z8eas83rz5l
-    lastmodified: "2026-08-31T15:35:02Z"
-    mac: ENC[AES256_GCM,data:TwgLkEhykjElU3nPrL20H6wDphGgzGZX9BOD82ha5VBC1/oiFz6h9lDCySD945ZeLTT9S+PFBg5ZpZtp0lOK39W0uzGyNSOXM90e48XvS+bCEsscJ2GHq4EWd2qNv2mkdtpX3YOnselsN74hsMQNlbj8+4dno9i9LEaVrRvIqls=,iv:W3nXPjq1ohwKXH0AltqXfQ80JGs8vMLnv46BW9D/C0g=,tag:1IZoSQfEmDzjjTJMrHuqgA==,type:str]
+    lastmodified: "2026-09-12T10:02:21Z"
+    mac: ENC[AES256_GCM,data:quavwtjxSrUFA6tCBuobCRxbOW2q1zMSGfqk7hA6PeBGhuy98/r/RpA10mtVfw+XXMd7siUqyX5yLmGXvJZmeyNt5hZwQcju1gzX76WrMlwlM3PaNoinfqBTfIgQ/gat4xr0tNVabYz+zIasJGut159QQfHOaaVFOvixQyWVO/o=,iv:EbvOj0fBuIHKdW2ErAoHeuOl8VIR0MaMe5lN8cprt8Y=,tag:M08s286eg5peyaS/aocD3g==,type:str]
     pgp:
         - created_at: "2026-07-08T04:10:08Z"
           enc: |-

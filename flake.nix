@@ -58,8 +58,8 @@
                 flake-utils.follows = "flake-utils";
             };
         };
-        plus.url = "github:Polyfrost/plus-backend/v1.2.2";
-        plus-staging.url = "github:Polyfrost/plus-backend?ref=chore/paynow";
+        plus.url = "github:Polyfrost/plus-backend/v1.3.0";
+        plus-staging.url = "github:Polyfrost/plus-backend?ref=main";
         ursa-minor = {
             # url = "github:NotEnoughUpdates/ursa-minor";
             url = "github:Polyfrost/ursa-minor"; # Fork w/ prometheus metrics support
@@ -83,7 +83,7 @@
         };
         # The store frontend. Pinned to a release tag; staging tracks HEAD.
         plus-website = {
-            url = "github:Polyfrost/plus-website/v1.1.3";
+            url = "github:Polyfrost/plus-website/v1.1.4";
             inputs = {
                 nixpkgs.follows = "nixpkgs";
                 flake-utils.follows = "flake-utils";

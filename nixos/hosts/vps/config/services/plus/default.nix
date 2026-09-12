@@ -9,14 +9,14 @@ let
             flakeInput = "plus";
 
             extraEnv = {
-                STRIPE_PUBLIC = "pk_live_51TDj2HCtMbq6LoswkfDJtjyt5Wpd9suZP5Q4ThWea0DorKlWQHX0xMxz9T0HMz6N21KJfQleOjVvFa37QQk1Eynq00pHdnPHHa";
-                STRIPE_SUCCESS_URL = "https://store.polyfrost.org/checkout/success";
-                STRIPE_CANCEL_URL = "https://store.polyfrost.org/checkout/cancel";
+                PAYNOW_STORE_ID = "593560962137595904";
+                PAYNOW_RETURN_URL = "https://store.polyfrost.org/checkout/success";
+                PAYNOW_CANCEL_URL = "https://store.polyfrost.org/checkout/cancel";
             };
 
             secretsEnv = ''
-                STRIPE_SECRET=${config.sops.placeholder."plus/stripe/secret"}
-                STRIPE_WEBHOOK_SECRET=${config.sops.placeholder."plus/stripe/webhook_secret"}
+                PAYNOW_API_KEY=${config.sops.placeholder."plus/paynow/api_key"}
+                PAYNOW_WEBHOOK_SECRET=${config.sops.placeholder."plus/paynow/webhook_secret"}
             '';
 
             corsOrigins = builtins.concatStringsSep "," [
@@ -36,7 +36,7 @@ let
             flakeInput = "plus-staging";
 
             extraEnv = {
-                PAYNOW_STORE_ID = "593560962137595904";
+                PAYNOW_STORE_ID = "602463607984230400";
                 PAYNOW_RETURN_URL = "https://store-staging.polyfrost.org/checkout/success";
                 PAYNOW_CANCEL_URL = "https://store-staging.polyfrost.org/checkout/cancel";
             };

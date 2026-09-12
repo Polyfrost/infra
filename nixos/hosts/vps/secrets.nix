@@ -32,8 +32,8 @@
 
             # Plus Prod
             "plus/admin_password" = { };
-            "plus/stripe/secret" = { };
-            "plus/stripe/webhook_secret" = { };
+            "plus/paynow/api_key" = { };
+            "plus/paynow/webhook_secret" = { };
             "plus/s3/endpoint" = { };
             "plus/s3/access_key_id" = { };
             "plus/s3/access_key_secret" = { };
