@@ -44,6 +44,14 @@
                 colmena
                 ;
         })
+
+        # URI 5.36 ships URI::ws itself, which collides with the separate
+        # URI-ws distribution that CatalystRuntime propagates, breaking hydra's
+        # `perlDeps` buildEnv. Drop the now-redundant standalone package.
+        # TODO: Remove once nixpkgs stops referencing perlPackages.URIws.
+        (_: prev: {
+            perlPackages = prev.perlPackages.overrideScope (_: pprev: { URIws = pprev.URI; });
+        })
     ];
     nix.package = pkgs.lixPackageSets.stable.lix;
 }
