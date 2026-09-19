@@ -83,7 +83,7 @@
         };
         # The store frontend. Pinned to a release tag; staging tracks HEAD.
         plus-website = {
-            url = "github:Polyfrost/plus-website/v1.1.5";
+            url = "github:Polyfrost/plus-website/v1.1.6";
             inputs = {
                 nixpkgs.follows = "nixpkgs";
                 flake-utils.follows = "flake-utils";
