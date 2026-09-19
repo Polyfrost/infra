@@ -122,8 +122,7 @@ https://polyfrost.org, https://www.polyfrost.org {
 		reverse_proxy website.containers:8080
 	}
 
-	# Not a /projects/oneclient* wildcard, as /projects/oneclient/linux only exists on release
-	@redesign path /projects/oneclient /projects/oneclient/ /assets/* /_serverFn/*
+	@redesign path /projects/oneclient /projects/oneclient/ /assets/* /_serverFn/* /reviewers/*
 
 	handle @redesign {
 		log_append polyfrost_handler website-redesign
