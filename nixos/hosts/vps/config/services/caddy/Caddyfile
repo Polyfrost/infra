@@ -40,6 +40,10 @@
 (prelude) {
 	import access-logs "{args[0]}"
 
+	# Compress text responses. Caddy's default matcher skips already-compressed
+	# types, so maven jars and images pass through untouched.
+	encode
+
 	# Enforce always using HTTPS
 	header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
