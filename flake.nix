@@ -58,7 +58,7 @@
                 flake-utils.follows = "flake-utils";
             };
         };
-        plus.url = "github:Polyfrost/plus-backend/v1.3.0";
+        plus.url = "github:Polyfrost/plus-backend/v1.4.0";
         plus-staging.url = "github:Polyfrost/plus-backend?ref=main";
         ursa-minor = {
             # url = "github:NotEnoughUpdates/ursa-minor";
