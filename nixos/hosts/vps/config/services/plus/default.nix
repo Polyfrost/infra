@@ -12,6 +12,7 @@ let
                 PAYNOW_STORE_ID = "593560962137595904";
                 PAYNOW_RETURN_URL = "https://store.polyfrost.org/checkout/success";
                 PAYNOW_CANCEL_URL = "https://store.polyfrost.org/checkout/cancel";
+                S3_PUBLIC_URL = "https://plus.r2.polyfrost.org";
             };
 
             secretsEnv = ''
@@ -39,6 +40,7 @@ let
                 PAYNOW_STORE_ID = "602463607984230400";
                 PAYNOW_RETURN_URL = "https://store-staging.polyfrost.org/checkout/success";
                 PAYNOW_CANCEL_URL = "https://store-staging.polyfrost.org/checkout/cancel";
+                S3_PUBLIC_URL = "https://plus-staging.r2.polyfrost.org";
             };
 
             secretsEnv = ''
