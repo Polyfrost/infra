@@ -37,7 +37,7 @@ let
             flakeInput = "plus-staging";
 
             extraEnv = {
-                PAYNOW_STORE_ID = "602463607984230400";
+                PAYNOW_STORE_ID = "602461709705154560";
                 PAYNOW_RETURN_URL = "https://store-staging.polyfrost.org/checkout/success";
                 PAYNOW_CANCEL_URL = "https://store-staging.polyfrost.org/checkout/cancel";
                 S3_PUBLIC_URL = "https://plus-staging.r2.polyfrost.org";
