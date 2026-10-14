@@ -4,7 +4,8 @@
         enable = true;
         hydraURL = "https://hydra.polyfrost.org";
         useSubstitutes = true;
-        dbi = "dbi:Pg:dbname=hydra;host=${config.custom.nixos-containers.networking.addresses.v6.containers.postgres};user=hydra";
+        # Host as a query param: the Rust services (sqlx) can't resolve a bracketed IPv6 host
+        dbUrl = "postgres:///hydra?host=${config.custom.nixos-containers.networking.addresses.v6.containers.postgres}&port=5432&user=hydra";
         port = 3000;
         listenHost = "*";
         notificationSender = "hydra@localhost";
