@@ -8,7 +8,7 @@ let
             credential = "website.secrets.env";
         };
 
-        # Only serves /projects/oneclient, routed by caddy
+        # Only serves /projects/oneclient{,/prism}, routed by caddy
         "website-redesign" = {
             flakeInput = "website-redesign";
             serviceName = "polyfrost-website-redesign";

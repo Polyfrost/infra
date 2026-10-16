@@ -126,7 +126,7 @@ https://polyfrost.org, https://www.polyfrost.org {
 		reverse_proxy website.containers:8080
 	}
 
-	@redesign path /projects/oneclient /projects/oneclient/ /assets/* /_serverFn/* /reviewers/*
+	@redesign path /projects/oneclient /projects/oneclient/ /projects/oneclient/prism /projects/oneclient/prism/ /assets/* /_serverFn/* /reviewers/*
 
 	handle @redesign {
 		log_append polyfrost_handler website-redesign

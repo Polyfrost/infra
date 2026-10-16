@@ -36,6 +36,23 @@
 
     # Enable lix (better fork of nix)
     nixpkgs.overlays = [
+        # common-lix.nix passes `-Dmimalloc=` unconditionally, but the option
+        # only exists from Lix 2.96 on, so 2.95 (stable) fails at meson configure.
+        # TODO: Remove once nixpkgs gates the flag on the Lix version.
+        (_: prev: {
+            lixPackageSets = prev.lixPackageSets.extend (
+                _: lprev: {
+                    stable = lprev.stable.overrideScope (
+                        _: sprev: {
+                            lix = sprev.lix.overrideAttrs (old: {
+                                mesonFlags = prev.lib.remove "-Dmimalloc=disabled" old.mesonFlags;
+                            });
+                        }
+                    );
+                }
+            );
+        })
+
         (final: prev: {
             inherit (prev.lixPackageSets.stable)
                 nixpkgs-review
