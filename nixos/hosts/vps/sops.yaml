@@ -20,6 +20,9 @@ plus-staging:
         endpoint: ENC[AES256_GCM,data:YHJdDreoyz2MAENj/dRGVDfGPFU482Z5UxguE3tiLxyegICvFmXH8LhJzvWnW+vdq0rpN8W7VX08AW7e6zeXQPc=,iv:lng4jHVxEjH2D58Vda2511y+EKlq5oz/dsR2HEbMXC8=,tag:W30TlXlSBZzBjM2Afs9XWw==,type:str]
         access_key_id: ENC[AES256_GCM,data:xK6TW22zkqrI2XQuKCC3sLgZ+614ghcM3h76BcjYesU=,iv:+wMhVyFRP1WpW/E25wRde4I5KaO+57Z5dBSMhtNVTqY=,tag:Y+BQlxO+k7TvVoiYGPxEIg==,type:str]
         access_key_secret: ENC[AES256_GCM,data:R+ehpTW9wBT4/MNuoiiMZ5KPy+k4Y+neHxOpKWLE0tzECgYAOoGAwum33xcZnSyaZVayA+5iv+WEPdR6ni/hmg==,iv:TtN594h8RPeV1WSjacqdVEi2EK9s9ZGJf/bUqSaodpg=,tag:XlHQqc/g7G1upd1dOEPwFQ==,type:str]
+    discord:
+        client_id: ENC[AES256_GCM,data:r5t7rLLN9/P+keQmKw6BSIoofw==,iv:q29D9KRO63fv6V/Ja6WYE7ligVnW6fbpdQGvWSJ9fQI=,tag:k8Dw8ebLqlIUwOVJtUt54A==,type:str]
+        client_secret: ENC[AES256_GCM,data:soJNDpcYh1hJjE/nbehBFdvV/1ZJpRqEgRjHGrSiMnU=,iv:8DhoL0GL7uq2T4FkSp2tlVtwr2OgvZSftIxiMl9scgI=,tag:GuUPVdY3EBohz8z7vA/1RA==,type:str]
 plus:
     admin_password: ENC[AES256_GCM,data:DrZaI6Bt5NvgCsDWxqywTCp5Jvs=,iv:+O/yVRoitArcsK4fm0pOMqvXI0a2rXOHo3ztel5Fw8A=,tag:Hg5zqUkI4tl1nwP6EiKDrg==,type:str]
     stripe:
@@ -33,6 +36,9 @@ plus:
         endpoint: ENC[AES256_GCM,data:Y9vgyHmAmrWRVedpJHSBGIfk3YNsrFK5+wBFXfwv6aGHi7c4ewIDiKQ5x1EvByWAhz6X7sXZ4tbD7y1lrZk+f/M=,iv:11sUP4DkHiUel535vnGFFT/EJQVSOMSfQKMkRh5BBug=,tag:3y2MeC8ChKsfZ0rA8c5PqQ==,type:str]
         access_key_id: ENC[AES256_GCM,data:t/95Vq1omhdzTlVrg8FHVlNjVp0JtPSTIhAUhE2qoME=,iv:KAU3d7CpvFSDpEAmGk0msqutcZKmZw+s0p/8rv6NSDQ=,tag:8Y8FlFxws3oTu7k1L7GbMQ==,type:str]
         access_key_secret: ENC[AES256_GCM,data:6sA60mbZ/xnXi1c5o6zcThbx08yjQOR+Z6MRWdJL0cggRkFXRxnI/2Y2TrF2K5r8gJYFLTgusge9zMNl7aJoZw==,iv:iA+/BLZQB32vHkrNJXturHNEFQrc0hMHsDbZCFY7R10=,tag:CGaIYCtglXEDnHy8QwLHyA==,type:str]
+    discord:
+        client_id: ENC[AES256_GCM,data:TvUyduBwdYpMIhaOq49avYHLaw==,iv:baG5Vu9BOIN3JllwmcKdAm29/PnJH+x7YO1Bv3rXXX4=,tag:lkhHQJLZ3ud+T13DUCK2ug==,type:str]
+        client_secret: ENC[AES256_GCM,data:ACpdYOH6EycXlpBkD3ZBPk3BVvQfhGZ8YTvywcKl96M=,iv:KQh5F8WB75u9d2kQb7ZAkXY6MUI0IG34oeuTKMsTl1Y=,tag:9InWoqqgyVK7i3Jx0BEwHA==,type:str]
 caddy:
     cloudflare_api_key: ENC[AES256_GCM,data:Ks6IlYYC8Cn6pcG2mBnXmnQHjJCRleAAriSWn4Xf4+KCkiviqL9kfQ==,iv:GwD15Cauts8WLny5CMQzGNWCaSrxXSJ86IcparT571U=,tag:xJ1QD/F4S+7q1YDLhrerHQ==,type:str]
 ursa:
@@ -103,8 +109,8 @@ sops:
             Wmf9jaBQdgm/dLcghyB7mp4gpPvd/d9A7IYRWrH0rY2Cp/Ng2u/GvA==
             -----END AGE ENCRYPTED FILE-----
           recipient: age1v3rwucwe2luzsp2uv834gt9tktf95qcvw78fsg6t2k2fq07z8eas83rz5l
-    lastmodified: "2026-09-29T15:41:43Z"
-    mac: ENC[AES256_GCM,data:GvrrpmVdA8/XKBx9C8j42Qd+JGXlErdTZT/kcMcE0bjBqJ5RmOY0MHFhd1MjYXudC6hsIAdX+kshL+o0f6XkoqBveTqyhlzvAvtR7H4jfc7pnVPZaWEN09JEHC51LSAXdkKOd23AEAwKcVsG6FtcY9HXNd7nMuUbnjXBTNy76fI=,iv:ag/gbd3W0+En5cYGNbnz/ri5BMz8hw27Rrw244kYe1o=,tag:ZgTYJGctyvU3OQgYIsIYPQ==,type:str]
+    lastmodified: "2026-10-18T23:26:21Z"
+    mac: ENC[AES256_GCM,data:KW/aqtwlGTGPNagXreozO1B+ZZCsx4sZwYaipIz8cznbggtAt45A6t3xr5QhWrJI8OJF2vWF5Vg/Ld/14VoJlOy555h/JVbmrc6zrnnFFjapq4UwsoVxSTFbjFMTpBL+ztHHt1vCq4xpu/2miqHKJ3wMD/YwWCQ9shFmrFbAKas=,iv:eEp+vdb9hUKY3C59Soj2kJKX01HN/pfN0PX174+XEFs=,tag:FBy0HDgYIkpJwHj6EpOysQ==,type:str]
     pgp:
         - created_at: "2026-07-08T04:10:08Z"
           enc: |-

@@ -13,6 +13,7 @@ let
                 PAYNOW_RETURN_URL = "https://store.polyfrost.org/checkout/success";
                 PAYNOW_CANCEL_URL = "https://store.polyfrost.org/checkout/cancel";
                 S3_PUBLIC_URL = "https://plus.r2.polyfrost.org";
+                DISCORD_REDIRECT_URI = "https://plus.polyfrost.org/account/links/discord/callback";
             };
 
             secretsEnv = ''
@@ -41,6 +42,7 @@ let
                 PAYNOW_RETURN_URL = "https://store-staging.polyfrost.org/checkout/success";
                 PAYNOW_CANCEL_URL = "https://store-staging.polyfrost.org/checkout/cancel";
                 S3_PUBLIC_URL = "https://plus-staging.r2.polyfrost.org";
+                DISCORD_REDIRECT_URI = "https://plus-staging.polyfrost.org/account/links/discord/callback";
             };
 
             secretsEnv = ''
@@ -77,6 +79,8 @@ in
                 S3_BUCKET_ENDPOINT=${config.sops.placeholder."${name}/s3/endpoint"}
                 AWS_ACCESS_KEY_ID=${config.sops.placeholder."${name}/s3/access_key_id"}
                 AWS_SECRET_ACCESS_KEY=${config.sops.placeholder."${name}/s3/access_key_secret"}
+                DISCORD_CLIENT_ID=${config.sops.placeholder."${name}/discord/client_id"}
+                DISCORD_CLIENT_SECRET=${config.sops.placeholder."${name}/discord/client_secret"}
             '';
         }) instances
     );

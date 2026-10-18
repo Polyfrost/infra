@@ -37,6 +37,8 @@
             "plus/s3/endpoint" = { };
             "plus/s3/access_key_id" = { };
             "plus/s3/access_key_secret" = { };
+            "plus/discord/client_id" = { };
+            "plus/discord/client_secret" = { };
 
             # Plus Staging
             "plus-staging/admin_password" = { };
@@ -45,6 +47,8 @@
             "plus-staging/s3/endpoint" = { };
             "plus-staging/s3/access_key_id" = { };
             "plus-staging/s3/access_key_secret" = { };
+            "plus-staging/discord/client_id" = { };
+            "plus-staging/discord/client_secret" = { };
 
             "grafana/secret_key" = { };
             "grafana/smtp/address" = { };
