@@ -6,7 +6,5 @@
                 device = "nodev";
             };
         };
-
-        initrd.systemd.enable = true;
     };
 }

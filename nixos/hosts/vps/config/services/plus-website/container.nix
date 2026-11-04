@@ -29,6 +29,11 @@
 
             Restart = "on-failure";
             RestartSec = "5s";
+
+            # next-server can hang on SIGTERM. Left at the default 90s this ties
+            # with the host's container stop timeout, so the host SIGKILLs the
+            # whole container and the next start fails on leftover mounts.
+            TimeoutStopSec = "10s";
         };
     };
 }
