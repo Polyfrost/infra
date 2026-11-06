@@ -39,6 +39,9 @@
             "plus/s3/access_key_secret" = { };
             "plus/discord/client_id" = { };
             "plus/discord/client_secret" = { };
+            "plus/eos/trusted_client_id" = { };
+            "plus/eos/trusted_client_secret" = { };
+            "plus/eos/deployment_id" = { };
 
             # Plus Staging
             "plus-staging/admin_password" = { };
@@ -49,6 +52,9 @@
             "plus-staging/s3/access_key_secret" = { };
             "plus-staging/discord/client_id" = { };
             "plus-staging/discord/client_secret" = { };
+            "plus-staging/eos/trusted_client_id" = { };
+            "plus-staging/eos/trusted_client_secret" = { };
+            "plus-staging/eos/deployment_id" = { };
 
             "grafana/secret_key" = { };
             "grafana/smtp/address" = { };

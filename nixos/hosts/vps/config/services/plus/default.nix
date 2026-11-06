@@ -81,6 +81,9 @@ in
                 AWS_SECRET_ACCESS_KEY=${config.sops.placeholder."${name}/s3/access_key_secret"}
                 DISCORD_CLIENT_ID=${config.sops.placeholder."${name}/discord/client_id"}
                 DISCORD_CLIENT_SECRET=${config.sops.placeholder."${name}/discord/client_secret"}
+                EOS_TRUSTED_CLIENT_ID=${config.sops.placeholder."${name}/eos/trusted_client_id"}
+                EOS_TRUSTED_CLIENT_SECRET=${config.sops.placeholder."${name}/eos/trusted_client_secret"}
+                EOS_DEPLOYMENT_ID=${config.sops.placeholder."${name}/eos/deployment_id"}
             '';
         }) instances
     );
