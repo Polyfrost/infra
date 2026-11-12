@@ -6,3 +6,4 @@ nixos/hosts/vps/config/services/vector/geoip
 .gcroots
 *.crt
 *.key
+.DS_Store

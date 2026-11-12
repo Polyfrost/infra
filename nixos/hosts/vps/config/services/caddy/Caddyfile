@@ -119,6 +119,11 @@ https://*.polyfrost.cc {
 https://polyfrost.org, https://www.polyfrost.org {
 	import prelude index
 
+	handle /ads.txt {
+		root * /var/www
+		file_server
+	}
+
 	# Both builds ship these, so the main site keeps them
 	@site-assets path /favicon.ico /favicon.svg /apple-touch-icon.png /android-chrome-*.png /site.webmanifest /safari-pinned-tab.svg /robots.txt
 

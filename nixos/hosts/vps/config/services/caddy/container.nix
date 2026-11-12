@@ -26,7 +26,7 @@
                 "github.com/caddy-dns/cloudflare@v0.2.4-0.20260323191214-a8737d095ad5"
                 "github.com/WeidiDeng/caddy-cloudflare-ip@v0.0.0-20231130002422-f53b62aa13cb"
             ];
-            hash = "sha256-PryClzkItGxdkyn7kk6y2VrP+1snc9RuLJl0hhiZE5c=";
+            hash = "sha256-Xr4KZ9t/jDU68zyyvCGAdvEjkPDU874zhnNBdj2czYc=";
         };
 
         configFile = ./Caddyfile;
@@ -45,6 +45,10 @@
     systemd.tmpfiles.settings."10-var-www" = {
         "/var/www/plus-admin-dashboard"."L" = {
             argument = "${inputs.plus-admin-dashboard.packages.${system}.default}/share";
+        };
+        # L+ so the link follows the new store path when ads.txt changes
+        "/var/www/ads.txt"."L+" = {
+            argument = "${./ads.txt}";
         };
     };
 }
