@@ -1,19 +1,9 @@
-{ lib, ... }:
-let
-    volumeId = "106639144";
-
-    onVolume = [
-        "reposilite"
-        "monitoring/victoriametrics"
-        "monitoring/victorialogs"
-    ];
-in
 {
     disko.devices = {
         disk = {
             main = {
                 type = "disk";
-                device = "/dev/sda";
+                device = "/dev/vda"; # netcup virtio disk; check with `lsblk`
                 content = {
                     type = "gpt";
                     partitions = {
@@ -45,35 +35,6 @@ in
                             };
                         };
                     };
-                };
-            };
-
-            volume = {
-                type = "disk";
-                device = "/dev/disk/by-id/scsi-0HC_Volume_${volumeId}";
-
-                destroy = false;
-
-                content = {
-                    type = "btrfs";
-                    extraArgs = [
-                        "-L"
-                        "polyfrost-data"
-                    ];
-
-                    subvolumes = builtins.listToAttrs (
-                        builtins.map (
-                            name:
-                            lib.nameValuePair name {
-                                mountpoint = "/var/lib/containers-persistent/${name}";
-                                mountOptions = [
-                                    "compress=zstd:3"
-                                    "noatime"
-                                    "nofail"
-                                ];
-                            }
-                        ) onVolume
-                    );
                 };
             };
         };

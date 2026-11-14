@@ -40,8 +40,8 @@
             };
 
             networkConfig = {
-                # Default to no DHCP or RA, this will be changed by drop-in if necessary
-                DHCP = "no";
+                # netcup hands out IPv4 via DHCP; IPv6 is static (below)
+                DHCP = "ipv4";
                 IPv6AcceptRA = "no";
 
                 LinkLocalAddressing = "yes";
@@ -50,37 +50,16 @@
                 IPv6PrivacyExtensions = "yes";
             };
 
+            # netcup /64 from the SCP; netcup's IPv6 gateway is always fe80::1
+            address = [ "2a0a:4cc0:2000:f99b::1/64" ];
+            gateway = [ "fe80::1" ];
+
             linkConfig = {
                 RequiredForOnline = "yes";
                 RequiredFamilyForOnline = "any";
             };
         };
     };
-    systemd.services.systemd-networkd-hetzner-cloud-setup = {
-        description = "Gets network configuration from Hetzner's metadata API and setups up networking";
-        wantedBy = [ "multi-user.target" ];
-
-        # This would be much easier if hetzner just supported router advertisements but here we are
-        script = ''
-            # Wait for the carrier (necessary for hetzner metadata api via link local)
-            ${config.systemd.package}/lib/systemd/systemd-networkd-wait-online --operational-state=carrier --ipv4
-
-            # Write drop-in where networkd expects it
-            mkdir -p /etc/systemd/network/10-ethernet.network.d
-            GENERATED_DROPIN=$(${lib.getExe pkgs.nushell} ${./gen-networkd.nu})
-            if [ $? -eq 0 ]; then
-                # If success, write generated file and reload networking
-                echo "$GENERATED_DROPIN" > /etc/systemd/network/10-ethernet.network.d/hetzner.conf
-                networkctl reload
-            else
-                # If failure, write a replacement fallback "use DHCP" config and use that
-                echo -e "[Network]\nDHCP=yes" > /etc/systemd/network/10-ethernet.network.d/hetzner.conf
-                networkctl reload
-                exit 1 # Ensure failure is noticed
-            fi
-        '';
-    };
-
     # Tailscale overlay network configuration
     services.tailscale = {
         enable = true;

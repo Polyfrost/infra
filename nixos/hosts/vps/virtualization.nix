@@ -114,8 +114,6 @@
 
             # Configure VM specs
             disko.devices.disk.main.imageSize = "8G";
-            # Stand-in for the Hetzner volume, so the extra mounts are exercised under test too
-            disko.devices.disk.volume.imageSize = "4G";
             disko.memSize = 4096;
             virtualisation.cores = 4;
 
