@@ -6,6 +6,11 @@
     plusInstance,
     ...
 }:
+let
+    pkgs' = inputs.${plusInstance.flakeInput}.packages.${system};
+    # Newer plus-backend renders in-process (plusrenderer) and no longer ships render-service.
+    hasRenderService = pkgs' ? render-service;
+in
 {
     systemd.services.plus = {
         wantedBy = [ "multi-user.target" ];
@@ -26,8 +31,10 @@
             S3_BUCKET_REGION = "auto";
             RUST_LOG = "debug,sea_orm=debug,sqlx=warn";
 
-            RENDER_SERVICE_URL = "http://127.0.0.1:8090";
             CORS_ORIGINS = plusInstance.corsOrigins;
+
+            # Admin-panel settings; StateDirectory below makes it writable under DynamicUser
+            SETTINGS_PATH = "/var/lib/plus/settings.json";
 
             # Instance name matches its subdomain (plus, plus-staging)
             OIDC_ISSUER = "https://${plusInstance.name}.polyfrost.org/";
@@ -41,6 +48,7 @@
                 if you have any suggestions or questions or issues you're having, you can join our discord at discord.gg/polyfrost.
                 also, you can message us directly here! you can only send 1 message per 3 days, so be wise with what you say (but feel free to send us anything you feel is "dumb", we like hearing stuff like that)'';
         }
+        // lib.optionalAttrs hasRenderService { RENDER_SERVICE_URL = "http://127.0.0.1:8090"; }
         # The payment provider's settings, which differ per instance.
         // (plusInstance.extraEnv or { });
 
@@ -50,17 +58,18 @@
             User = "plus";
             Group = "plus";
             DynamicUser = true;
+            StateDirectory = "plus";
 
             LimitNOFILE = 65536;
 
             Restart = "on-failure";
             RestartSec = "5s";
 
-            ExecStart = [ "${lib.getExe inputs.${plusInstance.flakeInput}.packages.${system}.default} serve" ];
+            ExecStart = [ "${lib.getExe pkgs'.default} serve" ];
         };
     };
 
-    systemd.services.plus-render = {
+    systemd.services.plus-render = lib.mkIf hasRenderService {
         wantedBy = [ "multi-user.target" ];
         before = [ "plus.service" ];
 
@@ -80,7 +89,7 @@
 
             RuntimeDirectory = "plus-render";
 
-            ExecStart = [ "${lib.getExe inputs.${plusInstance.flakeInput}.packages.${system}.render-service}" ];
+            ExecStart = [ "${lib.getExe pkgs'.render-service}" ];
         };
     };
 }
