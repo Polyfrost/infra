@@ -14,6 +14,7 @@ let
                 PAYNOW_CANCEL_URL = "https://store.polyfrost.org/checkout/cancel";
                 S3_PUBLIC_URL = "https://plus.r2.polyfrost.org";
                 DISCORD_REDIRECT_URI = "https://plus.polyfrost.org/account/links/discord/callback";
+                DASHBOARD_ORIGINS = "https://plus-admin.polyfrost.org";
             };
 
             secretsEnv = ''
@@ -43,6 +44,7 @@ let
                 PAYNOW_CANCEL_URL = "https://store-staging.polyfrost.org/checkout/cancel";
                 S3_PUBLIC_URL = "https://plus-staging.r2.polyfrost.org";
                 DISCORD_REDIRECT_URI = "https://plus-staging.polyfrost.org/account/links/discord/callback";
+                DASHBOARD_ORIGINS = "https://plus-admin-staging.polyfrost.org";
             };
 
             secretsEnv = ''
